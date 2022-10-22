@@ -9,6 +9,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <omp.h>
+#include "OpenMPBitonicSort.h"
 
 #define TASK_SIZE 127
 
@@ -37,80 +38,6 @@ void fillupRandomly(int* m, int size, unsigned int min, unsigned int max) {
       m[i] = rand_interval(min, max);
 }
 
-void printArray(int* a, int size) {
-   for (int i = 0; i < size; i++)
-      printf("%d ", a[i]);
-   printf("\n");
-}
-
-int isSorted(int* a, int size) {
-   for (int i = 0; i < size - 1; i++)
-      if (a[i] > a[i + 1])
-         return 0;
-   return 1;
-}
-
-/*The parameter dir indicates the sorting direction, ASCENDING
-   or DESCENDING; if (a[i] > a[j]) agrees with the direction,
-   then a[i] and a[j] are interchanged.*/
-void compAndSwap(int* a, int i, int j, int dir)
-{
-   if (dir == (a[i] > a[j]))
-      swap(a[i], a[j]);
-}
-
-/*It recursively sorts a bitonic sequence in ascending order,
-  if dir = 1, and in descending order otherwise (means dir=0).
-  The sequence to be sorted starts at index position low,
-  the parameter cnt is the number of elements to be sorted.*/
-void bitonicMerge(int* a, int low, int cnt, int dir)
-{
-   if (cnt > 1)
-   {
-      int k = cnt / 2;
-      for (int i = low; i < low + k; i++)
-         compAndSwap(a, i, i + k, dir);
-      bitonicMerge(a, low, k, dir);
-      bitonicMerge(a, low + k, k, dir);
-   }
-}
-
-/* This function first produces a bitonic sequence by recursively
-    sorting its two halves in opposite sorting orders, and then
-    calls bitonicMerge to make them in the same order */
-void bitonicSort(int* a, int low, int cnt, int dir)
-{
-   if (cnt > 1)
-   {
-      int k = cnt / 2;
-
-      // sort in ascending order since dir here is 1
-#pragma omp task shared(a) if (k>TASK_SIZE) 
-      bitonicSort(a, low, k, 1);
-
-      // sort in descending order since dir here is 0
-#pragma omp task shared(a) if (k>TASK_SIZE) 
-      bitonicSort(a, low + k, k, 0);
-
-      // Will merge whole sequence in ascending order
-      // since dir=1.
-#pragma omp taskwait
-      bitonicMerge(a, low, cnt, dir);
-   }
-}
-
-/* Caller of bitonicSort for sorting the entire array of
-   length N in ASCENDING order */
-void sort(int* a, int N, int up)
-{
-   bitonicSort(a, 0, N, up);
-}
-
-void init(int* a, int size) {
-   for (int i = 0; i < size; i++)
-      a[i] = 0;
-}
-
 // Driver code
 int main(int argc, char* argv[])
 {
@@ -119,7 +46,7 @@ int main(int argc, char* argv[])
    // 67108864, 16777216, 2097152
    int N = (argc > 1) ? atoi(argv[1]) : 2097152;
    int print = (argc > 2) ? atoi(argv[2]) : 0;
-   int numThreads = (argc > 3) ? atoi(argv[3]) : 1;
+   int numThreads = (argc > 3) ? atoi(argv[3]) : 4;
    int* X = (int*)malloc(N * sizeof(int));
    int* tmp = (int*)malloc(N * sizeof(int));
    int up = 1;   // means sort in ascending order
@@ -136,19 +63,15 @@ int main(int argc, char* argv[])
    }
 
    fillupRandomly(X, N, 0, 500);
+   BaseSort* mySort = new OpenMPBitonicSort(X, N, up);
 
-   //printArray(X, N);
    double begin = omp_get_wtime();
-#pragma omp parallel
-   {
-#pragma omp single
-      sort(X, N, up);
-   }
+   mySort->sort();
    double end = omp_get_wtime();
    printf("Time: %f (s) \n", end - begin);
+   // TODO: store results in a csv
 
-   //printArray(X, N);
-   assert(1 == isSorted(X, N));
+   assert(1 == mySort->isSorted());
    printf("Sorted\n");
 
    free(X);

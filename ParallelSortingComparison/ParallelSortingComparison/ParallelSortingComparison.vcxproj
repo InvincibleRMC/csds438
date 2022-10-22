@@ -129,7 +129,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BaseBitonicSort.cpp" />
+    <ClCompile Include="BaseSort.cpp" />
+    <ClCompile Include="OpenMPBitonicSort.cpp" />
     <ClCompile Include="ParallelSortingComparison.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="BaseBitonicSort.h" />
+    <ClInclude Include="BaseSort.h" />
+    <ClInclude Include="Constants.h" />
+    <ClInclude Include="OpenMPBitonicSort.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
