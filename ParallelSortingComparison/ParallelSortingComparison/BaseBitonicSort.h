@@ -12,7 +12,7 @@ class BaseBitonicSort :
         if dir = 1, and in descending order otherwise (means dir=0).
         The sequence to be sorted starts at index position low,
         the parameter cnt is the number of elements to be sorted.*/
-      virtual void bitonicMerge(int low, int cnt);
+      void bitonicMerge(int low, int cnt, int dir);
       /* This function first produces a bitonic sequence by recursively
           sorting its two halves in opposite sorting orders, and then
           calls bitonicMerge to make them in the same order */

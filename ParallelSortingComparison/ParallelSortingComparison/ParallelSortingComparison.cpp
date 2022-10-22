@@ -38,44 +38,59 @@ void fillupRandomly(int* m, int size, unsigned int min, unsigned int max) {
       m[i] = rand_interval(min, max);
 }
 
+int runExperiments(int up, int low, int high, int print = 0) {
+   // Experiment value setup
+   // 67108864, 16777216, 2097152
+   int arraySizes[]{ 2097152 };
+   int threadCount[]{ 4 };
+
+   for (int N : arraySizes) {
+      int* X = (int*)malloc(N * sizeof(int));
+      // Dealing with fail memory allocation
+      if (!X)
+      {
+         if (X) free(X);
+         return (EXIT_FAILURE);
+      }
+      BaseSort* sortingAlgorithms[]{ new OpenMPBitonicSort(X, N, up) };
+      for (BaseSort* sortAlgo : sortingAlgorithms) {
+         for (int numThreads : threadCount) {
+            omp_set_dynamic(0);              /** Explicitly disable dynamic teams **/
+            omp_set_num_threads(numThreads); /** Use N threads for all parallel regions **/
+
+            // Have to fill up with random numbers every time since sorts in place
+            fillupRandomly(X, N, low, high);
+
+            if (print == 1) {
+               sortAlgo->printArray();
+            }
+
+            double begin = omp_get_wtime();
+            sortAlgo->sort();
+            double end = omp_get_wtime();
+            printf("Time: %f (s) \n", end - begin);
+
+            if (print == 1) {
+               sortAlgo->printArray();
+            }
+            // TODO: store results in a csv
+
+            assert(1 == sortAlgo->isSorted());
+            printf("Sorted\n");
+         }
+      }
+      free(X);
+   }
+}
+
 // Driver code
 int main(int argc, char* argv[])
 {
    srand(123456);
-   // Instantiating arrays
-   // 67108864, 16777216, 2097152
-   int N = (argc > 1) ? atoi(argv[1]) : 2097152;
-   int print = (argc > 2) ? atoi(argv[2]) : 0;
-   int numThreads = (argc > 3) ? atoi(argv[3]) : 4;
-   int* X = (int*)malloc(N * sizeof(int));
-   int* tmp = (int*)malloc(N * sizeof(int));
+   int print = 0;
    int up = 1;   // means sort in ascending order
+   runExperiments(up, 0, 500, print);
 
-   omp_set_dynamic(0);              /** Explicitly disable dynamic teams **/
-   omp_set_num_threads(numThreads); /** Use N threads for all parallel regions **/
-
-   // Dealing with fail memory allocation
-   if (!X || !tmp)
-   {
-      if (X) free(X);
-      if (tmp) free(tmp);
-      return (EXIT_FAILURE);
-   }
-
-   fillupRandomly(X, N, 0, 500);
-   BaseSort* mySort = new OpenMPBitonicSort(X, N, up);
-
-   double begin = omp_get_wtime();
-   mySort->sort();
-   double end = omp_get_wtime();
-   printf("Time: %f (s) \n", end - begin);
-   // TODO: store results in a csv
-
-   assert(1 == mySort->isSorted());
-   printf("Sorted\n");
-
-   free(X);
-   free(tmp);
    return (EXIT_SUCCESS);
 }
 

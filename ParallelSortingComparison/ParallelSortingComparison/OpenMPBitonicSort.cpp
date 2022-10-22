@@ -12,18 +12,6 @@ void OpenMPBitonicSort::sort()
    }
 }
 
-void OpenMPBitonicSort::bitonicMerge(int low, int cnt, int dir)
-{
-   if (cnt > 1)
-   {
-      int k = cnt / 2;
-      for (int i = low; i < low + k; i++)
-         this->compAndSwap(i, i + k, dir);
-      bitonicMerge(low, k, dir);
-      bitonicMerge(low + k, k, dir);
-   }
-}
-
 void OpenMPBitonicSort::bitonicSort(int* a, int low, int cnt, int dir)
 {
    if (cnt > 1)
