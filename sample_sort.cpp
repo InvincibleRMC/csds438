@@ -4,11 +4,11 @@
 #include <sstream>
 #include <iterator>
 #include <algorithm>
-// #include <insht.h>
 class SampleSort
 {
 
 public:
+    // Generates Data 
     static std::vector<int> generateData(int n)
     {
         std::vector<int> data;
@@ -19,7 +19,7 @@ public:
         data.shrink_to_fit();
         return data;
     }
-
+    // Prints Vectors
     static void printVector(std::vector<int> v)
     {
         std::ostringstream vit;
@@ -32,6 +32,7 @@ public:
         std::cout << vit.str() << std::endl;
     }
 
+    // Randomizes Data by performing swaps
     static std::vector<int> randomizeData(std::vector<int> data)
     {
         int swapLocation = 0;
@@ -46,96 +47,104 @@ public:
         return data;
     }
 
-    // static bool solved(std::vector<int> data,std::vector<int> solved){
-    //     for(int i =0;i<data.size();i++){
-    //         if(data.at(i)!= solved.at(i)){
-    //             return false;
-    //         }
-    //     }
-    //     return true;
-    // }
+    // Sample Sort
+    // randomized is unsorted vector
+    // int k is the minimum bucket size
+    // int p is the number of processors
     static std::vector<int> sampleSort(std::vector<int> randomized, int k, int p)
     {
-
+        // If less Processor than min bucket Size
         if (k < p)
         {
             throw std::invalid_argument("P needs to be less than k");
         }
 
-        // randomized.erase(randomized.begin() + 1);
         int n = randomized.size();
+        // If Bucket is smaller then min bucket size run standard sort
+        // Base Case
         if (n < k)
         {
             std::sort(randomized.begin(), randomized.end());
             return randomized;
         }
-
+        // Reserve Space for sorted bucket
         std::vector<int> solved;
         solved.reserve(randomized.size());
 
+        // Chose Splitters
         int splitterCount = p - 1;
-        std::vector<int> splitters;
+        std::vector<int> splitters(splitterCount);
         int newSize = n;
+
         for (int i = 0; i < splitterCount; i++)
         {
             int removeLocation = (int)rand() % newSize;
-            splitters.push_back(randomized[removeLocation]);
+            splitters.at(i) = (randomized.at(removeLocation));
             randomized.erase(randomized.begin() + removeLocation);
             newSize--;
         }
+        // Sort Splitters
         std::sort(splitters.begin(), splitters.end());
-        // std::cout << "\n\n\n";
-        // printVector(splitters);
-        // std::cout << "\n\n\n";
 
-        size_t _pSize = (size_t)p;
-        // std::cout << "pain";
+        // Sort elements into buckets around splitter
         std::vector<std::vector<int>> buckets(p);
-
-        // buckets.resize(_pSize);
-
-        // std::cout << "paint";
-        size_t _randomizedSize = (size_t)randomized.size();
-
-        for (auto bucket : buckets)
+        for (int e : randomized)
         {
-            bucket.resize(randomized.size());
-        }
-        //  std::cout << "resizing";
-        // buckets.resize(p);
-
-        //  std::cout << "create buckets";
-        for (int i = 0; i < randomized.size(); i++)
-        {
-            // std::cout << randomized.size();
-            // std::cout << "started while";
-            int val = randomized.at(i);
-            //  std::cout << "found front";
-            for (int j = 0; j < p; j++)
+            // If smaller than first splitter element insert into 0th bucket
+            if (e < splitters.at(0))
             {
-                if ((val <= splitters[j]) || (j == p))
+                buckets.at(0).push_back(e);
+            }
+            // If larger than last splitter element insert into last bucket
+            else if (e >= splitters.at(splitters.size() - 1))
+            {
+                buckets.at(buckets.size() - 1).push_back(e);
+            }
+            // Else insert into bucket between splitter values
+            else
+            {
+            
+                for (int j = 1; j < splitters.size(); j++)
                 {
-                    // std::cout << "adding front";
-                    // std::cout << front;
-                    buckets[j].push_back(val);
+                    if (splitters.at(j - 1) < e && e <= splitters.at(j))
+                    {
+                        buckets.at(j).push_back(e);
+                    }
                 }
             }
         }
-        //  std::cout << "split buckets";
+
+        // Recurisve Call on buckets and re-concatenation
+        int i = 0;
         for (std::vector<int> b : buckets)
         {
+            // Recursive Call
             b.shrink_to_fit();
             std::vector<int> sortedB = sampleSort(b, k, p);
-            solved.insert(solved.end(), sortedB.begin(), sortedB.end());
-        }
 
+            // Re Construction
+            solved.insert(solved.end(), sortedB.begin(), sortedB.end());
+            if (i != splitters.size())
+            {
+                solved.push_back(splitters.at(i));
+                i++;
+            }
+        }
         return solved;
     }
+
     static bool isSolved(std::vector<int> v)
     {
+        // If Vector is Empty it is Solved
+        if (v.size() == 0)
+        {
+            return true;
+        }
+
+        // Comfirms Sorted in Ascending Order
         for (int i = 0; i < v.size() - 1; i++)
         {
-            if (v[i] > v[i + 1])
+            if (v.at(i) > v.at(i + 1))
             {
                 return false;
             }
@@ -146,14 +155,21 @@ public:
 
 int main()
 {
-    std::vector<int> data = SampleSort::generateData(100);
-    printf("%s\n", SampleSort::isSolved(data) ? "Solved" : "Not Solved");
+    int size = 1000;
+    std::vector<int> data = SampleSort::generateData(size);
     std::vector<int> randomized = SampleSort::randomizeData(data);
-    // SampleSort::printVector(randomized);
-    int k = 20;
-    int p = 8;
+
+    int k = 3;
+    int p = 3;
+    clock_t start, end;
+    start = clock();
     std::vector<int> solved = SampleSort::sampleSort(randomized, k, p);
-    std::cout << "Done!\n\n";
+    end = clock();
+
+    double duration = ((double)end - start) / CLOCKS_PER_SEC;
+    printf("Time taken to execute in seconds : %f\n", duration);
+
     printf("%s\n", SampleSort::isSolved(solved) ? "Solved" : "Not Solved");
+
     return 0;
 }
