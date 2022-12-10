@@ -118,17 +118,26 @@ public:
         
         return solved;
     }
+    static bool isSolved(std::vector<int> v){
+        for (int i = 0; i < v.size() -1 ;i++){
+            if(v[i] > v[i+1]) {
+                return false;
+            }
+        }
+        return true;
+    }
 };
 
 
 int main(){
     std::vector<int> data = SampleSort::generateData(100);
-    std::vector<int> randomized = SampleSort::randomizeData(data);     
-    SampleSort::printVector(randomized);
+    printf("%s\n",SampleSort::isSolved(data) ? "Solved" : "Not Solved");
+    std::vector<int> randomized = SampleSort::randomizeData(data);
+    //SampleSort::printVector(randomized);
     int k =20;
     int p=8;
     std::vector<int> solved = SampleSort::sampleSort(randomized,k,p); 
     std::cout << "Done!\n\n";
-    //SampleSort::printVector(solved);
+    printf("%s\n",SampleSort::isSolved(solved) ? "Solved" : "Not Solved");
     return 0;    
 }
