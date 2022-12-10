@@ -4,11 +4,12 @@
 #include <sstream>
 #include <iterator>
 #include <algorithm>
+#include <omp.h>
 class SampleSort
 {
 
 public:
-    // Generates Data 
+    // Generates Data
     static std::vector<int> generateData(int n)
     {
         std::vector<int> data;
@@ -68,6 +69,97 @@ public:
             return randomized;
         }
         // Reserve Space for sorted bucket
+        //printf("%lu", randomized.size());
+        std::vector<int> solved;
+
+        // Chose Splitters
+        int splitterCount = p - 1;
+        std::vector<int> splitters(splitterCount);
+        int newSize = n;
+
+        for (int i = 0; i < splitterCount; i++)
+        {
+            int removeLocation = (int)rand() % newSize;
+            splitters.at(i) = (randomized.at(removeLocation));
+            randomized.erase(randomized.begin() + removeLocation);
+            newSize--;
+        }
+        // Sort Splitters
+        std::sort(splitters.begin(), splitters.end());
+
+        // Sort elements into buckets around splitter
+        std::vector<std::vector<int>> buckets(p);
+        for (int e : randomized)
+        {
+            // If smaller than first splitter element insert into 0th bucket
+            if (e < splitters.at(0))
+            {
+                buckets.at(0).push_back(e);
+            }
+            // If larger than last splitter element insert into last bucket
+            else if (e >= splitters.at(splitters.size() - 1))
+            {
+                buckets.at(buckets.size() - 1).push_back(e);
+            }
+            // Else insert into bucket between splitter values
+            else
+            {
+
+                for (int j = 1; j < splitters.size(); j++)
+                {
+                    if (splitters.at(j - 1) < e && e <= splitters.at(j))
+                    {
+                        buckets.at(j).push_back(e);
+                    }
+                }
+            }
+        }
+
+        // Recursive Call on buckets
+        std::vector<std::vector<int>> sortedBuckets;
+        for (std::vector<int> b : buckets)
+        {
+            // Recursive Call
+            b.shrink_to_fit();
+            sortedBuckets.emplace_back(sampleSort(b, k, p));
+        }
+
+        // Reconstruction
+        int i = 0;
+        for (std::vector<int> b : sortedBuckets)
+        {
+            solved.insert(solved.end(), b.begin(), b.end());
+            if (i != splitters.size())
+            {
+                solved.push_back(splitters.at(i));
+            }
+            i++;
+        }
+        
+        return solved;
+    }
+
+    // Sample Sort
+    // randomized is unsorted vector
+    // int k is the minimum bucket size
+    // int p is the number of processors
+    static std::vector<int> sampleSortParallel(std::vector<int> randomized, int k, int p)
+    {
+        // If less Processor than min bucket Size
+        if (k < p)
+        {
+            throw std::invalid_argument("P needs to be less than k");
+        }
+
+        int n = randomized.size();
+        // If Bucket is smaller then min bucket size run standard sort
+        // Base Case
+        if (n < k)
+        {
+            std::sort(randomized.begin(), randomized.end());
+            return randomized;
+        }
+        // Reserve Space for sorted bucket
         std::vector<int> solved;
         solved.reserve(randomized.size());
 
@@ -103,7 +195,7 @@ public:
             // Else insert into bucket between splitter values
             else
             {
-            
+
                 for (int j = 1; j < splitters.size(); j++)
                 {
                     if (splitters.at(j - 1) < e && e <= splitters.at(j))
@@ -114,22 +206,35 @@ public:
             }
         }
 
-        // Recurisve Call on buckets and re-concatenation
-        int i = 0;
-        for (std::vector<int> b : buckets)
+        omp_set_num_threads(p);
+
+        std::vector<std::vector<int>> sortedBuckets(buckets.size());
+
+        // Recursive Call on buckets
+        int i;
+#pragma omp parallel shared(buckets) private(i)
+#pragma omp for
+        for ( i = 0; i < buckets.size();i++)
         {
+            auto b = buckets.at(i);
             // Recursive Call
             b.shrink_to_fit();
-            std::vector<int> sortedB = sampleSort(b, k, p);
-
-            // Re Construction
-            solved.insert(solved.end(), sortedB.begin(), sortedB.end());
-            if (i != splitters.size())
-            {
-                solved.push_back(splitters.at(i));
-                i++;
-            }
+            sortedBuckets.at(i) = (sampleSort(b, k, p));
         }
+
+#pragma omp barrier
+        // Reconstruction
+        int j = 0;
+        for (std::vector<int> b : sortedBuckets)
+        {
+            solved.insert(solved.end(), b.begin(), b.end());
+            if (j != splitters.size())
+            {
+                solved.push_back(splitters.at(j));
+            }
+            j++;
+        }
+        // printVector(solved);
         return solved;
     }
 
@@ -155,13 +260,14 @@ public:
 
 int main()
 {
-    int size = 1000;
+    int size = 10000;
     std::vector<int> data = SampleSort::generateData(size);
     std::vector<int> randomized = SampleSort::randomizeData(data);
 
-    int k = 3;
-    int p = 3;
+    int k = 12;
+    int p = 6;
     clock_t start, end;
+
     start = clock();
     std::vector<int> solved = SampleSort::sampleSort(randomized, k, p);
     end = clock();
@@ -169,7 +275,17 @@ int main()
     double duration = ((double)end - start) / CLOCKS_PER_SEC;
     printf("Time taken to execute in seconds : %f\n", duration);
 
+    start = clock();
+    std::vector<int> solvedParallel = SampleSort::sampleSortParallel(randomized, k, p);
+    end = clock();
+
+    duration = ((double)end - start) / CLOCKS_PER_SEC;
+    printf("Time taken to execute in seconds : %f\n", duration);
+
+    SampleSort::printVector(solved);
+    SampleSort::printVector(solvedParallel);
     printf("%s\n", SampleSort::isSolved(solved) ? "Solved" : "Not Solved");
+    printf("%s\n", SampleSort::isSolved(solvedParallel) ? "Solved" : "Not Solved");
 
     return 0;
 }
