@@ -3,15 +3,13 @@
 
 /* C++ Program for Bitonic Sort. Note that this program
    works only when size of input is a power of 2. */
-#include<iostream>
+#include <iostream>
 #include <assert.h>
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <omp.h>
 #include "OpenMPBitonicSort.h"
-
-#define TASK_SIZE 127
 
 using namespace std;
 
