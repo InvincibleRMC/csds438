@@ -212,8 +212,9 @@ public:
 
         // Recursive Call on buckets
         int i;
-#pragma omp parallel shared(buckets) private(i)
-#pragma omp for
+#pragma acc data copy(sum,ones,negativeOnes)
+    {
+#pragma acc kernels
         for ( i = 0; i < buckets.size();i++)
         {
             auto b = buckets.at(i);
@@ -221,8 +222,7 @@ public:
             b.shrink_to_fit();
             sortedBuckets.at(i) = (sampleSort(b, k, p));
         }
-
-#pragma omp barrier
+}
         // Reconstruction
         int j = 0;
         for (std::vector<int> b : sortedBuckets)
