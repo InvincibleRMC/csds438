@@ -5,7 +5,7 @@
 #include <omp.h>
 
 // function to swap elements
-void swap(int *a, int *b) {
+void qswap(int *a, int *b) {
   int t = *a;
   *a = *b;
   *b = t;
@@ -30,12 +30,12 @@ int partition(int array[], int low, int high) {
       i++;
 
       // swap element at i with element at j
-      swap(&array[i], &array[j]);
+      qswap(&array[i], &array[j]);
     }
   }
 
   // swap the pivot element with the greater element at i
-  swap(&array[i + 1], &array[high]);
+  qswap(&array[i + 1], &array[high]);
 
   // return the partition point
   return (i + 1);
