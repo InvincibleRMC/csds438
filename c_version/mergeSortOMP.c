@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <omp.h>
+// merge two sorted arrays arr1[0..n1-1] and arr2[0..n2-1] into arr[0..n1+n2-1]
 
 void merge(int *array, int l, int m, int r) {
   int size1 = m - l + 1;
@@ -14,6 +15,8 @@ void merge(int *array, int l, int m, int r) {
   memcpy(right, array + m + 1, size2 * sizeof(int));
 
   int i = 0, j = 0, k = l;
+  // compare each element of the two arrays and
+  // put the smaller element in the result array
   while (i < size1 && j < size2) {
     if (left[i] <= right[j]) {
       array[k++] = left[i++];
@@ -21,7 +24,7 @@ void merge(int *array, int l, int m, int r) {
       array[k++] = right[j++];
     }
   }
-
+  // put the remaining elements of arr1[] (if any) into arr[]
   while (i < size1) {
     array[k++] = left[i++];
   }
@@ -32,9 +35,11 @@ void merge(int *array, int l, int m, int r) {
   free(left);
   free(right);
 }
+// put the remaining elements of arr2[] (if any) into arr[]
 
 void merge_sort(int *array, int l, int r) {
   if (l < r) {
+    // find the midpoint of the array
     int m = l + (r - l) / 2;
 
     #pragma omp parallel sections
@@ -59,6 +64,7 @@ int main(int argc, char *argv[]) {
   if (argc > 1) {
     threads = atoi(argv[1]);
   }
+  // sort the two halves using parallel threads
 
   omp_set_num_threads(threads);
 
