@@ -94,37 +94,54 @@ void bitonicSort(int* a, int low, int cnt, int dir)
    }
 }
 
+
+
 int runExperiments(int up, int low, int high, int print) {
-    // Experiment value setup
-    // 67108864, 16777216, 2097152
-    int arraySizes[] = { 2097152 };
-    int threadCount[] = { 1, 4 };
-        int i;
-    for (i = 0; i < sizeof(arraySizes) / sizeof(arraySizes[0]); i++) {
-        int N = arraySizes[i];
-        int* X = (int*)malloc(N * sizeof(int));
-        // Dealing with fail memory allocation
-        if (!X)
-        {
-            if (X) free(X);
-            return (EXIT_FAILURE);
-        }
-        func sortingAlgorithms[] = { &bitonicSort };
-        int j, k;
-        for (j = 0; j < sizeof(sortingAlgorithms) / sizeof(sortingAlgorithms[0]); j++) {
-            func sortAlgo = sortingAlgorithms[j];
-            for (k = 0; k < sizeof(threadCount) / sizeof(threadCount[0]); k++) {
-                omp_set_dynamic(0);              // Explicitly disable dynamic teams
-                omp_set_num_threads(threadCount[k]); // Use N threads for all parallel regions
 
-                // Have to fill up with random numbers every time since sorts in place
-                fillupRandomly(X, N, low, high);
+   FILE *fpt;
+   fpt = fopen("Group18Data.csv", "w+");
+   fprintf(fpt, "Algorithm, Implementation, Thread Count, Elements, Time\n");
 
-                if (print == 1) {
-                printArray(X, N);
-                }
+   // Experiment value setup
+   // 67108864, 16777216, 2097152
+   int arraySizes[] = {2097152};
+   int threadCount[] = {1, 4};
+   int i;
+   for (i = 0; i < sizeof(arraySizes) / sizeof(arraySizes[0]); i++)
+   {
+      int N = arraySizes[i];
+      int *X = (int *)malloc(N * sizeof(int));
+      // Dealing with fail memory allocation
+      if (!X)
+      {
+         if (X)
+            free(X);
+         return (EXIT_FAILURE);
+      }
+      
+      func sortingAlgorithms[] = {&bitonicSort};
 
-                double begin = omp_get_wtime();
+      char *sortingNames[] = {"Bitonic Sort"};
+      char implemenation[] = "OpenMP";
+
+      int j, k;
+      for (j = 0; j < sizeof(sortingAlgorithms) / sizeof(sortingAlgorithms[0]); j++)
+      {
+         func sortAlgo = sortingAlgorithms[j];
+         for (k = 0; k < sizeof(threadCount) / sizeof(threadCount[0]); k++)
+         {
+            omp_set_dynamic(0);                  // Explicitly disable dynamic teams
+            omp_set_num_threads(threadCount[k]); // Use N threads for all parallel regions
+
+            // Have to fill up with random numbers every time since sorts in place
+            fillupRandomly(X, N, low, high);
+
+            if (print == 1)
+            {
+               printArray(X, N);
+            }
+
+            double begin = omp_get_wtime();
                 #pragma omp parallel
                 {
                 #pragma omp single
@@ -136,13 +153,16 @@ int runExperiments(int up, int low, int high, int print) {
                 if (print == 1) {
                 printArray(X, N);
                 }
-                // TODO: store results in a csv
+               // CSV
+               fprintf(fpt,"%s, %s, %i, %i, %f\n", sortingNames[j], implemenation, threadCount[k],N, end - begin);
+
 
                 assert(1 == isSorted(X, N));
                 printf("Sorted\n");
             }
         }
         free(X);
+        fclose(fpt);
     }
 }
 
