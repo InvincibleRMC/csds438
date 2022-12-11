@@ -260,12 +260,12 @@ public:
 
 int main()
 {
-    int size = 10000;
+    int size = 10000000;
     std::vector<int> data = SampleSort::generateData(size);
     std::vector<int> randomized = SampleSort::randomizeData(data);
 
-    int k = 12;
-    int p = 6;
+    int k = 10;
+    int p = 8;
     clock_t start, end;
 
     start = clock();
@@ -275,15 +275,13 @@ int main()
     double duration = ((double)end - start) / CLOCKS_PER_SEC;
     printf("Time taken to execute in seconds : %f\n", duration);
 
-    start = clock();
+    double alt_start, alt_end;
+    alt_start = omp_get_wtime();
+    
     std::vector<int> solvedParallel = SampleSort::sampleSortParallel(randomized, k, p);
-    end = clock();
-
-    duration = ((double)end - start) / CLOCKS_PER_SEC;
-    printf("Time taken to execute in seconds : %f\n", duration);
-
-    SampleSort::printVector(solved);
-    SampleSort::printVector(solvedParallel);
+    alt_end = omp_get_wtime();
+    printf("Work took %f seconds\n", alt_end - alt_start);
+   
     printf("%s\n", SampleSort::isSolved(solved) ? "Solved" : "Not Solved");
     printf("%s\n", SampleSort::isSolved(solvedParallel) ? "Solved" : "Not Solved");
 
