@@ -1,14 +1,3 @@
-/*
-    ECSE420 Parallel Assignment 4
-    Dec 1, 2012
-    Adrian Lee
-    260272188
-    References:
-        Assignment 4 Supplement - Parallel Bitonic Sort Algorithm
-        Sorting Algorithms - http://www-users.cs.umn.edu/~karypis/parbook/Algorithms/pchap9.pdf
-        Bionic Sorting - http://www.thi.informatik.uni-frankfurt.de/~klauck/PDA07/Bitonic%20Sorting.pdf
-*/
-
 #include <stdio.h>      // Printf
 #include <time.h>       // Timer
 #include <math.h>       // Logarithm
@@ -17,6 +6,52 @@
 
 #define MASTER 0        // Who should do the final processing?
 #define OUTPUT_NUM 10   // Number of elements to display in output
+
+typedef void (*func)(int*, int, int, int);
+
+/*
+Utility  METHODS
+*/
+
+
+unsigned int rand_interval(unsigned int min, unsigned int max)
+{
+   // https://stackoverflow.com/questions/2509679/
+   int r;
+   const unsigned int range = 1 + max - min;
+   const unsigned int buckets = RAND_MAX / range;
+   const unsigned int limit = buckets * range;
+
+   do
+   {
+      r = rand();
+   } while (r >= limit);
+
+   return min + (r / buckets);
+}
+
+void fillupRandomly(int* m, int size, unsigned int min, unsigned int max) {
+    int i;
+   for (i = 0; i < size; i++)
+      m[i] = rand_interval(min, max);
+}
+
+void printArray(int* a, int size)
+{
+    int i;
+   for (i = 0; i < size; i++)
+      printf("%d ", a[i]);
+   printf("\n");
+}
+
+int isSorted(int* a, int size)
+{
+    int i;
+   for (i = 0; i < size - 1; i++)
+      if (a[i] > a[i + 1])
+         return 0;
+   return 1;
+}
 
 ///////////////////////////////////////////////////
 // Comparison Function
@@ -209,25 +244,19 @@ int main(int argc, char * argv[]) {
     int process_rank;
     int * array;
     int array_size;
-    printf("Line %d \n", 212);
 
     // Initialization, get # of processes & this PID/rank
     MPI_Init(&argc, &argv);
     MPI_Comm_size(MPI_COMM_WORLD, &num_processes);
     MPI_Comm_rank(MPI_COMM_WORLD, &process_rank);
-    printf("%d\n", num_processes);
 
     // Initialize Array for Storing Random Numbers
     array_size = atoi(argv[1]) / num_processes;
-    // printf("%d\n", array_size);
     array = (int *) malloc(array_size * sizeof(int));
-
-    // Generate Random Numbers for Sorting (within each process)
-    // Less overhead without MASTER sending random numbers to each slave
-    srand(time(NULL));  // Needed for rand()
-    for (i = 0; i < array_size; i++) {
-        array[i] = rand() % (atoi(argv[1]));
-    }
+    
+    // Have to fill up with random numbers every time since sorts in place
+    fillupRandomly(array, array_size, 0, 1000);
+    MPI_Bcast ( array, 1, MPI_INT, 0, MPI_COMM_WORLD );
 
     // Blocks until all processes have finished generating
     MPI_Barrier(MPI_COMM_WORLD);
