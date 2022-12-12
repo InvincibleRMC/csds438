@@ -94,37 +94,121 @@ void bitonicSort(int* a, int low, int cnt, int dir)
    }
 }
 
-int runExperiments(int up, int low, int high, int print) {
-    // Experiment value setup
-    // 67108864, 16777216, 2097152
-    int arraySizes[] = { 2097152 };
-    int threadCount[] = { 1, 4 };
-        int i;
-    for (i = 0; i < sizeof(arraySizes) / sizeof(arraySizes[0]); i++) {
-        int N = arraySizes[i];
-        int* X = (int*)malloc(N * sizeof(int));
-        // Dealing with fail memory allocation
-        if (!X)
+/*
+QUICKSORT METHODS
+*/
+
+// function to swap elements
+void qswap(int *a, int *b) {
+  int t = *a;
+  *a = *b;
+  *b = t;
+}
+
+// function to find the partition position
+int partition(int array[], int low, int high) {
+
+  // select the rightmost element as pivot
+  int pivot = array[high];
+
+  // pointer for greater element
+  int i = (low - 1);
+
+  // traverse each element of the array
+  // compare them with the pivot
+  for (int j = low; j < high; j++) {
+    if (array[j] <= pivot) {
+
+      // if element smaller than pivot is found
+      // swap it with the greater element pointed by i
+      i++;
+
+      // swap element at i with element at j
+      qswap(&array[i], &array[j]);
+    }
+  }
+
+  // swap the pivot element with the greater element at i
+  qswap(&array[i + 1], &array[high]);
+
+  // return the partition point
+  return (i + 1);
+}
+
+void quickSort(int* array, int low, int high, int dir) {
+  if (low < high) {
+
+    // find the pivot element such that
+    // elements smaller than pivot are on left of pivot
+    // elements greater than pivot are on right of pivot
+    int pi = partition(array, low, high);
+
+    #pragma omp parallel sections
+    {
+     	#pragma omp section
         {
-            if (X) free(X);
-            return (EXIT_FAILURE);
+            // recursive call on the left of pivot
+            quickSort(array, low, pi - 1, dir);
         }
-        func sortingAlgorithms[] = { &bitonicSort };
-        int j, k;
-        for (j = 0; j < sizeof(sortingAlgorithms) / sizeof(sortingAlgorithms[0]); j++) {
-            func sortAlgo = sortingAlgorithms[j];
-            for (k = 0; k < sizeof(threadCount) / sizeof(threadCount[0]); k++) {
-                omp_set_dynamic(0);              // Explicitly disable dynamic teams
-                omp_set_num_threads(threadCount[k]); // Use N threads for all parallel regions
+	#pragma omp section
+        {
+            // recursive call on the right of pivot
+            quickSort(array, pi + 1, high, dir);
+        }
+    }
+  }
+}
 
-                // Have to fill up with random numbers every time since sorts in place
-                fillupRandomly(X, N, low, high);
+/*
+END OF QUICKSORT METHODS 
+*/
 
-                if (print == 1) {
-                printArray(X, N);
-                }
+int runExperiments(int up, int low, int high, int print) {
 
-                double begin = omp_get_wtime();
+   FILE *fpt;
+   fpt = fopen("Group18Data.csv", "w+");
+   fprintf(fpt, "Algorithm, Implementation, Thread Count, Elements, Time\n");
+
+   // Experiment value setup
+   // 67108864, 16777216, 2097152
+   int arraySizes[] = {2097152};
+   int threadCount[] = {1, 4};
+   int i;
+   for (i = 0; i < sizeof(arraySizes) / sizeof(arraySizes[0]); i++)
+   {
+      int N = arraySizes[i];
+      int *X = (int *)malloc(N * sizeof(int));
+      // Dealing with fail memory allocation
+      if (!X)
+      {
+         if (X)
+            free(X);
+         return (EXIT_FAILURE);
+      }
+      
+      func sortingAlgorithms[] = {&bitonicSort, &quickSort};
+
+      char *sortingNames[] = {"Bitonic Sort"};
+      char implemenation[] = "OpenMP";
+
+      int j, k;
+      for (j = 0; j < sizeof(sortingAlgorithms) / sizeof(sortingAlgorithms[0]); j++)
+      {
+         func sortAlgo = sortingAlgorithms[j];
+         for (k = 0; k < sizeof(threadCount) / sizeof(threadCount[0]); k++)
+         {
+            omp_set_dynamic(0);                  // Explicitly disable dynamic teams
+            omp_set_num_threads(threadCount[k]); // Use N threads for all parallel regions
+
+            // Have to fill up with random numbers every time since sorts in place
+            fillupRandomly(X, N, low, high);
+
+            if (print == 1)
+            {
+               printArray(X, N);
+            }
+
+            double begin = omp_get_wtime();
                 #pragma omp parallel
                 {
                 #pragma omp single
@@ -136,13 +220,16 @@ int runExperiments(int up, int low, int high, int print) {
                 if (print == 1) {
                 printArray(X, N);
                 }
-                // TODO: store results in a csv
+               // CSV
+               fprintf(fpt,"%s, %s, %i, %i, %f\n", sortingNames[j], implemenation, threadCount[k],N, end - begin);
+
 
                 assert(1 == isSorted(X, N));
                 printf("Sorted\n");
             }
         }
         free(X);
+        fclose(fpt);
     }
 }
 
