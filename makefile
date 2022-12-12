@@ -1,7 +1,6 @@
 # Pre-compiler and Compiler flags
 # https://gist.github.com/zobayer1/7265c698d1b024bb7723bc624aeedeb3
-CXX_FLAGS := -std=c++11 -mp -acc -ta=tesla:cc70 -Minfo=accel
-PRE_FLAGS := -MMD
+PRE_FLAGS := -std=c++11 -fopenmp
 
 # Project directory structure
 BIN := bin
@@ -43,12 +42,12 @@ all: $(TARGET)
 $(TARGET): $(OBJS)
 	@echo "🚧 Building..."
 	mkdir -p $(dir $@)
-	pgc++ $(OBJS) -o $@ $(LDPATHS) $(LDFLAGS)
+	g++ -fopenmp $(OBJS) -o $@ $(LDPATHS) $(LDFLAGS)
 
 # Compile all cpp files
 $(BUILD)/%.o: $(SRC)/%.cpp
 	mkdir -p $(dir $@)
-	pgc++ $(CXX_FLAGS) $(PRE_FLAGS) $(INC_FLAGS) -c -o $@ $< $(LDPATHS) $(LDFLAGS)
+	g++ $(PRE_FLAGS) $(INC_FLAGS) -c -o $@ $< $(LDPATHS) $(LDFLAGS)
 
 # Clean task
 .PHONY: clean

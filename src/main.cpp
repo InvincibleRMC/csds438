@@ -8,8 +8,8 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include <omp.h>
 #include "OpenMPBitonicSort.h"
+#include <omp.h>
 
 using namespace std;
 
@@ -40,7 +40,7 @@ int runExperiments(int up, int low, int high, int print = 0) {
    // Experiment value setup
    // 67108864, 16777216, 2097152
    int arraySizes[]{ 2097152 };
-   int threadCount[]{ 4 };
+   int threadCount[]{ 1, 4 };
 
    for (int N : arraySizes) {
       int* X = (int*)malloc(N * sizeof(int));
@@ -91,14 +91,3 @@ int main(int argc, char* argv[])
 
    return (EXIT_SUCCESS);
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
