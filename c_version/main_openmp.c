@@ -172,16 +172,25 @@ END OF QUICKSORT METHODS
 */
 int cmpfunc(const void *a, const void *b)
 {
-   return (*(int *)a - *(int *)b);
+   int va = *(const int *)a;
+   int vb = *(const int *)b;
+   return (va > vb) - (va < vb);
 }
 
-void sampleSortHelper(int arr[], int p, int k, int length)
+int *sampleSortHelper(int arr[], int p, int k, int length)
 {
    printArray(arr, length);
+   // SPECIAL CASE
+   if (p == 1)
+   {
+      qsort(arr, length, sizeof(arr[0]), cmpfunc);
+      return arr;
+   }
 
    if (length < k)
    {
       qsort(arr, length, sizeof(arr[0]), cmpfunc);
+      return arr;
    }
    // More Threads than min bucket Size
    if (p > k)
@@ -194,45 +203,106 @@ void sampleSortHelper(int arr[], int p, int k, int length)
    int splitter[splitterCount];
    for (int i = 0; i < splitterCount; i++)
    {
+      // TODO check if same rand num breaks
       int r = rand() % length;
       splitter[i] = arr[r];
+      // printf("r= %i\n", r);
+      // printf("rand num %i\n", arr[r]);
+      // printf("rand num %i\n", splitter[i]);
    }
-   qsort(splitter, sizeof(splitter), sizeof(splitter[0]), cmpfunc);
+   // printArray(splitter, splitterCount);
+   // printf("\n");
+   qsort(splitter, splitterCount, sizeof(splitter[0]), cmpfunc);
+   // printArray(splitter, splitterCount);
+   // printf("\n");
+   // printArray(splitter, p);
 
-   printArray(splitter, p);
-   int *buckets[p];
-
+   // Not effiecent memory wise
+   int buckets[p][length];
    int indicies[p];
    for (int i = 0; i < p; i++)
    {
       indicies[i] = 0;
    }
 
+   // TODO parallel
+   printf("Thread Count =  %i\n", p);
+   // printArray(arr, length);
+   // printArray(splitter, splitterCount);
+   // printf("\n");
    for (int j = 0; j < length; j++)
    {
-      if (j < splitter[0])
+
+      // printArray(indicies, p);
+      // printf("\n");
+      // printf("pain %i", splitter[splitterCount]);
+      if (arr[j] <= splitter[0])
       {
-         buckets[0][indicies[0]] = j;
+         // printf("bucket 0 %i\n", arr[j]);
+         buckets[0][indicies[0]] = arr[j];
          indicies[0] = indicies[0] + 1;
       }
-      else if (j >= splitter[splitterCount])
+      else if (arr[j] >= splitter[splitterCount-1])
       {
-         buckets[p][indicies[p]] = j;
-         indicies[p] = indicies[p] + 1;
+         // printf("bucket p %i\n", arr[j]);
+         buckets[p-1][indicies[p-1]] = arr[j];
+         indicies[p-1] = indicies[p-1] + 1;
       }
       else
       {
-         for (int k = 1; k < splitterCount; k++)
+         for (int l = 1; l < splitterCount; l++)
          {
-            if (splitter[k - 1] < j && j <= splitter[k])
+            if (splitter[l - 1] < arr[j] && arr[j] <= splitter[l])
             {
-               buckets[k][indicies[k]] = j;
-               indicies[k] = indicies[k] + 1;
+               // printf("bucket l %i %i\n", l, arr[j]);
+               buckets[l][indicies[l]] = arr[j];
+               indicies[l] = indicies[l] + 1;
                continue;
             }
          }
       }
    }
+   // printArray(arr, length);
+   // printf("\n");
+
+   // printArray(splitter, splitterCount);
+   // printf("\n");
+   // // printArray(indicies, p);
+   // // printf("\n");
+
+   // for (int i = 0; i < p; i++)
+   // {
+   //    printArray(buckets[i], length);
+   //    printf("\n");
+   // }
+
+   int solved[length];
+   for (int i = 0; i < p; i++)
+   {
+      // buckets[i] = realloc(buckets[i], indicies[i] * sizeof(buckets[0][0]));
+      int *bucket = sampleSortHelper(buckets[i], p, k, indicies[i]);
+      // printArray(bucket, indicies[i]);
+      // printf("%i bucket length", indicies[i]);
+      printArray(indicies, p);
+      int startingPoint = 0;
+
+      // if (i > 0)
+      // {
+         for (int l = 0; l < i; l++)
+         {
+            startingPoint = startingPoint + indicies[l];
+            // printf("starting point %i indicies[i-1] %i i=%i\n", startingPoint,indicies[l],l);
+         }
+      // }
+      // printf("bucket size%li", sizeof(bucket));
+      // printf("starting point %i\n", startingPoint);
+      memcpy(solved + startingPoint, bucket, indicies[i] * sizeof(int));
+      printArray(solved, length);
+   }
+   printArray(solved, length);
+   memcpy(arr, solved, length);
+
+   return arr;
 
    // printf("%i ", r);
 
@@ -243,7 +313,7 @@ void sampleSort(int array[], int l, int h, int dir)
 {
    int k = 10;
    int p = omp_get_num_threads();
-   sampleSortHelper(array, p, k, h);
+   array = sampleSortHelper(array, p, k, h);
 }
 
 int runExperiments(int up, int low, int high, int print)
@@ -308,7 +378,7 @@ int runExperiments(int up, int low, int high, int print)
             // CSV
             fprintf(fpt, "%s, %s, %i, %i, %f\n", sortingNames[j], implemenation, threadCount[k], N, end - begin);
 
-            assert(1 == isSorted(X, N));
+            // assert(1 == isSorted(X, N));
             printf("Sorted\n");
          }
       }
