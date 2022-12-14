@@ -195,6 +195,8 @@ void counting_parallel_omp(int* array ,int low, int high, int dir) {
     for(l = 0; l < size; ++l){
         printf("%d ", sorted[l]);
     }
+    memcpy (array, sorted, sizeof(sorted));
+    
 }
 /*
  * End of counting sort methods.
