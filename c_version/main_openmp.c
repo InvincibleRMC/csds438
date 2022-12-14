@@ -300,7 +300,7 @@ int *sampleSortHelper(int arr[], int p, int k, int length)
       indicies[i] = 0;
    }
 
-#pragma omp parallel for num_threads(p)
+#pragma omp parallel for
 
    // Divide
    for (int j = 0; j < length; j++)
@@ -314,7 +314,7 @@ int *sampleSortHelper(int arr[], int p, int k, int length)
       buckets[bucketNum][indexToWrite] = arr[j];
    }
 
-#pragma omp parallel for num_threads(p)
+#pragma omp parallel for
    // Conquer
    for (int i = 0; i < p; i++)
    {
@@ -489,7 +489,7 @@ int runExperiments(int up, int low, int high, int print)
    // BITONIC NEEDS POWERS OF 2
    int arraySizes[] = {2097152};
    assert(evenInput(arraySizes, sizeof(arraySizes) / sizeof(arraySizes[0])));
-   int threadCount[] = {4, 8, 1};
+   int threadCount[] = {1,4,8};
    int i;
    for (i = 0; i < sizeof(arraySizes) / sizeof(arraySizes[0]); i++)
    {
