@@ -345,7 +345,7 @@ void sampleSort(int *arr, int l, int h, int dir)
    {
       p = 2;
    }
-   memcpy(arr, sampleSortHelper(arr, p, k, h), h * sizeof(int));
+   sampleSortHelper(arr, p, k, h);
 }
 
 /*
