@@ -144,11 +144,9 @@ int partition(int array[], int low, int high)
    // return the partition point
    return (i + 1);
 }
-
-void quickSort(int *array, int low, int high, int dir)
-{
-   if (low < high)
-   {
+// TODO WEIRD OFF BY ON ERROR
+void quickSort(int* array, int low, int high, int dir) {
+  if (low < high) {
 
       // find the pivot element such that
       // elements smaller than pivot are on left of pivot
@@ -354,11 +352,13 @@ void sampleSort(int *arr, int l, int h, int dir)
  * Counting sort methods
  */
 
-
+// TODO SEEMS REALLY REALLY SLOW
+// ALSO SEG FAULTS
 void counting_parallel_omp(int* array, int low, int high, int dir) {
     int i, j, count;
     int size = high - low;
     int *sorted = (int *)malloc(size * sizeof(int));
+    
     /*
      * This line just sets the number of threads to be run on.
         omp_set_num_threads(50);
@@ -384,7 +384,21 @@ void counting_parallel_omp(int* array, int low, int high, int dir) {
 /*
  * End of counting sort methods.
  */
-
+int cmpfunc(const void *a, const void *b)
+{
+   int va = *(const int *)a;
+   int vb = *(const int *)b;
+   // print("va =%i ")
+   return (va > vb) - (va < vb);
+}
+int sameElements(int* a, int*b, int size)
+{
+   for (int i = 0; i < size; i++)
+      if (a[i] !=b[i]){
+            return 0;
+      }
+   return 1;
+}
 
 int runExperiments(int up, int low, int high, int print) {
 
@@ -394,7 +408,8 @@ int runExperiments(int up, int low, int high, int print) {
 
    // Experiment value setup
    // 67108864, 16777216, 2097152
-   int arraySizes[] = {6004};
+   // BITONIC NEEDS POWERS OF 2
+   int arraySizes[] = {2097152/2 / 2/2/2/2/2/2/2};
    int threadCount[] = {1, 4};
    int i;
    for (i = 0; i < sizeof(arraySizes) / sizeof(arraySizes[0]); i++)
@@ -417,9 +432,9 @@ int runExperiments(int up, int low, int high, int print) {
          return (EXIT_FAILURE);
       }
 
-      func sortingAlgorithms[] = {&bitonicSort,&quickSort};
+      // func sortingAlgorithms[] = {&bitonicSort,&quickSort};
       
-      // func sortingAlgorithms[] = {&bitonicSort, &quickSort, &counting_parallel_omp};
+      func sortingAlgorithms[] = {&bitonicSort, &counting_parallel_omp, &quickSort};
 
       char *sortingNames[] = {"Bitonic Sort", "QuickSort","Counting Sort"};
       char implemenation[] = "OpenMP";
