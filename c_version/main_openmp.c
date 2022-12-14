@@ -394,7 +394,7 @@ int runExperiments(int up, int low, int high, int print) {
 
    // Experiment value setup
    // 67108864, 16777216, 2097152
-   int arraySizes[] = {10886004};
+   int arraySizes[] = {6004};
    int threadCount[] = {1, 4};
    int i;
    for (i = 0; i < sizeof(arraySizes) / sizeof(arraySizes[0]); i++)
@@ -403,7 +403,7 @@ int runExperiments(int up, int low, int high, int print) {
       int *X = (int *)malloc(N * sizeof(int));
       int *Y = (int *)malloc(N * sizeof(int));
 
-      // Dealing with faisolvedl memory allocation
+      // Dealing with failed memory allocation
       if (!X)
       {
          if (X)
@@ -417,9 +417,9 @@ int runExperiments(int up, int low, int high, int print) {
          return (EXIT_FAILURE);
       }
 
-      func sortingAlgorithms[] = {&sampleSort};
+      func sortingAlgorithms[] = {&bitonicSort,&quickSort};
       
-      //func sortingAlgorithms[] = {&bitonicSort, &quickSort, &counting_parallel_omp};
+      // func sortingAlgorithms[] = {&bitonicSort, &quickSort, &counting_parallel_omp};
 
       char *sortingNames[] = {"Bitonic Sort"};
       char implemenation[] = "OpenMP";
@@ -457,7 +457,7 @@ int runExperiments(int up, int low, int high, int print) {
             // CSV
             fprintf(fpt, "%s, %s, %i, %i, %f\n", sortingNames[j], implemenation, threadCount[k], N, end - begin);
 
-            assert(isSorted(X, N));
+            
 
             qsort(Y, N, sizeof(int), cmpfunc);
             if (!sameElements(X, Y, N))
@@ -465,6 +465,7 @@ int runExperiments(int up, int low, int high, int print) {
                printArray(X, 10);
                printArray(Y, 10);
             }
+            assert(isSorted(X, N));
             assert(sameElements(X, Y, N));
 
             printf("Sorted\n");
