@@ -208,12 +208,15 @@ void counting_parallel_omp(int *array, int low, int high, int dir)
    }
    double end_time = omp_get_wtime();
    double time_used = end_time - start_time;
-   int l;
-   for (l = 0; l < size; ++l)
-   {
-      printf("%d ", sorted[l]);
-   }
-   memcpy(array, sorted, sizeof(sorted));
+   // int l;
+   // for (l = 0; l < size; ++l)
+   // {
+   //    printf("%d ", sorted[l]);
+   // }
+   printf("SOrted?\n");
+   printArray(sorted, size);
+   memcpy(array, sorted, size* sizeof(sorted));
+   free(sorted); 
 }
 /*
  * End of counting sort methods.
