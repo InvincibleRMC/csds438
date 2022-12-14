@@ -261,11 +261,21 @@ int getBucketIndex(int e, int *splitter, int splitterCount, int p)
    assert(0);
 }
 
+int allPostive(int *arr, int length)
+{
+   for (int i = 0; i < length; i++)
+   {
+      if (arr[i] < 0)
+      {
+         return 0;
+      }
+   }
+   return 1;
+}
+
 int *sampleSortHelper(int arr[], int p, int k, int length)
 {
-   //Testing
-   int *copy = (int *)malloc(length * sizeof(int));
-   memcpy(copy, arr, length * sizeof(int));
+   // Testing
 
    if (length < k)
    {
@@ -276,10 +286,13 @@ int *sampleSortHelper(int arr[], int p, int k, int length)
    // Generates Splitters
    int splitterCount = p - 1;
    int splitter[splitterCount];
-   for (int i = 0; i < splitterCount - 1;i++){
+   for (int i = 0; i < splitterCount; i++)
+   {
       splitter[i] = arr[rand() % length];
+      
    }
-      qsort(splitter, splitterCount, sizeof(splitter[0]), cmpfunc);
+   
+   qsort(splitter, splitterCount, sizeof(splitter[0]), cmpfunc);
 
    // Not effiecent memory wise
    // Generate Buckets
@@ -291,26 +304,23 @@ int *sampleSortHelper(int arr[], int p, int k, int length)
       indicies[i] = 0;
    }
 
-#pragma omp parallel
-{
+#pragma omp parallel for num_threads(p)
 
-      printf("omp thread count %i\n", omp_get_num_threads());
-      printf("omp max thread count %i\n", omp_get_max_threads());
-#pragma omp for
-      // Divide
-      for (int j = 0; j < length; j++)
-      {
-         printf("Omp Thread Num %i\n", omp_get_thread_num());
-         int bucketNum = getBucketIndex(arr[j], splitter, splitterCount, p);
-#pragma omp critical
-         {
-            buckets[bucketNum][indicies[bucketNum]] = arr[j];
-            indicies[bucketNum] = indicies[bucketNum] + 1;
-         }
-      }
+   // Divide
+   for (int j = 0; j < length; j++)
+   {
 
-#pragma omp for
-//Conquer
+      int bucketNum = getBucketIndex(arr[j], splitter, splitterCount, p);
+      int indexToWrite;
+
+   #pragma omp atomic capture
+      indexToWrite = indicies[bucketNum]++;
+   
+   buckets[bucketNum][indexToWrite] = arr[j];
+   }
+
+#pragma omp parallel for num_threads(p)
+   // Conquer
    for (int i = 0; i < p; i++)
    {
       int *bucket = sampleSortHelper(buckets[i], p, k, indicies[i]);
@@ -322,17 +332,6 @@ int *sampleSortHelper(int arr[], int p, int k, int length)
       memcpy(arr + startingPoint, bucket, indicies[i] * sizeof(int));
       free(buckets[i]);
    }
-}
-
-   //TESTING
-   qsort(copy, length, sizeof(int), cmpfunc);
-   if (!sameElements(arr, copy, length))
-   {
-      printArray(arr, length);
-      printArray(copy, length);
-   }
-   assert(sameElements(arr, copy, length));
-   free(copy);
 
    return arr;
 }
@@ -348,7 +347,8 @@ void sampleSort(int *arr, int l, int h, int dir)
       k *= 2;
    }
    // Need at least buckets
-   if(p <= 1){
+   if (p <= 1)
+   {
       p = 2;
    }
    memcpy(arr, sampleSortHelper(arr, p, k, h), h * sizeof(int));
@@ -392,8 +392,8 @@ void counting_parallel_omp(int *array, int low, int high, int dir)
    // }
    printf("SOrted?\n");
    printArray(sorted, size);
-   memcpy(array, sorted, size* sizeof(sorted));
-   free(sorted); 
+   memcpy(array, sorted, size * sizeof(sorted));
+   free(sorted);
 }
 /*
  * End of counting sort methods.
@@ -493,9 +493,9 @@ int runExperiments(int up, int low, int high, int print)
    // Experiment value setup
    // 67108864, 16777216, 2097152
    // BITONIC NEEDS POWERS OF 2
-   int arraySizes[] = {2097152/2/2/2/2/2/2/2/2/2};
+   int arraySizes[] = {2097152};
    assert(evenInput(arraySizes, sizeof(arraySizes) / sizeof(arraySizes[0])));
-   int threadCount[] = {4,1};
+   int threadCount[] = {4,8,1};
    int i;
    for (i = 0; i < sizeof(arraySizes) / sizeof(arraySizes[0]); i++)
    {
@@ -543,10 +543,10 @@ int runExperiments(int up, int low, int high, int print)
             }
 
             double begin = omp_get_wtime();
-// #pragma omp parallel
-//             {
-// #pragma omp single
-               sortAlgo(X, 0, N, up);
+            // #pragma omp parallel
+            //             {
+            // #pragma omp single
+            sortAlgo(X, 0, N, up);
             // }
             double end = omp_get_wtime();
             printf("Time: %f (s) \n", end - begin);
@@ -582,7 +582,7 @@ int main(int argc, char *argv[])
    srand(123456);
    int print = 0;
    int up = 1; // means sort in ascending order
-   runExperiments(up, 0, 10000, print);
+   runExperiments(up, 0, 100000000, print);
 
    return (EXIT_SUCCESS);
 }
