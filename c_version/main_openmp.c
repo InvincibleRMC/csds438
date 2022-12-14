@@ -275,8 +275,6 @@ int allPostive(int *arr, int length)
 
 int *sampleSortHelper(int arr[], int p, int k, int length)
 {
-   // Testing
-
    if (length < k)
    {
       qsort(arr, length, sizeof(arr[0]), cmpfunc);
@@ -289,9 +287,7 @@ int *sampleSortHelper(int arr[], int p, int k, int length)
    for (int i = 0; i < splitterCount; i++)
    {
       splitter[i] = arr[rand() % length];
-      
    }
-   
    qsort(splitter, splitterCount, sizeof(splitter[0]), cmpfunc);
 
    // Not effiecent memory wise
@@ -309,14 +305,13 @@ int *sampleSortHelper(int arr[], int p, int k, int length)
    // Divide
    for (int j = 0; j < length; j++)
    {
-
       int bucketNum = getBucketIndex(arr[j], splitter, splitterCount, p);
       int indexToWrite;
 
-   #pragma omp atomic capture
+#pragma omp atomic capture
       indexToWrite = indicies[bucketNum]++;
-   
-   buckets[bucketNum][indexToWrite] = arr[j];
+
+      buckets[bucketNum][indexToWrite] = arr[j];
    }
 
 #pragma omp parallel for num_threads(p)
@@ -332,7 +327,6 @@ int *sampleSortHelper(int arr[], int p, int k, int length)
       memcpy(arr + startingPoint, bucket, indicies[i] * sizeof(int));
       free(buckets[i]);
    }
-
    return arr;
 }
 
@@ -495,7 +489,7 @@ int runExperiments(int up, int low, int high, int print)
    // BITONIC NEEDS POWERS OF 2
    int arraySizes[] = {2097152};
    assert(evenInput(arraySizes, sizeof(arraySizes) / sizeof(arraySizes[0])));
-   int threadCount[] = {4,8,1};
+   int threadCount[] = {4, 8, 1};
    int i;
    for (i = 0; i < sizeof(arraySizes) / sizeof(arraySizes[0]); i++)
    {
