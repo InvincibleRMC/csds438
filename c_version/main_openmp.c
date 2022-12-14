@@ -169,15 +169,11 @@ END OF QUICKSORT METHODS
 
 // TODO SEEMS REALLY REALLY SLOW
 // ALSO SEG FAULTS
-void counting_parallel_omp(int* array, int low, int high, int dir) {
+void counting_parallel_omp(int* array ,int low, int high, int dir) {
     int i, j, count;
     int size = high - low;
-    int *sorted = (int *)malloc(size * sizeof(int));
-    
-    /*
-     * This line just sets the number of threads to be run on.
-        omp_set_num_threads(50);
-    */
+    int* sorted = (int *)malloc(size * sizeof(int)); 
+    omp_set_num_threads(50);
     double start_time = omp_get_wtime();
     #pragma omp parallel private(i, j, count)
     {
@@ -191,10 +187,14 @@ void counting_parallel_omp(int* array, int low, int high, int dir) {
             while (sorted[count] != 0)
                 count++;
             sorted[count] = array[i];
-        }
+}
     }
     double end_time = omp_get_wtime();
     double time_used = end_time - start_time;
+    int l;
+    for(l = 0; l < size; ++l){
+        printf("%d ", sorted[l]);
+    }
 }
 /*
  * End of counting sort methods.
