@@ -256,6 +256,8 @@ int getBucketIndex(int e, int *splitter, int splitterCount, int p)
          }
       }
    }
+   printf("Element %i\n", e);
+   printArray(splitter, splitterCount);
    assert(0);
 }
 
@@ -264,24 +266,11 @@ int *sampleSortHelper(int arr[], int p, int k, int length)
    //Testing
    int *copy = (int *)malloc(length * sizeof(int));
    memcpy(copy, arr, length * sizeof(int));
-   //  SPECIAL CASE
-   if (p == 1)
-   {
-      printf("Special Case of One Bucket just calls qsort\n");
-      qsort(arr, length, sizeof(arr[0]), cmpfunc);
-      return arr;
-   }
 
    if (length < k)
    {
       qsort(arr, length, sizeof(arr[0]), cmpfunc);
       return arr;
-   }
-   
-   // More Threads than min bucket Size
-   if (p > k)
-   {
-      assert(0);
    }
 
    // Generates Splitters
@@ -304,19 +293,23 @@ int *sampleSortHelper(int arr[], int p, int k, int length)
 
 #pragma omp parallel
 {
-   #pragma omp taskloop
-   //Divide  
-   for (int j = 0; j < length; j++)
-   {
-      #pragma omp critical
-      {
-      int bucketNum = getBucketIndex(arr[j], splitter, splitterCount, p);
-      buckets[bucketNum][indicies[bucketNum]] = arr[j];
-      indicies[bucketNum] = indicies[bucketNum] + 1;
-      }
-   }
 
-#pragma omp taskloop
+      printf("omp thread count %i\n", omp_get_num_threads());
+      printf("omp max thread count %i\n", omp_get_max_threads());
+#pragma omp for
+      // Divide
+      for (int j = 0; j < length; j++)
+      {
+         printf("Omp Thread Num %i\n", omp_get_thread_num());
+         int bucketNum = getBucketIndex(arr[j], splitter, splitterCount, p);
+#pragma omp critical
+         {
+            buckets[bucketNum][indicies[bucketNum]] = arr[j];
+            indicies[bucketNum] = indicies[bucketNum] + 1;
+         }
+      }
+
+#pragma omp for
 //Conquer
    for (int i = 0; i < p; i++)
    {
@@ -341,7 +334,6 @@ int *sampleSortHelper(int arr[], int p, int k, int length)
    assert(sameElements(arr, copy, length));
    free(copy);
 
-
    return arr;
 }
 
@@ -349,6 +341,16 @@ void sampleSort(int *arr, int l, int h, int dir)
 {
    int k = 1024;
    int p = omp_get_num_threads();
+
+   // More Threads than min bucket Size
+   if (p > k)
+   {
+      k *= 2;
+   }
+   // Need at least buckets
+   if(p <= 1){
+      p = 2;
+   }
    memcpy(arr, sampleSortHelper(arr, p, k, h), h * sizeof(int));
 }
 
@@ -491,9 +493,9 @@ int runExperiments(int up, int low, int high, int print)
    // Experiment value setup
    // 67108864, 16777216, 2097152
    // BITONIC NEEDS POWERS OF 2
-   int arraySizes[] = {2097152 / 2 / 2 / 2 / 2 / 2 / 2 / 2 / 2 / 2 / 2 / 2 / 2 / 2 / 2 / 2 / 2 / 2 / 2};
+   int arraySizes[] = {2097152/2/2/2/2/2/2/2/2/2};
    assert(evenInput(arraySizes, sizeof(arraySizes) / sizeof(arraySizes[0])));
-   int threadCount[] = {1, 4};
+   int threadCount[] = {4,1};
    int i;
    for (i = 0; i < sizeof(arraySizes) / sizeof(arraySizes[0]); i++)
    {
@@ -515,8 +517,8 @@ int runExperiments(int up, int low, int high, int print)
          return (EXIT_FAILURE);
       }
 
-      // func sortingAlgorithms[] = {&quickSort};
-      // char *sortingNames[] = {"Bitonic Sort"};
+      // func sortingAlgorithms[] = {&sampleSort};
+      // char *sortingNames[] = {"Sample Sort"};
 
       func sortingAlgorithms[] = {&bitonicSort, &merge_sort, &quickSort, &sampleSort};
       char *sortingNames[] = {"Bitonic Sort", "MergeSort", "QuickSort", "Sample Sort"};
@@ -541,11 +543,11 @@ int runExperiments(int up, int low, int high, int print)
             }
 
             double begin = omp_get_wtime();
-#pragma omp parallel
-            {
-#pragma omp single
+// #pragma omp parallel
+//             {
+// #pragma omp single
                sortAlgo(X, 0, N, up);
-            }
+            // }
             double end = omp_get_wtime();
             printf("Time: %f (s) \n", end - begin);
 
