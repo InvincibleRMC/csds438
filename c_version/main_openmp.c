@@ -201,6 +201,61 @@ void counting_parallel_omp(int* array ,int low, int high, int dir) {
 /*
  * End of counting sort methods.
  */
+/**
+ * Merge sort methods
+ */
+void merge(int *array, int l, int m, int r) {
+  int size1 = m - l + 1;
+  int size2 = r - m;
+
+  int *left = malloc(size1 * sizeof(int));
+  int *right = malloc(size2 * sizeof(int));
+
+  memcpy(left, array + l, size1 * sizeof(int));
+  memcpy(right, array + m + 1, size2 * sizeof(int));
+
+  int i = 0, j = 0, k = l;
+  compare each element of the two arrays and
+  // put the smaller element in the result array
+  while (i < size1 && j < size2) {
+       if (left[i] <= right[j]) {
+            array[k++] = left[i++];
+        } else {
+            array[k++] = right[j++];
+         }
+ }
+ // put the remaining elements of arr1[] (if any) into arr[]
+while (i < size1) {
+     array[k++] = left[i++];
+}
+while (j < size2) {
+     array[k++] = right[j++];
+}
+free(left);
+free(right);
+}
+
+void merge_sort(int *array, int l, int r, int dir) {
+  if (l < r) {
+    // find the midpoint of the array
+         int m = l + (r - l) / 2;
+             #pragma omp parallel sections
+                 {
+                       #pragma omp section
+                             {
+                                     merge_sort(array, l, m);
+                                           }
+                                                 #pragma omp section
+                                                       {
+                                                               merge_sort(array, m + 1, r);
+                                                                     }
+                                                                         }
+                                                                             merge(array, l, m, r);
+                                                                               }
+                                                                               }
+/*
+ *End of merge sort method
+ */
 int cmpfunc(const void *a, const void *b)
 {
    int va = *(const int *)a;
@@ -251,7 +306,7 @@ int runExperiments(int up, int low, int high, int print) {
 
       // func sortingAlgorithms[] = {&bitonicSort,&quickSort};
       
-      func sortingAlgorithms[] = {&bitonicSort, &counting_parallel_omp, &quickSort};
+      func sortingAlgorithms[] = {&bitonicSort,&merge_sort, &counting_parallel_omp, &quickSort};
 
       char *sortingNames[] = {"Bitonic Sort", "QuickSort","Counting Sort"};
       char implemenation[] = "OpenMP";
