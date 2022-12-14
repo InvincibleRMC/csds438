@@ -10,21 +10,21 @@ typedef void (*func)(int *, int, int, int);
 
 // Utility functions
 
-// unsigned int rand_interval(unsigned int min, unsigned int max)
-// {
-//    // https://stackoverflow.com/questions/2509679/
-//    int r;
-//    const unsigned int range = 1 + max - min;
-//    const unsigned int buckets = RAND_MAX / range;
-//    const unsigned int limit = buckets * range;
+unsigned int rand_interval(unsigned int min, unsigned int max)
+{
+   // https://stackoverflow.com/questions/2509679/
+   int r;
+   const unsigned int range = 1 + max - min;
+   const unsigned int buckets = RAND_MAX / range;
+   const unsigned int limit = buckets * range;
 
-//    do
-//    {
-//       r = rand();
-//    } while (r >= limit);
+   do
+   {
+      r = rand();
+   } while (r >= limit);
 
-//    return min + (r / buckets);
-// }
+   return min + (r / buckets);
+}
 
 void swap(int *arr, int i, int j)
 {
@@ -35,13 +35,9 @@ void swap(int *arr, int i, int j)
 
 void fillupRandomly(int *m, int size, unsigned int min, unsigned int max)
 {
-   m[0] = 0;
-   for (int i = 1; i < size; i++)
-   {
-      m[i] = i;
-
-      swap(m, i, rand() % i);
-   }
+   int i;
+   for (i = 0; i < size; i++)
+      m[i] = rand_interval(min, max);
 }
 
 void printArray(int *a, int size)
@@ -145,8 +141,11 @@ int partition(int array[], int low, int high)
    return (i + 1);
 }
 // TODO WEIRD OFF BY ON ERROR
-void quickSort(int* array, int low, int high, int dir) {
-  if (low < high) {
+
+void quickSortHelper(int *array, int low, int high, int dir)
+{
+   if (low < high)
+   {
 
       // find the pivot element such that
       // elements smaller than pivot are on left of pivot
@@ -158,15 +157,20 @@ void quickSort(int* array, int low, int high, int dir) {
 #pragma omp section
          {
             // recursive call on the left of pivot
-            quickSort(array, low, pi - 1, dir);
+            quickSortHelper(array, low, pi - 1, dir);
          }
 #pragma omp section
          {
             // recursive call on the right of pivot
-            quickSort(array, pi + 1, high, dir);
+            quickSortHelper(array, pi + 1, high, dir);
          }
       }
    }
+}
+
+void quickSort(int *array, int low, int high, int dir)
+{
+   quickSortHelper(array, low, high - 1, dir);
 }
 
 /*
@@ -354,38 +358,131 @@ void sampleSort(int *arr, int l, int h, int dir)
 
 // TODO SEEMS REALLY REALLY SLOW
 // ALSO SEG FAULTS
-void counting_parallel_omp(int* array, int low, int high, int dir) {
-    int i, j, count;
-    int size = high - low;
-    int *sorted = (int *)malloc(size * sizeof(int));
-    
-    /*
-     * This line just sets the number of threads to be run on.
-        omp_set_num_threads(50);
-    */
-    double start_time = omp_get_wtime();
-    #pragma omp parallel private(i, j, count)
-    {
-        #pragma omp for
-        for (i = 0; i < size; i++) {
-            count = 0;
-            for (j = 0; j < size; j++) {
-                if (array[i] > array[j])
-                    count++;
-            }
-            while (sorted[count] != 0)
-                count++;
-            sorted[count] = array[i];
-        }
-    }
-    double end_time = omp_get_wtime();
-    double time_used = end_time - start_time;
+void counting_parallel_omp(int *array, int low, int high, int dir)
+{
+   int i, j, count;
+   int size = high - low;
+   int *sorted = (int *)malloc(size * sizeof(int));
+   omp_set_num_threads(50);
+   double start_time = omp_get_wtime();
+#pragma omp parallel private(i, j, count)
+   {
+#pragma omp for
+      for (i = 0; i < size; i++)
+      {
+         count = 0;
+         for (j = 0; j < size; j++)
+         {
+            if (array[i] > array[j])
+               count++;
+         }
+         while (sorted[count] != 0)
+            count++;
+         sorted[count] = array[i];
+      }
+   }
+   double end_time = omp_get_wtime();
+   double time_used = end_time - start_time;
+   // int l;
+   // for (l = 0; l < size; ++l)
+   // {
+   //    printf("%d ", sorted[l]);
+   // }
+   printf("SOrted?\n");
+   printArray(sorted, size);
+   memcpy(array, sorted, size* sizeof(sorted));
+   free(sorted); 
 }
 /*
  * End of counting sort methods.
  */
 
-int runExperiments(int up, int low, int high, int print) {
+/**
+ * Merge sort methods
+ */
+void merge(int *array, int l, int m, int r)
+{
+   int size1 = m - l + 1;
+   int size2 = r - m;
+
+   int *left = malloc(size1 * sizeof(int));
+   int *right = malloc(size2 * sizeof(int));
+
+   memcpy(left, array + l, size1 * sizeof(int));
+   memcpy(right, array + m + 1, size2 * sizeof(int));
+
+   int i = 0,
+       j = 0, k = l;
+   // compare each element of the two arrays and
+   //  put the smaller element in the result array
+   while (i < size1 && j < size2)
+   {
+      if (left[i] <= right[j])
+      {
+         array[k++] = left[i++];
+      }
+      else
+      {
+         array[k++] = right[j++];
+      }
+   }
+   // put the remaining elements of arr1[] (if any) into arr[]
+   while (i < size1)
+   {
+      array[k++] = left[i++];
+   }
+   while (j < size2)
+   {
+      array[k++] = right[j++];
+   }
+   free(left);
+   free(right);
+}
+
+void merge_sort_helper(int *array, int l, int r, int dir)
+{
+   if (l < r)
+   {
+      // find the midpoint of the array
+      int m = l + (r - l) / 2;
+#pragma omp parallel sections
+      {
+#pragma omp section
+         {
+            merge_sort_helper(array, l, m, dir);
+         }
+#pragma omp section
+         {
+            merge_sort_helper(array, m + 1, r, dir);
+         }
+      }
+      merge(array, l, m, r);
+   }
+}
+
+void merge_sort(int *array, int l, int r, int dir)
+{
+   merge_sort_helper(array, l, r - 1, dir);
+}
+
+/*
+ *End of merge sort method
+ */
+
+int evenInput(int *a, int l)
+{
+   for (int i = 0; i < l; i++)
+   {
+      if (a[i] % 2 != 0)
+      {
+         return 0;
+      }
+   }
+   return 1;
+}
+
+int runExperiments(int up, int low, int high, int print)
+{
 
    FILE *fpt;
    fpt = fopen("Group18Data.csv", "w+");
@@ -394,7 +491,8 @@ int runExperiments(int up, int low, int high, int print) {
    // Experiment value setup
    // 67108864, 16777216, 2097152
    // BITONIC NEEDS POWERS OF 2
-   int arraySizes[] = {2097152/2 / 2/2/2/2/2/2/2};
+   int arraySizes[] = {2097152 / 2 / 2 / 2 / 2 / 2 / 2 / 2 / 2 / 2 / 2 / 2 / 2 / 2 / 2 / 2 / 2 / 2 / 2};
+   assert(evenInput(arraySizes, sizeof(arraySizes) / sizeof(arraySizes[0])));
    int threadCount[] = {1, 4};
    int i;
    for (i = 0; i < sizeof(arraySizes) / sizeof(arraySizes[0]); i++)
@@ -417,11 +515,12 @@ int runExperiments(int up, int low, int high, int print) {
          return (EXIT_FAILURE);
       }
 
-      func sortingAlgorithms[] = {&sampleSort};
-      char *sortingNames[] = {"Sample sort"};
-      
-      // func sortingAlgorithms[] = {&bitonicSort, &counting_parallel_omp, &quickSort};
-      // char *sortingNames[] = {"Bitonic Sort", "QuickSort","Counting Sort"};
+      // func sortingAlgorithms[] = {&quickSort};
+      // char *sortingNames[] = {"Bitonic Sort"};
+
+      func sortingAlgorithms[] = {&bitonicSort, &merge_sort, &quickSort, &sampleSort};
+      char *sortingNames[] = {"Bitonic Sort", "MergeSort", "QuickSort", "Sample Sort"};
+
       char implemenation[] = "OpenMP";
 
       int j, k;
@@ -442,11 +541,11 @@ int runExperiments(int up, int low, int high, int print) {
             }
 
             double begin = omp_get_wtime();
-// #pragma omp parallel
-//             {
-// #pragma omp single
+#pragma omp parallel
+            {
+#pragma omp single
                sortAlgo(X, 0, N, up);
-            // }
+            }
             double end = omp_get_wtime();
             printf("Time: %f (s) \n", end - begin);
 
@@ -461,8 +560,8 @@ int runExperiments(int up, int low, int high, int print) {
             qsort(Y, N, sizeof(int), cmpfunc);
             if (!sameElements(X, Y, N))
             {
-               printArray(X, 10);
-               printArray(Y, 10);
+               printArray(X, N);
+               printArray(Y, N);
             }
             assert(isSorted(X, N));
             assert(sameElements(X, Y, N));
@@ -480,7 +579,7 @@ int main(int argc, char *argv[])
 {
    srand(123456);
    int print = 0;
-   int up = 1;   // means sort in ascending order
+   int up = 1; // means sort in ascending order
    runExperiments(up, 0, 10000, print);
 
    return (EXIT_SUCCESS);

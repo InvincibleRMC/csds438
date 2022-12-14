@@ -59,7 +59,7 @@ void merge_sort(int *array, int l, int r) {
 }
 
 int main(int argc, char *argv[]) {
-  int threads = 4;
+  int threads = 6;
   int i;
   if (argc > 1) {
     threads = atoi(argv[1]);
