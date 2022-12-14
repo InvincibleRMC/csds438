@@ -1,13 +1,13 @@
-Algorithm, Implementation, Thread Count, Elements, Time
-Bitonic Sort, OpenMP, 1, 2097152, 2.510139
-Bitonic Sort, OpenMP, 4, 2097152, 2.626831
-Bitonic Sort, OpenMP, 8, 2097152, 2.696028
-MergeSort, OpenMP, 1, 2097152, 1.176594
-MergeSort, OpenMP, 4, 2097152, 0.715888
-MergeSort, OpenMP, 8, 2097152, 0.653051
-QuickSort, OpenMP, 1, 2097152, 0.880962
-QuickSort, OpenMP, 4, 2097152, 0.555488
-QuickSort, OpenMP, 8, 2097152, 0.884997
-Sample Sort, OpenMP, 1, 2097152, 0.725998
-Sample Sort, OpenMP, 4, 2097152, 0.738946
-Sample Sort, OpenMP, 8, 2097152, 0.628314
+Algorithm,Implementation,Thread Count,Elements,Time
+Bitonic Sort, OpenMP, 1, 2097152, 2.549902
+Bitonic Sort, OpenMP, 4, 2097152, 2.428094
+Bitonic Sort, OpenMP, 8, 2097152, 2.500075
+MergeSort, OpenMP, 1, 2097152, 1.069176
+MergeSort, OpenMP, 4, 2097152, 0.730768
+MergeSort, OpenMP, 8, 2097152, 0.655997
+QuickSort, OpenMP, 1, 2097152, 1.000665
+QuickSort, OpenMP, 4, 2097152, 0.569776
+QuickSort, OpenMP, 8, 2097152, 0.833675
+Sample Sort, OpenMP, 1, 2097152, 0.741533
+Sample Sort, OpenMP, 4, 2097152, 0.887668
+Sample Sort, OpenMP, 8, 2097152, 0.549874

@@ -293,14 +293,18 @@ int *sampleSortHelper(int arr[], int p, int k, int length)
    // Not effiecent memory wise
    // Generate Buckets
    int *buckets[p];
-   int indicies[p];
    for (int i = 0; i < p; i++)
    {
       buckets[i] = (int *)malloc(length * sizeof(int));
-      indicies[i] = 0;
    }
+   // Generate Buckets Indicies
+   int indicies[p];
+   memset(indicies, 0, p * sizeof(int));
 
-#pragma omp parallel for
+#pragma omp parallel
+{
+
+#pragma omp for
 
    // Divide
    for (int j = 0; j < length; j++)
@@ -314,7 +318,7 @@ int *sampleSortHelper(int arr[], int p, int k, int length)
       buckets[bucketNum][indexToWrite] = arr[j];
    }
 
-#pragma omp parallel for
+#pragma omp for
    // Conquer
    for (int i = 0; i < p; i++)
    {
@@ -327,6 +331,7 @@ int *sampleSortHelper(int arr[], int p, int k, int length)
       memcpy(arr + startingPoint, bucket, indicies[i] * sizeof(int));
       free(buckets[i]);
    }
+}
    return arr;
 }
 
@@ -482,7 +487,7 @@ int runExperiments(int up, int low, int high, int print)
 
    FILE *fpt;
    fpt = fopen("Group18Data.csv", "w+");
-   fprintf(fpt, "Algorithm, Implementation, Thread Count, Elements, Time\n");
+   fprintf(fpt, "Algorithm,Implementation,Thread Count,Elements,Time\n");
 
    // Experiment value setup
    // 67108864, 16777216, 2097152
