@@ -263,7 +263,7 @@ int *sampleSortHelper(int arr[], int p, int k, int length)
    //  SPECIAL CASE
    if (p == 1)
    {
-      printf("Special Case of One Bucket just calls qsort");
+      printf("Special Case of One Bucket just calls qsort\n");
       qsort(arr, length, sizeof(arr[0]), cmpfunc);
       return arr;
    }
@@ -300,11 +300,11 @@ int *sampleSortHelper(int arr[], int p, int k, int length)
 
 #pragma omp parallel
 {
-   #pragma omp for
+   #pragma omp taskloop
    //Divide  
    for (int j = 0; j < length; j++)
    {
-      #pragma omp crital
+      #pragma omp critical
       {
       int bucketNum = getBucketIndex(arr[j], splitter, splitterCount, p);
       buckets[bucketNum][indicies[bucketNum]] = arr[j];
@@ -312,7 +312,7 @@ int *sampleSortHelper(int arr[], int p, int k, int length)
       }
    }
 
-#pragma omp for
+#pragma omp taskloop
 //Conquer
    for (int i = 0; i < p; i++)
    {
@@ -417,11 +417,11 @@ int runExperiments(int up, int low, int high, int print) {
          return (EXIT_FAILURE);
       }
 
-      // func sortingAlgorithms[] = {&bitonicSort,&quickSort};
+      func sortingAlgorithms[] = {&sampleSort};
+      char *sortingNames[] = {"Sample sort"};
       
-      func sortingAlgorithms[] = {&bitonicSort, &counting_parallel_omp, &quickSort};
-
-      char *sortingNames[] = {"Bitonic Sort", "QuickSort","Counting Sort"};
+      // func sortingAlgorithms[] = {&bitonicSort, &counting_parallel_omp, &quickSort};
+      // char *sortingNames[] = {"Bitonic Sort", "QuickSort","Counting Sort"};
       char implemenation[] = "OpenMP";
 
       int j, k;
@@ -442,11 +442,11 @@ int runExperiments(int up, int low, int high, int print) {
             }
 
             double begin = omp_get_wtime();
-#pragma omp parallel
-            {
-#pragma omp single
+// #pragma omp parallel
+//             {
+// #pragma omp single
                sortAlgo(X, 0, N, up);
-            }
+            // }
             double end = omp_get_wtime();
             printf("Time: %f (s) \n", end - begin);
 
