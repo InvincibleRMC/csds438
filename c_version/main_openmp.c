@@ -421,7 +421,7 @@ int runExperiments(int up, int low, int high, int print) {
       
       // func sortingAlgorithms[] = {&bitonicSort, &quickSort, &counting_parallel_omp};
 
-      char *sortingNames[] = {"Bitonic Sort"};
+      char *sortingNames[] = {"Bitonic Sort", "QuickSort","Counting Sort"};
       char implemenation[] = "OpenMP";
 
       int j, k;
@@ -456,8 +456,7 @@ int runExperiments(int up, int low, int high, int print) {
             }
             // CSV
             fprintf(fpt, "%s, %s, %i, %i, %f\n", sortingNames[j], implemenation, threadCount[k], N, end - begin);
-
-            
+            printf("%s, %s, %i, %i, %f\n", sortingNames[j], implemenation, threadCount[k], N, end - begin);
 
             qsort(Y, N, sizeof(int), cmpfunc);
             if (!sameElements(X, Y, N))
@@ -467,8 +466,6 @@ int runExperiments(int up, int low, int high, int print) {
             }
             assert(isSorted(X, N));
             assert(sameElements(X, Y, N));
-
-            printf("Sorted\n");
          }
       }
       free(X);
@@ -483,8 +480,8 @@ int main(int argc, char *argv[])
 {
    srand(123456);
    int print = 0;
-   int up = 1; // means sort in ascending order
-   runExperiments(up, 0, 500, print);
+   int up = 1;   // means sort in ascending order
+   runExperiments(up, 0, 10000, print);
 
    return (EXIT_SUCCESS);
 }
