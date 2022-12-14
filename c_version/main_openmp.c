@@ -384,21 +384,6 @@ void counting_parallel_omp(int* array, int low, int high, int dir) {
 /*
  * End of counting sort methods.
  */
-int cmpfunc(const void *a, const void *b)
-{
-   int va = *(const int *)a;
-   int vb = *(const int *)b;
-   // print("va =%i ")
-   return (va > vb) - (va < vb);
-}
-int sameElements(int* a, int*b, int size)
-{
-   for (int i = 0; i < size; i++)
-      if (a[i] !=b[i]){
-            return 0;
-      }
-   return 1;
-}
 
 int runExperiments(int up, int low, int high, int print) {
 
