@@ -350,8 +350,43 @@ void sampleSort(int *arr, int l, int h, int dir)
    memcpy(arr, sampleSortHelper(arr, p, k, h), h * sizeof(int));
 }
 
-int runExperiments(int up, int low, int high, int print)
-{
+/*
+ * Counting sort methods
+ */
+
+
+void counting_parallel_omp(int* array, int low, int high, int dir) {
+    int i, j, count;
+    int size = high - low;
+    int *sorted = (int *)malloc(size * sizeof(int));
+    /*
+     * This line just sets the number of threads to be run on.
+        omp_set_num_threads(50);
+    */
+    double start_time = omp_get_wtime();
+    #pragma omp parallel private(i, j, count)
+    {
+        #pragma omp for
+        for (i = 0; i < size; i++) {
+            count = 0;
+            for (j = 0; j < size; j++) {
+                if (array[i] > array[j])
+                    count++;
+            }
+            while (sorted[count] != 0)
+                count++;
+            sorted[count] = array[i];
+        }
+    }
+    double end_time = omp_get_wtime();
+    double time_used = end_time - start_time;
+}
+/*
+ * End of counting sort methods.
+ */
+
+
+int runExperiments(int up, int low, int high, int print) {
 
    FILE *fpt;
    fpt = fopen("Group18Data.csv", "w+");
@@ -383,6 +418,8 @@ int runExperiments(int up, int low, int high, int print)
       }
 
       func sortingAlgorithms[] = {&sampleSort};
+      
+      //func sortingAlgorithms[] = {&bitonicSort, &quickSort, &counting_parallel_omp};
 
       char *sortingNames[] = {"Bitonic Sort"};
       char implemenation[] = "OpenMP";
