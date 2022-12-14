@@ -229,7 +229,6 @@ void merge(int *array, int l, int m, int r)
    int *left = malloc(size1 * sizeof(int));
    int *right = malloc(size2 * sizeof(int));
 
-   printf("Size 1 =%i Size 2=%i\n", size1, size2);
    memcpy(left, array + l, size1 * sizeof(int));
    memcpy(right, array + m + 1, size2 * sizeof(int));
 
@@ -257,9 +256,6 @@ void merge(int *array, int l, int m, int r)
    {
       array[k++] = right[j++];
    }
-   printArray(left, size1);
-   printArray(left, size2);
-   printArray(array, r - l);
    free(left);
    free(right);
 }
@@ -399,10 +395,6 @@ int runExperiments(int up, int low, int high, int print)
             printf("%s, %s, %i, %i, %f\n", sortingNames[j], implemenation, threadCount[k], N, end - begin);
 
             qsort(Y, N, sizeof(int), cmpfunc);
-
-            printArray(X, N);
-            printArray(Y, N);
-
             if (!sameElements(X, Y, N))
             {
                printArray(X, N);
