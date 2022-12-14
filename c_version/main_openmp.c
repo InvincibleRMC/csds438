@@ -134,7 +134,7 @@ int partition(int array[], int low, int high) {
   // return the partition point
   return (i + 1);
 }
-
+// TODO WEIRD OFF BY ON ERROR
 void quickSort(int* array, int low, int high, int dir) {
   if (low < high) {
 
@@ -167,15 +167,17 @@ END OF QUICKSORT METHODS
  * Counting sort methods
  */
 
-
+// TODO SEEMS REALLY REALLY SLOW
+// ALSO SEG FAULTS
 void counting_parallel_omp(int* array, int low, int high, int dir) {
     int i, j, count;
-    int size = high - low
-    int* sorted = (int *)malloc(size * sizeof(int));;
-/*
- * This line just sets the number of threads to be run on.
-    omp_set_num_threads(50);
-*/
+    int size = high - low;
+    int *sorted = (int *)malloc(size * sizeof(int));
+    
+    /*
+     * This line just sets the number of threads to be run on.
+        omp_set_num_threads(50);
+    */
     double start_time = omp_get_wtime();
     #pragma omp parallel private(i, j, count)
     {
@@ -197,7 +199,21 @@ void counting_parallel_omp(int* array, int low, int high, int dir) {
 /*
  * End of counting sort methods.
  */
-
+int cmpfunc(const void *a, const void *b)
+{
+   int va = *(const int *)a;
+   int vb = *(const int *)b;
+   // print("va =%i ")
+   return (va > vb) - (va < vb);
+}
+int sameElements(int* a, int*b, int size)
+{
+   for (int i = 0; i < size; i++)
+      if (a[i] !=b[i]){
+            return 0;
+      }
+   return 1;
+}
 
 int runExperiments(int up, int low, int high, int print) {
 
@@ -207,24 +223,35 @@ int runExperiments(int up, int low, int high, int print) {
 
    // Experiment value setup
    // 67108864, 16777216, 2097152
-   int arraySizes[] = {2097152};
+   // BITONIC NEEDS POWERS OF 2
+   int arraySizes[] = {2097152/2 / 2/2/2/2/2/2/2};
    int threadCount[] = {1, 4};
    int i;
    for (i = 0; i < sizeof(arraySizes) / sizeof(arraySizes[0]); i++)
    {
       int N = arraySizes[i];
       int *X = (int *)malloc(N * sizeof(int));
-      // Dealing with fail memory allocation
+      int *Y = (int *)malloc(N * sizeof(int));
+
+      // Dealing with failed memory allocation
       if (!X)
       {
          if (X)
             free(X);
          return (EXIT_FAILURE);
       }
-      
-      func sortingAlgorithms[] = {&bitonicSort, &quickSort, &counting_parallel_omp};
+      if (!Y)
+      {
+         if (Y)
+            free(Y);
+         return (EXIT_FAILURE);
+      }
 
-      char *sortingNames[] = {"Bitonic Sort"};
+      // func sortingAlgorithms[] = {&bitonicSort,&quickSort};
+      
+      func sortingAlgorithms[] = {&bitonicSort, &counting_parallel_omp, &quickSort};
+
+      char *sortingNames[] = {"Bitonic Sort", "QuickSort","Counting Sort"};
       char implemenation[] = "OpenMP";
 
       int j, k;
@@ -238,35 +265,44 @@ int runExperiments(int up, int low, int high, int print) {
 
             // Have to fill up with random numbers every time since sorts in place
             fillupRandomly(X, N, low, high);
-
+            memcpy(Y, X, N * sizeof(int));
             if (print == 1)
             {
                printArray(X, N);
             }
 
             double begin = omp_get_wtime();
-                #pragma omp parallel
-                {
-                #pragma omp single
-                    sortAlgo(X, 0, N, up);
-                }
-                double end = omp_get_wtime();
-                printf("Time: %f (s) \n", end - begin);
-
-                if (print == 1) {
-                printArray(X, N);
-                }
-               // CSV
-               fprintf(fpt,"%s, %s, %i, %i, %f\n", sortingNames[j], implemenation, threadCount[k],N, end - begin);
-
-
-                assert(1 == isSorted(X, N));
-                printf("Sorted\n");
+#pragma omp parallel
+            {
+#pragma omp single
+               sortAlgo(X, 0, N, up);
             }
-        }
-        free(X);
-        fclose(fpt);
-    }
+            double end = omp_get_wtime();
+            printf("Time: %f (s) \n", end - begin);
+
+            if (print == 1)
+            {
+               printArray(X, N);
+            }
+            // CSV
+            fprintf(fpt, "%s, %s, %i, %i, %f\n", sortingNames[j], implemenation, threadCount[k], N, end - begin);
+            printf("%s, %s, %i, %i, %f\n", sortingNames[j], implemenation, threadCount[k], N, end - begin);
+
+            qsort(Y, N, sizeof(int), cmpfunc);
+            if (!sameElements(X, Y, N))
+            {
+               printArray(X, 10);
+               printArray(Y, 10);
+            }
+            assert(isSorted(X, N));
+            assert(sameElements(X, Y, N));
+         }
+      }
+      free(X);
+      free(Y);
+      fclose(fpt);
+   }
+   return 0;
 }
 
 // Driver code
@@ -275,7 +311,7 @@ int main(int argc, char* argv[])
    srand(123456);
    int print = 0;
    int up = 1;   // means sort in ascending order
-   runExperiments(up, 0, 500, print);
+   runExperiments(up, 0, 10000, print);
 
    return (EXIT_SUCCESS);
 }
