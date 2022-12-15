@@ -6,7 +6,7 @@
 #include <math.h>
 
 #define TASK_SIZE 63
-const int RUN = 32; //TimSort "run" size. Factors of 2 only, 32 or 64 recommended.
+const int RUN = 32; // TimSort "run" size. Factors of 2 only, 32 or 64 recommended.
 
 typedef void (*func)(int *, int, int, int);
 
@@ -71,7 +71,7 @@ void compAndSwap(int *a, int i, int j, int dir)
 Bitonic Sort METHODS
 */
 
-void bitonicMerge(int* a, int low, int cnt, int dir)
+void bitonicMerge(int *a, int low, int cnt, int dir)
 {
    if (cnt > 1)
    {
@@ -84,11 +84,11 @@ void bitonicMerge(int* a, int low, int cnt, int dir)
       // #pragma omp parallel sections shared(a)
       // {
       // // sort in ascending order since dir here is 1
-      // #pragma omp section 
+      // #pragma omp section
       // bitonicMerge(a, low, k, dir);
 
       // // sort in descending order since dir here is 0
-      // #pragma omp section 
+      // #pragma omp section
       // bitonicMerge(a, low + k, k, dir);
       // }
       bitonicMerge(a, low, k, dir);
@@ -102,15 +102,15 @@ void bitonicSort(int *a, int low, int cnt, int dir)
    if (cnt > 1)
    {
       int k = cnt / 2;
-      #pragma omp parallel sections shared(a)
+#pragma omp parallel sections shared(a)
       {
-      // sort in ascending order since dir here is 1
-      #pragma omp section 
-      bitonicSort(a, low, k, 1);
+// sort in ascending order since dir here is 1
+#pragma omp section
+         bitonicSort(a, low, k, 1);
 
-      // sort in descending order since dir here is 0
-      #pragma omp section 
-      bitonicSort(a, low + k, k, 0);
+// sort in descending order since dir here is 0
+#pragma omp section
+         bitonicSort(a, low + k, k, 0);
       }
 
       // Will merge whole sequence in ascending order
@@ -142,11 +142,13 @@ int partition(int array[], int low, int high)
    // pointer for greater element
    int i = (low - 1);
 
-  // traverse each element of the array
-  // compare them with the pivot
-  int j;
-  for (j = low; j < high; j++) {
-    if (array[j] <= pivot) {
+   // traverse each element of the array
+   // compare them with the pivot
+   int j;
+   for (j = low; j < high; j++)
+   {
+      if (array[j] <= pivot)
+      {
 
          // if element smaller than pivot is found
          // swap it with the greater element pointed by i
@@ -325,36 +327,36 @@ int *sampleSortHelper(int arr[], int p, int k, int length)
    memset(indicies, 0, p * sizeof(int));
 
 #pragma omp parallel
-{
+   {
 
 #pragma omp for
 
-   // Divide
-   for (int j = 0; j < length; j++)
-   {
-      int bucketNum = getBucketIndex(arr[j], splitter, splitterCount, p);
-      int indexToWrite;
+      // Divide
+      for (int j = 0; j < length; j++)
+      {
+         int bucketNum = getBucketIndex(arr[j], splitter, splitterCount, p);
+         int indexToWrite;
 
 #pragma omp atomic capture
-      indexToWrite = indicies[bucketNum]++;
+         indexToWrite = indicies[bucketNum]++;
 
-      buckets[bucketNum][indexToWrite] = arr[j];
-   }
+         buckets[bucketNum][indexToWrite] = arr[j];
+      }
 
 #pragma omp for
-   // Conquer
-   for (int i = 0; i < p; i++)
-   {
-      int *bucket = sampleSortHelper(buckets[i], p, k, indicies[i]);
-      int startingPoint = 0;
-      for (int l = 0; l < i; l++)
+      // Conquer
+      for (int i = 0; i < p; i++)
       {
-         startingPoint = startingPoint + indicies[l];
+         int *bucket = sampleSortHelper(buckets[i], p, k, indicies[i]);
+         int startingPoint = 0;
+         for (int l = 0; l < i; l++)
+         {
+            startingPoint = startingPoint + indicies[l];
+         }
+         memcpy(arr + startingPoint, bucket, indicies[i] * sizeof(int));
+         free(buckets[i]);
       }
-      memcpy(arr + startingPoint, bucket, indicies[i] * sizeof(int));
-      free(buckets[i]);
    }
-}
    return arr;
 }
 
@@ -505,94 +507,110 @@ int evenInput(int *a, int l)
    return 1;
 }
 
-//TimSort: (InsertionSort + MergeSort Hybrid)
-//My min function :)
-int min(int a, int b){
-	return (a > b ) ? b : a;
+// TimSort: (InsertionSort + MergeSort Hybrid)
+// My min function :)
+int min(int a, int b)
+{
+   return (a > b) ? b : a;
 }
 
-//Insertion sort edited. Original source: https://www.programiz.com/dsa/insertion-sort
-void insertionSort(int input[], int left, int right){
-	for(int i = left + 1; i <= right; i++){
-		int temp = input[i];
-		int j = i - 1;
-		while (j >= left && input[j] > temp){
-			input[j+1] = input[j];
-			j--;
-		}
-		input[j+1] = temp;
-	}
+// Insertion sort edited. Original source: https://www.programiz.com/dsa/insertion-sort
+void insertionSort(int input[], int left, int right)
+{
+   for (int i = left + 1; i <= right; i++)
+   {
+      int temp = input[i];
+      int j = i - 1;
+      while (j >= left && input[j] > temp)
+      {
+         input[j + 1] = input[j];
+         j--;
+      }
+      input[j + 1] = temp;
+   }
 }
 
-//Merge sort edited. Original source: https://www.programiz.com/dsa/merge-sort
-//USED FOR TIMSORT, NOT ACTUAL MERGE SORT IMPLEMENTATION
-void mergeSort(int input[], int left, int mid, int right){
-	int x = mid- left + 1; //First half size/index
-	int y = right - mid;  //Second half size/index
+// Merge sort edited. Original source: https://www.programiz.com/dsa/merge-sort
+// USED FOR TIMSORT, NOT ACTUAL MERGE SORT IMPLEMENTATION
+void mergeSort(int input[], int left, int mid, int right)
+{
+   int x = mid - left + 1; // First half size/index
+   int y = right - mid;    // Second half size/index
 
-	int *leftArr = malloc(sizeof(int) * x);
-	int *rightArr = malloc(sizeof(int) * y);
+   int *leftArr = malloc(sizeof(int) * x);
+   int *rightArr = malloc(sizeof(int) * y);
 
-	for(int i = 0; i < x; i++)
-		leftArr[i] = input[left+i];
-	for(int i = 0; i < y; i++)
-		rightArr[i] = input[mid+1+i];
+   for (int i = 0; i < x; i++)
+      leftArr[i] = input[left + i];
+   for (int i = 0; i < y; i++)
+      rightArr[i] = input[mid + 1 + i];
 
-	int i = 0;
-	int j = 0;
-	int k = left;
+   int i = 0;
+   int j = 0;
+   int k = left;
 
-	while(i < x && j < y){
-		if(leftArr[i] <= rightArr[j]){
-			input[k] = leftArr[i];
-			i++;
-		}
-		else{
-			input[k] = rightArr[j];
-			j++;
-		}
-		k++;
-	}
+   while (i < x && j < y)
+   {
+      if (leftArr[i] <= rightArr[j])
+      {
+         input[k] = leftArr[i];
+         i++;
+      }
+      else
+      {
+         input[k] = rightArr[j];
+         j++;
+      }
+      k++;
+   }
 
-	while(i < x){
-		input[k] = leftArr[i];
-		k++;
-		i++;
-	}
+   while (i < x)
+   {
+      input[k] = leftArr[i];
+      k++;
+      i++;
+   }
 
-	while(j < y){
-		input[k] = rightArr[j];
-		k++;
-		j++;
-	}
+   while (j < y)
+   {
+      input[k] = rightArr[j];
+      k++;
+      j++;
+   }
 }
 
-//OMP TimSort implementation using InsertionSort and MergeSort in a hybrid manner.
-//Parts of code were taken from: https://www.geeksforgeeks.org/timsort/
-void timSortHelper(int input[], int n){
-	#pragma omp parallel for
-	for(int i = 0; i < n; i+=RUN)
-		insertionSort(input, i, min((i+RUN-1), (n-1)));
+// OMP TimSort implementation using InsertionSort and MergeSort in a hybrid manner.
+// Parts of code were taken from: https://www.geeksforgeeks.org/timsort/
+void timSortHelper(int input[], int n)
+{
+#pragma omp parallel for
+   for (int i = 0; i < n; i += RUN)
+      insertionSort(input, i, min((i + RUN - 1), (n - 1)));
 
-	for(int size = RUN; size < n; size = size*2){
-		#pragma omp parallel for
-		for(int left = 0; left < n; left += size*2){
-			int mid = left + size - 1;
-			int right = min((left + (size*2) - 1), (n-1));
+   for (int size = RUN; size < n; size = size * 2)
+   {
+#pragma omp parallel for
+      for (int left = 0; left < n; left += size * 2)
+      {
+         int mid = left + size - 1;
+         int right = min((left + (size * 2) - 1), (n - 1));
 
-			if(mid < right)
-				mergeSort(input, left, mid, right);
-		}
-	}
+         if (mid < right)
+            mergeSort(input, left, mid, right);
+      }
+   }
 }
 
-void timSort(int input[], int left, int right, int direction){
+void timSort(int input[], int left, int right, int direction)
+{
    timSortHelper(input, right);
 }
 
-void setArraySize(int *a,int l){
-   for (int i = 0; i < l;i++){
-      a[i] = pow(2, i+1);
+void setArraySize(int *a, int l)
+{
+   for (int i = 0; i < l; i++)
+   {
+      a[i] = pow(2, i + 1);
    }
 }
 
@@ -602,13 +620,14 @@ int runExperiments(int up, int low, int high, int print)
    FILE *fpt;
    // Checks if being run from inside c_version or CSDS438 directory
    fpt = fopen("data/Group18Data.csv", "w+");
-   if(fpt == NULL) {
+   if (fpt == NULL)
+   {
       fpt = fopen("../data/Group18Data.csv", "w+");
-      if(fpt ==NULL){
+      if (fpt == NULL)
+      {
          assert(0);
          exit(1);
       }
-   
    }
    fprintf(fpt, "Algorithm,Implementation,Thread Count,Elements,Time\n");
 
@@ -617,10 +636,10 @@ int runExperiments(int up, int low, int high, int print)
    // BITONIC NEEDS POWERS OF 2
    int sizeAmount = 30;
    int arraySizes[sizeAmount];
-   setArraySize(arraySizes,sizeAmount);
+   setArraySize(arraySizes, sizeAmount);
 
    assert(evenInput(arraySizes, sizeof(arraySizes) / sizeof(arraySizes[0])));
-   int threadCount[6] = {1,2,4,8,16,32};
+   int threadCount[6] = {1, 2, 4, 8, 16, 32};
    int i;
    for (i = 0; i < sizeof(arraySizes) / sizeof(arraySizes[0]); i++)
    {
@@ -691,6 +710,7 @@ int runExperiments(int up, int low, int high, int print)
             assert(sameElements(X, Y, N));
          }
       }
+      fflush(fpt);
    }
    fclose(fpt);
    return 0;
