@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <omp.h>
+#include <math.h>
 
 #define TASK_SIZE 63
 
@@ -503,6 +504,12 @@ int evenInput(int *a, int l)
    return 1;
 }
 
+void setArraySize(int *a,int l){
+   for (int i = 0; i < l;i++){
+      a[i] = pow(2, i+1);
+   }
+}
+
 int runExperiments(int up, int low, int high, int print)
 {
 
@@ -522,9 +529,12 @@ int runExperiments(int up, int low, int high, int print)
    // Experiment value setup
    // 67108864, 16777216, 2097152
    // BITONIC NEEDS POWERS OF 2
-   int arraySizes[] = {2097152/2/2,2097152/2,2097152,2097152*2,};
+   int sizeAmount = 30;
+   int arraySizes[sizeAmount];
+   setArraySize(arraySizes,sizeAmount);
+
    assert(evenInput(arraySizes, sizeof(arraySizes) / sizeof(arraySizes[0])));
-   int threadCount[] = {1,4,8};
+   int threadCount[6] = {1,2,4,8,16,32};
    int i;
    for (i = 0; i < sizeof(arraySizes) / sizeof(arraySizes[0]); i++)
    {
