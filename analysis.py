@@ -40,7 +40,7 @@ def customPlot(data: DataFrame, across: str):
 
     plot.legend(loc='best')
     axis.set_xlabel(across, fontsize=20)
-    axis.set_ylabel(r'Time', fontsize=20)
+    axis.set_ylabel(r'Time (s)', fontsize=20)
     plot.savefig('graphs/' + across +'.png')
     
 
