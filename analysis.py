@@ -1,15 +1,10 @@
-import math
-import random
 import numpy as np
 import pandas as pd
 from pandas import DataFrame
 import matplotlib.pyplot as plot
-from matplotlib.colors import ListedColormap
 
 def main():
-    # NOTE BEFORE TESTING COMPILE WITH -O3
     data: DataFrame = pd.read_csv('data/Group18Data.csv')
-    # print(data)
     customPlot(data,'Thread Count')
     customPlot(data,'Elements')
 
