@@ -8,7 +8,10 @@
 
 typedef void (*func)(int*, int, int, int);
 
-// Utility functions 
+/*
+Utility  METHODS
+*/
+
 
 unsigned int rand_interval(unsigned int min, unsigned int max)
 {
@@ -60,6 +63,10 @@ void compAndSwap(int* a, int i, int j, int dir)
    if (dir == (a[i] > a[j]))
       swap(a, i, j);
 }
+
+/*
+Bitonic Sort METHODS
+*/
 
 void bitonicMerge(int* a, int low, int cnt, int dir)
 {
@@ -116,7 +123,8 @@ int partition(int array[], int low, int high) {
 
   // traverse each element of the array
   // compare them with the pivot
-  for (int j = low; j < high; j++) {
+  int j;
+  for (j = low; j < high; j++) {
     if (array[j] <= pivot) {
 
       // if element smaller than pivot is found
