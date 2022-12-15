@@ -7,7 +7,7 @@ cd $PFSDIR
 module load gcc
 
 #compile
-gcc main_openmp.c -fopenmp -O3 -o main_openmp
+gcc main_openmp.c -fopenmp -lm -O3 -o main_openmp
 
 mkdir data
 
