@@ -29,6 +29,7 @@
         "tuple": "c",
         "type_traits": "c",
         "valarray": "c",
-        "variant": "c"
+        "variant": "c",
+        "atomic": "c"
     }
 }

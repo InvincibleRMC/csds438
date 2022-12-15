@@ -1,0 +1,49 @@
+Algorithm,Implementation,Thread Count,Elements,Time
+Bitonic Sort, OpenMP, 1, 4194304, 1.442558
+Bitonic Sort, OpenMP, 4, 4194304, 1.537662
+Bitonic Sort, OpenMP, 8, 4194304, 1.551610
+MergeSort, OpenMP, 1, 4194304, 2.058634
+MergeSort, OpenMP, 4, 4194304, 1.234313
+MergeSort, OpenMP, 8, 4194304, 1.260549
+QuickSort, OpenMP, 1, 4194304, 1.380710
+QuickSort, OpenMP, 4, 4194304, 1.132732
+QuickSort, OpenMP, 8, 4194304, 0.812038
+Sample Sort, OpenMP, 1, 4194304, 0.884881
+Sample Sort, OpenMP, 4, 4194304, 0.627831
+Sample Sort, OpenMP, 8, 4194304, 0.774222
+Bitonic Sort, OpenMP, 1, 2097152, 0.642118
+Bitonic Sort, OpenMP, 4, 2097152, 0.646091
+Bitonic Sort, OpenMP, 8, 2097152, 0.645191
+MergeSort, OpenMP, 1, 2097152, 1.074481
+MergeSort, OpenMP, 4, 2097152, 0.619322
+MergeSort, OpenMP, 8, 2097152, 0.593232
+QuickSort, OpenMP, 1, 2097152, 0.647985
+QuickSort, OpenMP, 4, 2097152, 0.666121
+QuickSort, OpenMP, 8, 2097152, 0.594442
+Sample Sort, OpenMP, 1, 2097152, 0.378687
+Sample Sort, OpenMP, 4, 2097152, 0.320914
+Sample Sort, OpenMP, 8, 2097152, 0.453071
+Bitonic Sort, OpenMP, 1, 1048576, 0.338236
+Bitonic Sort, OpenMP, 4, 1048576, 0.329401
+Bitonic Sort, OpenMP, 8, 1048576, 0.351530
+MergeSort, OpenMP, 1, 1048576, 0.569403
+MergeSort, OpenMP, 4, 1048576, 0.329744
+MergeSort, OpenMP, 8, 1048576, 0.316680
+QuickSort, OpenMP, 1, 1048576, 0.468797
+QuickSort, OpenMP, 4, 1048576, 0.309735
+QuickSort, OpenMP, 8, 1048576, 0.298767
+Sample Sort, OpenMP, 1, 1048576, 0.193821
+Sample Sort, OpenMP, 4, 1048576, 0.139895
+Sample Sort, OpenMP, 8, 1048576, 0.214606
+Bitonic Sort, OpenMP, 1, 524288, 0.151005
+Bitonic Sort, OpenMP, 4, 524288, 0.165789
+Bitonic Sort, OpenMP, 8, 524288, 0.172323
+MergeSort, OpenMP, 1, 524288, 0.270335
+MergeSort, OpenMP, 4, 524288, 0.145231
+MergeSort, OpenMP, 8, 524288, 0.139453
+QuickSort, OpenMP, 1, 524288, 0.197150
+QuickSort, OpenMP, 4, 524288, 0.169853
+QuickSort, OpenMP, 8, 524288, 0.186694
+Sample Sort, OpenMP, 1, 524288, 0.107761
+Sample Sort, OpenMP, 4, 524288, 0.097327
+Sample Sort, OpenMP, 8, 524288, 0.110849
