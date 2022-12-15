@@ -4,7 +4,7 @@
 #include <string.h>
 #include <omp.h>
 
-#define TASK_SIZE 127
+#define TASK_SIZE 63
 
 typedef void (*func)(int *, int, int, int);
 
@@ -75,10 +75,23 @@ void bitonicMerge(int* a, int low, int cnt, int dir)
    {
       int k = cnt / 2;
       int i;
+      // #pragma omp parallel for shared(a)
       for (i = low; i < low + k; i++)
          compAndSwap(a, i, i + k, dir);
+
+      // #pragma omp parallel sections shared(a)
+      // {
+      // // sort in ascending order since dir here is 1
+      // #pragma omp section 
+      // bitonicMerge(a, low, k, dir);
+
+      // // sort in descending order since dir here is 0
+      // #pragma omp section 
+      // bitonicMerge(a, low + k, k, dir);
+      // }
       bitonicMerge(a, low, k, dir);
       bitonicMerge(a, low + k, k, dir);
+      // #pragma omp taskwait
    }
 }
 
@@ -87,17 +100,20 @@ void bitonicSort(int *a, int low, int cnt, int dir)
    if (cnt > 1)
    {
       int k = cnt / 2;
-// sort in ascending order since dir here is 1
-#pragma omp task shared(a) if (k > TASK_SIZE)
+      #pragma omp parallel sections shared(a)
+      {
+      // sort in ascending order since dir here is 1
+      #pragma omp section 
       bitonicSort(a, low, k, 1);
 
-// sort in descending order since dir here is 0
-#pragma omp task shared(a) if (k > TASK_SIZE)
+      // sort in descending order since dir here is 0
+      #pragma omp section 
       bitonicSort(a, low + k, k, 0);
+      }
 
-// Will merge whole sequence in ascending order
-// since dir=1.
-#pragma omp taskwait
+      // Will merge whole sequence in ascending order
+      // since dir=1.
+      // #pragma omp barier
       bitonicMerge(a, low, cnt, dir);
    }
 }
@@ -506,7 +522,7 @@ int runExperiments(int up, int low, int high, int print)
    // Experiment value setup
    // 67108864, 16777216, 2097152
    // BITONIC NEEDS POWERS OF 2
-   int arraySizes[] = {2097152*2,2097152,2097152/2,2097152/2/2};
+   int arraySizes[] = {2097152/2/2,2097152/2,2097152,2097152*2,};
    assert(evenInput(arraySizes, sizeof(arraySizes) / sizeof(arraySizes[0])));
    int threadCount[] = {1,4,8};
    int i;
