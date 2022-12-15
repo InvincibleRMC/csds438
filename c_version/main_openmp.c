@@ -486,13 +486,22 @@ int runExperiments(int up, int low, int high, int print)
 {
 
    FILE *fpt;
-   fpt = fopen("Group18Data.csv", "w+");
+   // Checks if being run from inside c_version or CSDS438 directory
+   fpt = fopen("data/Group18Data.csv", "w+");
+   if(fpt == NULL) {
+      fpt = fopen("../data/Group18Data.csv", "w+");
+      if(fpt ==NULL){
+         assert(0);
+         exit(1);
+      }
+   
+   }
    fprintf(fpt, "Algorithm,Implementation,Thread Count,Elements,Time\n");
 
    // Experiment value setup
    // 67108864, 16777216, 2097152
    // BITONIC NEEDS POWERS OF 2
-   int arraySizes[] = {2097152};
+   int arraySizes[] = {2097152*2,2097152,2097152/2,2097152/2/2};
    assert(evenInput(arraySizes, sizeof(arraySizes) / sizeof(arraySizes[0])));
    int threadCount[] = {1,4,8};
    int i;
@@ -558,6 +567,7 @@ int runExperiments(int up, int low, int high, int print)
             fprintf(fpt, "%s, %s, %i, %i, %f\n", sortingNames[j], implemenation, threadCount[k], N, end - begin);
             printf("%s, %s, %i, %i, %f\n", sortingNames[j], implemenation, threadCount[k], N, end - begin);
 
+            // Validates Sorts
             qsort(Y, N, sizeof(int), cmpfunc);
             if (!sameElements(X, Y, N))
             {
@@ -568,10 +578,8 @@ int runExperiments(int up, int low, int high, int print)
             assert(sameElements(X, Y, N));
          }
       }
-      free(X);
-      free(Y);
-      fclose(fpt);
    }
+   fclose(fpt);
    return 0;
 }
 
@@ -582,6 +590,5 @@ int main(int argc, char *argv[])
    int print = 0;
    int up = 1; // means sort in ascending order
    runExperiments(up, 0, 100000000, print);
-
    return (EXIT_SUCCESS);
 }
