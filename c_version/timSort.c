@@ -1,7 +1,11 @@
 //Hybrid TimSort using InsertionSort and MergeSort
 #include <stdio.h>
-#include <include/stdc++.h>
 const int RUN = 32; // Size of a run. Must be a multiple of 2. 32 or 64 are standard choices.
+
+//My min function :)
+int min(int a, int b){
+	return (a > b ) ? b : a;
+}
 
 //Insertion sort edited. Original source: https://www.programiz.com/dsa/insertion-sort
 void insertionSort(int input[], int left, int right){
@@ -58,21 +62,27 @@ void mergeSort(int input[], int left, int mid, int right){
 	}
 }
 
-//TimSort implementation using InsertionSort and MergeSort in a hybrid manner.
+//OMP TimSort implementation using InsertionSort and MergeSort in a hybrid manner.
 //Parts of code were taken from: https://www.geeksforgeeks.org/timsort/
-void timSort(int input[], int n){
+void timSortHelper(int input[], int n){
+	#pragma omp parallel for
 	for(int i = 0; i < n; i+=RUN)
 		insertionSort(input, i, min((i+RUN-1), (n-1)));
 
 	for(int size = RUN; size < n; size = size*2){
+		#pragma omp parallel for
 		for(int left = 0; left < n; left += size*2){
 			int mid = left + size - 1;
-			int right = min((left + (size*2) - 1, (n-1)));
+			int right = min((left + (size*2) - 1), (n-1));
 
 			if(mid < right)
 				mergeSort(input, left, mid, right);
 		}
 	}
+}
+
+void timSort(int array[], int l, int r, int dir){
+	timSortHelper(array, r-1);
 }
 
 //Testing code
@@ -90,7 +100,7 @@ int main() {
     printArray(arr, n);
 
     // Function Call
-    timSort(arr, n);
+    timSort(arr, n, n, 0);
 
     printf("After Sorting Array is\n");
     printArray(arr, n);
