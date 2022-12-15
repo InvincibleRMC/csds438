@@ -6,6 +6,7 @@
 #include <math.h>
 
 #define TASK_SIZE 63
+const int RUN = 32; //TimSort "run" size. Factors of 2 only, 32 or 64 recommended.
 
 typedef void (*func)(int *, int, int, int);
 
