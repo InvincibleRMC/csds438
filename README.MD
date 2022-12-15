@@ -14,7 +14,7 @@ sbatch job.slurm
 ## Manual
 Compile Code 
 ```
-gcc c_version/main_openmp.c -fopenmp -O3 -o main_openmp
+gcc c_version/main_openmp.c -fopenmp -lm -O3 -o main_openmp
 ```
 Generate Data
 ```

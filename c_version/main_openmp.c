@@ -3,13 +3,15 @@
 #include <stdlib.h>
 #include <string.h>
 #include <omp.h>
+#include <math.h>
 
-#define TASK_SIZE 127
-const int RUN = 32; // Run size for TimSort
+#define TASK_SIZE 63
 
 typedef void (*func)(int *, int, int, int);
 
-// Utility functions
+/*
+Utility  METHODS
+*/
 
 unsigned int rand_interval(unsigned int min, unsigned int max)
 {
@@ -64,16 +66,33 @@ void compAndSwap(int *a, int i, int j, int dir)
       swap(a, i, j);
 }
 
-void bitonicMerge(int *a, int low, int cnt, int dir)
+/*
+Bitonic Sort METHODS
+*/
+
+void bitonicMerge(int* a, int low, int cnt, int dir)
 {
    if (cnt > 1)
    {
       int k = cnt / 2;
       int i;
+      // #pragma omp parallel for shared(a)
       for (i = low; i < low + k; i++)
          compAndSwap(a, i, i + k, dir);
+
+      // #pragma omp parallel sections shared(a)
+      // {
+      // // sort in ascending order since dir here is 1
+      // #pragma omp section 
+      // bitonicMerge(a, low, k, dir);
+
+      // // sort in descending order since dir here is 0
+      // #pragma omp section 
+      // bitonicMerge(a, low + k, k, dir);
+      // }
       bitonicMerge(a, low, k, dir);
       bitonicMerge(a, low + k, k, dir);
+      // #pragma omp taskwait
    }
 }
 
@@ -82,17 +101,20 @@ void bitonicSort(int *a, int low, int cnt, int dir)
    if (cnt > 1)
    {
       int k = cnt / 2;
-// sort in ascending order since dir here is 1
-#pragma omp task shared(a) if (k > TASK_SIZE)
+      #pragma omp parallel sections shared(a)
+      {
+      // sort in ascending order since dir here is 1
+      #pragma omp section 
       bitonicSort(a, low, k, 1);
 
-// sort in descending order since dir here is 0
-#pragma omp task shared(a) if (k > TASK_SIZE)
+      // sort in descending order since dir here is 0
+      #pragma omp section 
       bitonicSort(a, low + k, k, 0);
+      }
 
-// Will merge whole sequence in ascending order
-// since dir=1.
-#pragma omp taskwait
+      // Will merge whole sequence in ascending order
+      // since dir=1.
+      // #pragma omp barier
       bitonicMerge(a, low, cnt, dir);
    }
 }
@@ -119,12 +141,11 @@ int partition(int array[], int low, int high)
    // pointer for greater element
    int i = (low - 1);
 
-   // traverse each element of the array
-   // compare them with the pivot
-   for (int j = low; j < high; j++)
-   {
-      if (array[j] <= pivot)
-      {
+  // traverse each element of the array
+  // compare them with the pivot
+  int j;
+  for (j = low; j < high; j++) {
+    if (array[j] <= pivot) {
 
          // if element smaller than pivot is found
          // swap it with the greater element pointed by i
@@ -568,6 +589,12 @@ void timSort(int input[], int left, int right, int direction){
    timSortHelper(input, right);
 }
 
+void setArraySize(int *a,int l){
+   for (int i = 0; i < l;i++){
+      a[i] = pow(2, i+1);
+   }
+}
+
 int runExperiments(int up, int low, int high, int print)
 {
 
@@ -587,9 +614,12 @@ int runExperiments(int up, int low, int high, int print)
    // Experiment value setup
    // 67108864, 16777216, 2097152
    // BITONIC NEEDS POWERS OF 2
-   int arraySizes[] = {2097152*2,2097152,2097152/2,2097152/2/2};
+   int sizeAmount = 30;
+   int arraySizes[sizeAmount];
+   setArraySize(arraySizes,sizeAmount);
+
    assert(evenInput(arraySizes, sizeof(arraySizes) / sizeof(arraySizes[0])));
-   int threadCount[] = {1,4,8};
+   int threadCount[6] = {1,2,4,8,16,32};
    int i;
    for (i = 0; i < sizeof(arraySizes) / sizeof(arraySizes[0]); i++)
    {

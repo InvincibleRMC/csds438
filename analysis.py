@@ -1,15 +1,10 @@
-import math
-import random
 import numpy as np
 import pandas as pd
 from pandas import DataFrame
 import matplotlib.pyplot as plot
-from matplotlib.colors import ListedColormap
 
 def main():
-    # NOTE BEFORE TESTING COMPILE WITH -O3
     data: DataFrame = pd.read_csv('data/Group18Data.csv')
-    # print(data)
     customPlot(data,'Thread Count')
     customPlot(data,'Elements')
 
@@ -40,7 +35,7 @@ def customPlot(data: DataFrame, across: str):
 
     plot.legend(loc='best')
     axis.set_xlabel(across, fontsize=20)
-    axis.set_ylabel(r'Time', fontsize=20)
+    axis.set_ylabel(r'Time (s)', fontsize=20)
     plot.savefig('graphs/' + across +'.png')
     
 

@@ -4,7 +4,8 @@
 #include <string.h>
 #include <openacc.h>
 
-#define SIZE 32
+// 67108864, 16777216, 2097152
+#define SIZE 2097152
 
 typedef void (*func)(int*, int);
 
@@ -49,28 +50,55 @@ int isSorted(int* a, int size)
    return 1;
 }
 
+void swap(int *arr, int i, int j) {
+  int temp = arr[i];
+  arr[i] = arr[j];
+  arr[j] = temp;
+}
+
+void compAndSwap(int* a, int i, int l, int k, int dir)
+{
+    if (l > i) {
+        int ik = i & k;
+        // printf("i&k: %d, i: %d, l: %d\n", ik, i, l);
+        // printf("%d == 0 && %d > %d: (%d) && (%d): %d\n", ik, a[i], a[l], (ik == 0), (a[i] > a[l]), (ik == 0) && (a[i] > a[l]));
+        // printf("%d != 0 && %d < %d: (%d) && (%d): %d\n", ik, a[i], a[l], (ik != 0), (a[i] < a[l]), (ik != 0) && (a[i] < a[l]));
+        if (
+            ((ik == 0) && (a[i] > a[l])) || 
+            ((ik != 0) && (a[i] < a[l]))
+        ) {
+            // printf("swap i: %d, l: %d\n", i, l);
+            swap(a, i, l);
+        }
+    }
+   
+}
+
 void bitonicSort(int *x, int N) {
     int i, j, k;
+    int ixj;
 
-    // #pragma acc data copyin(x[0:SIZE])
+    #pragma acc data copy(x[0:N]) create(ixj)
     {
         // Loop over the number of levels
-        #pragma acc parallel loop
-        for (k = 0; k < N; k++) {
+        // #pragma acc parallel loop
+        for (k = 2; k <= N; k*=2) {
             // Loop over the number of subarrays for this level
-            for (j = 0; j < N; j++) {
+            for (j = k/2; j > 0; j/=2) {
             // Loop over the number of elements in each subarray
                 // #pragma acc loop seq
-                for (i = 0; i < N; i++) {
-                    int ixj = i ^ j;
-
-                    // Compare elements and swap if necessary
-                    if (ixj > i && x[ixj] < x[i]) {
-                    int temp = x[ixj];
-                    x[ixj] = x[i];
-                    x[i] = temp;
+                // #pragma acc data copy(x[0:SIZE]) create(temp, ixj)
+                {
+                    #pragma acc parallel loop
+                    for (i = 0; i < N; i++) {
+                        ixj = i ^ j;
+                        // printf("k: %d, j: %d, i: %d, l: %d \n", k, j, i, ixj);
+                        compAndSwap(x, i, ixj, k, 1);
                     }
                 }
+                // #pragma acc kernels
+                // printArray(x, N);
+                
             }
         }
     }
@@ -86,7 +114,7 @@ int runExperiments(int up, int low, int high, int print) {
     // 67108864, 16777216, 2097152
     int arraySizes[] = { 128 };
     int threadCount[] = { 1 };
-        int i;
+    int i;
     for (i = 0; i < sizeof(arraySizes) / sizeof(arraySizes[0]); i++) {
         // int N = arraySizes[i];
         int N = SIZE;
@@ -104,12 +132,16 @@ int runExperiments(int up, int low, int high, int print) {
             for (k = 0; k < sizeof(threadCount) / sizeof(threadCount[0]); k++) {
                 // Have to fill up with random numbers every time since sorts in place
                 fillupRandomly(X, N, low, high);
-
+ 
                 if (print == 1) {
                     printArray(X, N);
                 }
 
                 // double begin = omp_get_wtime();
+                // #pragma acc data copy(X[0:N])
+                {
+                    // #pragma acc kernels
+                }
                 sortAlgo(X, N);
                 // double end = omp_get_wtime();
                 // printf("Time: %f (s) \n", end - begin);
@@ -125,13 +157,14 @@ int runExperiments(int up, int low, int high, int print) {
         }
         free(X);
     }
+   return (EXIT_SUCCESS);
 }
 
 // Driver code
 int main(int argc, char* argv[])
 {
    srand(123456);
-   int print = 1;
+   int print = 0;
    int up = 1;   // means sort in ascending order
    runExperiments(up, 0, 500, print);
 
