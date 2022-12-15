@@ -484,8 +484,8 @@ int evenInput(int *a, int l)
 }
 
 void setArraySize(int *a,int l){
-   for (int i = 1; i < l;i++){
-      a[i] = pow(2, i);
+   for (int i = 0; i < l;i++){
+      a[i] = pow(2, i+1);
    }
 }
 
@@ -508,7 +508,7 @@ int runExperiments(int up, int low, int high, int print)
    // Experiment value setup
    // 67108864, 16777216, 2097152
    // BITONIC NEEDS POWERS OF 2
-   int sizeAmount = 31;
+   int sizeAmount = 30;
    int arraySizes[sizeAmount];
    setArraySize(arraySizes,sizeAmount);
 
