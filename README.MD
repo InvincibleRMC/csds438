@@ -23,7 +23,7 @@ Generate Data
 
 
 
-Analyze Sorting Algorithms
+## Analyze Sorting Algorithms
 ```
 python3 analysis.py
 ```
