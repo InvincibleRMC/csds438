@@ -668,11 +668,7 @@ int runExperiments(int up, int low, int high, int print)
             }
 
             double begin = omp_get_wtime();
-            // #pragma omp parallel
-            //             {
-            // #pragma omp single
             sortAlgo(X, 0, N, up);
-            // }
             double end = omp_get_wtime();
             printf("Time: %f (s) \n", end - begin);
 
