@@ -754,10 +754,8 @@ int runExperiments(int up, int low, int high, int print)
       // func sortingAlgorithms[] = {&sampleSort};
       // char *sortingNames[] = {"Sample Sort"};
 
-      // func sortingAlgorithms[] = {&timSort, &bitonicSortWrapper, &merge_sort, &quickSort, &sampleSort};
-      // char *sortingNames[] = {"TimSort", "Bitonic Sort", "MergeSort", "QuickSort", "Sample Sort"};
-      func sortingAlgorithms[] = {&timSort};
-      char *sortingNames[] = {"TimSort"};
+      func sortingAlgorithms[] = {&timSort, &bitonicSortWrapper, &merge_sort, &quickSort, &sampleSort};
+      char *sortingNames[] = {"TimSort", "Bitonic Sort", "MergeSort", "QuickSort", "Sample Sort"};
 
       char implemenation[] = "OpenMP";
 
@@ -767,7 +765,6 @@ int runExperiments(int up, int low, int high, int print)
          func sortAlgo = sortingAlgorithms[j];
          for (k = 0; k < sizeof(threadCount) / sizeof(threadCount[0]); k++)
          {
-            // omp_set_nested(1);
             omp_set_dynamic(0);                  // Explicitly disable dynamic teams
             omp_set_num_threads(threadCount[k]); // Use N threads for all parallel regions
 
