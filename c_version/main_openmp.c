@@ -746,42 +746,19 @@ int runExperiments(int up, int low, int high, int print)
    setArraySize(arraySizes, minSize, sizeAmount);
 
    assert(evenInput(arraySizes, sizeof(arraySizes) / sizeof(arraySizes[0])));
-<<<<<<< HEAD
-   int threadCount[10] = {1, 2, 3, 4, 5, 6, 7, 8, 16, 32};
    int i;
    for (i = 0; i < sizeof(arraySizes) / sizeof(arraySizes[0]); i++)
    {
       int N = arraySizes[i];
       int *X = (int *)malloc(N * sizeof(int));
       int *Y = (int *)malloc(N * sizeof(int));
-=======
-   int threadCount[] = {1, 2, 4, 8, 16, 32, 64, 128, 256, 512};
->>>>>>> bcfec5a35124d475fad3164a6d2d1a235e0143c5
-
-   for (int i = 0; i < sizeof(arraySizes) / sizeof(arraySizes[0]); i++)
-   {
+      int threadCount[] = {1, 2, 3, 4, 5, 6, 7, 8, 16, 32};
       int trials = 10;
       for (int trialCount = 0; trialCount < trials; trialCount++)
       {
-         int N = arraySizes[i];
-         int *X = (int *)malloc(N * sizeof(int));
-         int *Y = (int *)malloc(N * sizeof(int));
 
-<<<<<<< HEAD
-      func sortingAlgorithms[] = {&timSort, &bitonicSortWrapper, &merge_sort, &quickSort, &sampleSort};
-      char *sortingNames[] = {"TimSort", "Bitonic Sort", "MergeSort", "QuickSort", "Sample Sort"};
-
-      char implemenation[] = "OpenMP";
-
-      int j, k;
-      for (j = 0; j < sizeof(sortingAlgorithms) / sizeof(sortingAlgorithms[0]); j++)
-      {
-         func sortAlgo = sortingAlgorithms[j];
-         for (k = 0; k < sizeof(threadCount) / sizeof(threadCount[0]); k++)
-=======
          // Dealing with failed memory allocation
          if (!X)
->>>>>>> bcfec5a35124d475fad3164a6d2d1a235e0143c5
          {
             if (X)
                free(X);
@@ -797,16 +774,8 @@ int runExperiments(int up, int low, int high, int print)
          // func sortingAlgorithms[] = {&sampleSort};
          // char *sortingNames[] = {"Sample Sort"};
 
-<<<<<<< HEAD
-            double begin = omp_get_wtime();
-            sortAlgo(X, 0, N, up);
-            
-            double end = omp_get_wtime();
-            printf("Time: %f (s) \n", end - begin);
-=======
-         func sortingAlgorithms[] = {&timSort, &bitonicSort, &merge_sort, &quickSort, &sampleSort};
+         func sortingAlgorithms[] = {&timSort, &bitonicSortWrapper, &merge_sort, &quickSort, &sampleSort};
          char *sortingNames[] = {"TimSort", "Bitonic Sort", "MergeSort", "QuickSort", "Sample Sort"};
->>>>>>> bcfec5a35124d475fad3164a6d2d1a235e0143c5
 
          char implemenation[] = "OpenMP";
 
@@ -825,6 +794,7 @@ int runExperiments(int up, int low, int high, int print)
                {
                   printArray(X, N);
                }
+
 
                double begin = omp_get_wtime();
                sortAlgo(X, 0, N, up);
