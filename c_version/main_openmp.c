@@ -833,6 +833,6 @@ int main(int argc, char *argv[])
    srand(123456);
    int print = 0;
    int up = 1; // means sort in ascending order
-   runExperiments(up, 0, 500, print);
+   runExperiments(up, 0, 500000, print);
    return (EXIT_SUCCESS);
 }
