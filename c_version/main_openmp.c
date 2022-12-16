@@ -298,12 +298,12 @@ int allPostive(int *arr, int length)
    return 1;
 }
 
-int *sampleSortHelper(int arr[], int p, int k, int length)
+void sampleSortHelper(int arr[], int p, int k, int length)
 {
    if (length < k)
    {
       qsort(arr, length, sizeof(arr[0]), cmpfunc);
-      return arr;
+      return;
    }
 
    // Generates Splitters
@@ -347,17 +347,17 @@ int *sampleSortHelper(int arr[], int p, int k, int length)
       // Conquer
       for (int i = 0; i < p; i++)
       {
-         int *bucket = sampleSortHelper(buckets[i], p, k, indicies[i]);
+         sampleSortHelper(buckets[i], p, k, indicies[i]);
          int startingPoint = 0;
          for (int l = 0; l < i; l++)
          {
             startingPoint = startingPoint + indicies[l];
          }
-         memcpy(arr + startingPoint, bucket, indicies[i] * sizeof(int));
+         memcpy(arr + startingPoint, buckets[i], indicies[i] * sizeof(int));
          free(buckets[i]);
       }
    }
-   return arr;
+   return;
 }
 
 void sampleSort(int *arr, int l, int h, int dir)
