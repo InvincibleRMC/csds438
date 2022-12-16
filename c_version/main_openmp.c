@@ -4,6 +4,7 @@
 #include <string.h>
 #include <omp.h>
 #include <math.h>
+#include <time.h>
 
 #define TASK_SIZE 63
 const int RUN = 32; // TimSort "run" size. Factors of 2 only, 32 or 64 recommended.
@@ -308,12 +309,12 @@ int allPostive(int *arr, int length)
    return 1;
 }
 
-int *sampleSortHelper(int arr[], int p, int k, int length)
+void sampleSortHelper(int arr[], int p, int k, int length)
 {
    if (length < k)
    {
       qsort(arr, length, sizeof(arr[0]), cmpfunc);
-      return arr;
+      return;
    }
 
    // Generates Splitters
@@ -357,17 +358,17 @@ int *sampleSortHelper(int arr[], int p, int k, int length)
       // Conquer
       for (int i = 0; i < p; i++)
       {
-         int *bucket = sampleSortHelper(buckets[i], p, k, indicies[i]);
+         sampleSortHelper(buckets[i], p, k, indicies[i]);
          int startingPoint = 0;
          for (int l = 0; l < i; l++)
          {
             startingPoint = startingPoint + indicies[l];
          }
-         memcpy(arr + startingPoint, bucket, indicies[i] * sizeof(int));
+         memcpy(arr + startingPoint, buckets[i], indicies[i] * sizeof(int));
          free(buckets[i]);
       }
    }
-   return arr;
+   return;
 }
 
 void sampleSort(int *arr, int l, int h, int dir)
@@ -701,13 +702,29 @@ void setArraySize(int *a, int minSize, int l)
 
 int runExperiments(int up, int low, int high, int print)
 {
+   // File nameing
+   time_t rawtime;
+   char buffer[255];
+
+   time(&rawtime);
+   sprintf(buffer, "data/Group18Data_%s.csv", ctime(&rawtime));
+   // Lets convert space to _ in
+
+   char *p = buffer;
+   for (; *p; ++p)
+   {
+      if (*p == ' ')
+         *p = '_';
+   }
 
    FILE *fpt;
    // Checks if being run from inside c_version or CSDS438 directory
-   fpt = fopen("data/Group18Data.csv", "w+");
+   fpt = fopen(buffer, "w+");
    if (fpt == NULL)
    {
-      fpt = fopen("../data/Group18Data.csv", "w+");
+      char buffer2[300];
+      sprintf(buffer2, "../%s", buffer);
+      fpt = fopen(buffer2, "w+");
       if (fpt == NULL)
       {
          assert(0);
@@ -729,6 +746,7 @@ int runExperiments(int up, int low, int high, int print)
    setArraySize(arraySizes, minSize, sizeAmount);
 
    assert(evenInput(arraySizes, sizeof(arraySizes) / sizeof(arraySizes[0])));
+<<<<<<< HEAD
    int threadCount[10] = {1, 2, 3, 4, 5, 6, 7, 8, 16, 32};
    int i;
    for (i = 0; i < sizeof(arraySizes) / sizeof(arraySizes[0]); i++)
@@ -736,24 +754,20 @@ int runExperiments(int up, int low, int high, int print)
       int N = arraySizes[i];
       int *X = (int *)malloc(N * sizeof(int));
       int *Y = (int *)malloc(N * sizeof(int));
+=======
+   int threadCount[] = {1, 2, 4, 8, 16, 32, 64, 128, 256, 512};
+>>>>>>> bcfec5a35124d475fad3164a6d2d1a235e0143c5
 
-      // Dealing with failed memory allocation
-      if (!X)
+   for (int i = 0; i < sizeof(arraySizes) / sizeof(arraySizes[0]); i++)
+   {
+      int trials = 10;
+      for (int trialCount = 0; trialCount < trials; trialCount++)
       {
-         if (X)
-            free(X);
-         return (EXIT_FAILURE);
-      }
-      if (!Y)
-      {
-         if (Y)
-            free(Y);
-         return (EXIT_FAILURE);
-      }
+         int N = arraySizes[i];
+         int *X = (int *)malloc(N * sizeof(int));
+         int *Y = (int *)malloc(N * sizeof(int));
 
-      // func sortingAlgorithms[] = {&sampleSort};
-      // char *sortingNames[] = {"Sample Sort"};
-
+<<<<<<< HEAD
       func sortingAlgorithms[] = {&timSort, &bitonicSortWrapper, &merge_sort, &quickSort, &sampleSort};
       char *sortingNames[] = {"TimSort", "Bitonic Sort", "MergeSort", "QuickSort", "Sample Sort"};
 
@@ -764,44 +778,80 @@ int runExperiments(int up, int low, int high, int print)
       {
          func sortAlgo = sortingAlgorithms[j];
          for (k = 0; k < sizeof(threadCount) / sizeof(threadCount[0]); k++)
+=======
+         // Dealing with failed memory allocation
+         if (!X)
+>>>>>>> bcfec5a35124d475fad3164a6d2d1a235e0143c5
          {
-            omp_set_dynamic(0);                  // Explicitly disable dynamic teams
-            omp_set_num_threads(threadCount[k]); // Use N threads for all parallel regions
+            if (X)
+               free(X);
+            return (EXIT_FAILURE);
+         }
+         if (!Y)
+         {
+            if (Y)
+               free(Y);
+            return (EXIT_FAILURE);
+         }
 
-            // Have to fill up with random numbers every time since sorts in place
-            fillupRandomly(X, N, low, high);
-            memcpy(Y, X, N * sizeof(int));
-            if (print == 1)
-            {
-               printArray(X, N);
-            }
+         // func sortingAlgorithms[] = {&sampleSort};
+         // char *sortingNames[] = {"Sample Sort"};
 
+<<<<<<< HEAD
             double begin = omp_get_wtime();
             sortAlgo(X, 0, N, up);
             
             double end = omp_get_wtime();
             printf("Time: %f (s) \n", end - begin);
+=======
+         func sortingAlgorithms[] = {&timSort, &bitonicSort, &merge_sort, &quickSort, &sampleSort};
+         char *sortingNames[] = {"TimSort", "Bitonic Sort", "MergeSort", "QuickSort", "Sample Sort"};
+>>>>>>> bcfec5a35124d475fad3164a6d2d1a235e0143c5
 
-            if (print == 1)
-            {
-               printArray(X, N);
-            }
-            // CSV
-            fprintf(fpt, "%s, %s, %i, %i, %f\n", sortingNames[j], implemenation, threadCount[k], N, end - begin);
-            printf("%s, %s, %i, %i, %f\n", sortingNames[j], implemenation, threadCount[k], N, end - begin);
+         char implemenation[] = "OpenMP";
 
-            // Validates Sorts
-            qsort(Y, N, sizeof(int), cmpfunc);
-            if (!sameElements(X, Y, N))
+         for (int j = 0; j < sizeof(sortingAlgorithms) / sizeof(sortingAlgorithms[0]); j++)
+         {
+            func sortAlgo = sortingAlgorithms[j];
+            for (int k = 0; k < sizeof(threadCount) / sizeof(threadCount[0]); k++)
             {
-               printArray(X, N);
-               printArray(Y, N);
+               omp_set_dynamic(0);                  // Explicitly disable dynamic teams
+               omp_set_num_threads(threadCount[k]); // Use N threads for all parallel regions
+
+               // Have to fill up with random numbers every time since sorts in place
+               fillupRandomly(X, N, low, high);
+               memcpy(Y, X, N * sizeof(int));
+               if (print == 1)
+               {
+                  printArray(X, N);
+               }
+
+               double begin = omp_get_wtime();
+               sortAlgo(X, 0, N, up);
+               double end = omp_get_wtime();
+               printf("Time: %f (s) \n", end - begin);
+
+               if (print == 1)
+               {
+                  printArray(X, N);
+               }
+               // CSV
+               fprintf(fpt, "%s, %s, %i, %i, %f\n", sortingNames[j], implemenation, threadCount[k], N, end - begin);
+               printf("%s, %s, %i, %i, %f\n", sortingNames[j], implemenation, threadCount[k], N, end - begin);
+
+               // Validates Sorts
+               qsort(Y, N, sizeof(int), cmpfunc);
+               if (!sameElements(X, Y, N))
+               {
+                  printArray(X, N);
+                  printArray(Y, N);
+               }
+               assert(isSorted(X, N));
+               assert(sameElements(X, Y, N));
             }
-            assert(isSorted(X, N));
-            assert(sameElements(X, Y, N));
          }
+         fflush(fpt);
       }
-      fflush(fpt);
    }
    fclose(fpt);
    return 0;
