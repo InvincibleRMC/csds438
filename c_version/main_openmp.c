@@ -746,8 +746,8 @@ int runExperiments(int up, int low, int high, int print)
    // int sizeAmount = 20;
    // int arraySizes[sizeAmount-minSize];
    // setArraySize(arraySizes, minSize, sizeAmount);
-   int minSize = 20;
-   int sizeAmount = 25;
+   int minSize = 15;
+   int sizeAmount = 31;
    int arraySizes[sizeAmount-minSize];
    setArraySize(arraySizes, minSize, sizeAmount);
 
