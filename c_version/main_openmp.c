@@ -4,6 +4,7 @@
 #include <string.h>
 #include <omp.h>
 #include <math.h>
+#include <time.h>
 
 #define TASK_SIZE 63
 const int RUN = 32; // TimSort "run" size. Factors of 2 only, 32 or 64 recommended.
@@ -616,13 +617,29 @@ void setArraySize(int *a, int l)
 
 int runExperiments(int up, int low, int high, int print)
 {
+   // File nameing
+   time_t rawtime;
+   char buffer[255];
+
+   time(&rawtime);
+   sprintf(buffer, "data/Group18Data_%s.csv", ctime(&rawtime));
+   // Lets convert space to _ in
+
+   char *p = buffer;
+   for (; *p; ++p)
+   {
+      if (*p == ' ')
+         *p = '_';
+   }
 
    FILE *fpt;
    // Checks if being run from inside c_version or CSDS438 directory
-   fpt = fopen("data/Group18Data.csv", "w+");
+   fpt = fopen(buffer, "w+");
    if (fpt == NULL)
    {
-      fpt = fopen("../data/Group18Data.csv", "w+");
+      char buffer2[300];
+      sprintf(buffer2, "../%s", buffer);
+      fpt = fopen(buffer2, "w+");
       if (fpt == NULL)
       {
          assert(0);
