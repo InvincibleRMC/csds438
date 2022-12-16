@@ -718,11 +718,11 @@ int runExperiments(int up, int low, int high, int print)
       if (*p == ' ')
          *p = '_';
    }
-   *p = buffer2;
-   for (; *p; ++p)
+   char *p2 = buffer2;
+   for (; *p2; ++p2)
    {
-      if (*p == ' ')
-         *p = '_';
+      if (*p2 == ' ')
+         *p2 = '_';
    }
 
    FILE *fpt;
