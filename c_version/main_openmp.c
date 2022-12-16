@@ -717,11 +717,15 @@ int runExperiments(int up, int low, int high, int print)
    {
       if (*p == ' ')
          *p = '_';
+      if(*p =='\n')
+          *p = '_';
    }
    char *p2 = buffer2;
    for (; *p2; ++p2)
    {
       if (*p2 == ' ')
+         *p2 = '_';
+      if(*p2 =='\n')
          *p2 = '_';
    }
 
@@ -777,7 +781,7 @@ int runExperiments(int up, int low, int high, int print)
       int trials = 10;
       for (int trialCount = 0; trialCount < trials; trialCount++)
       {
-         printf("Trial Num= %i",trialCount);
+         printf("Trial Num= %i\n\n\n",trialCount);
          // func sortingAlgorithms[] = {&sampleSort};
          // char *sortingNames[] = {"Sample Sort"};
 
