@@ -56,7 +56,7 @@ void quickSort(int* array, int low, int high, int dir) {
             // recursive call on the left of pivot
             quickSort(array, low, pi - 1, dir);
         }
-	#pragma omp section
+	    #pragma omp section
         {
             // recursive call on the right of pivot
             quickSort(array, pi + 1, high, dir);
