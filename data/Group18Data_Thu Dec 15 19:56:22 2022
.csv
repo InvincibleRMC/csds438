@@ -549,3 +549,53 @@ Sample Sort, OpenMP, 7, 2097152, 0.481933
 Sample Sort, OpenMP, 8, 2097152, 0.619525
 Sample Sort, OpenMP, 16, 2097152, 0.599657
 Sample Sort, OpenMP, 32, 2097152, 0.553899
+TimSort, OpenMP, 1, 2097152, 0.318597
+TimSort, OpenMP, 2, 2097152, 0.198120
+TimSort, OpenMP, 3, 2097152, 0.181358
+TimSort, OpenMP, 4, 2097152, 0.154044
+TimSort, OpenMP, 5, 2097152, 0.128976
+TimSort, OpenMP, 6, 2097152, 0.124423
+TimSort, OpenMP, 7, 2097152, 0.136796
+TimSort, OpenMP, 8, 2097152, 0.131730
+TimSort, OpenMP, 16, 2097152, 0.129746
+TimSort, OpenMP, 32, 2097152, 0.138116
+Bitonic Sort, OpenMP, 1, 2097152, 2.325952
+Bitonic Sort, OpenMP, 2, 2097152, 1.364390
+Bitonic Sort, OpenMP, 3, 2097152, 1.293451
+Bitonic Sort, OpenMP, 4, 2097152, 1.009634
+Bitonic Sort, OpenMP, 5, 2097152, 0.896237
+Bitonic Sort, OpenMP, 6, 2097152, 0.903966
+Bitonic Sort, OpenMP, 7, 2097152, 0.846352
+Bitonic Sort, OpenMP, 8, 2097152, 0.780856
+Bitonic Sort, OpenMP, 16, 2097152, 0.847937
+Bitonic Sort, OpenMP, 32, 2097152, 0.736745
+MergeSort, OpenMP, 1, 2097152, 0.436713
+MergeSort, OpenMP, 2, 2097152, 0.262885
+MergeSort, OpenMP, 3, 2097152, 0.210057
+MergeSort, OpenMP, 4, 2097152, 0.202278
+MergeSort, OpenMP, 5, 2097152, 0.164167
+MergeSort, OpenMP, 6, 2097152, 0.155251
+MergeSort, OpenMP, 7, 2097152, 0.160036
+MergeSort, OpenMP, 8, 2097152, 0.142314
+MergeSort, OpenMP, 16, 2097152, 0.153070
+MergeSort, OpenMP, 32, 2097152, 0.156297
+QuickSort, OpenMP, 1, 2097152, 0.964522
+QuickSort, OpenMP, 2, 2097152, 1.015258
+QuickSort, OpenMP, 3, 2097152, 0.971057
+QuickSort, OpenMP, 4, 2097152, 0.847226
+QuickSort, OpenMP, 5, 2097152, 0.845234
+QuickSort, OpenMP, 6, 2097152, 0.922158
+QuickSort, OpenMP, 7, 2097152, 0.879641
+QuickSort, OpenMP, 8, 2097152, 0.840179
+QuickSort, OpenMP, 16, 2097152, 0.822677
+QuickSort, OpenMP, 32, 2097152, 0.863521
+Sample Sort, OpenMP, 1, 2097152, 0.593293
+Sample Sort, OpenMP, 2, 2097152, 0.741643
+Sample Sort, OpenMP, 3, 2097152, 0.676429
+Sample Sort, OpenMP, 4, 2097152, 0.469790
+Sample Sort, OpenMP, 5, 2097152, 0.672099
+Sample Sort, OpenMP, 6, 2097152, 0.516819
+Sample Sort, OpenMP, 7, 2097152, 0.566071
+Sample Sort, OpenMP, 8, 2097152, 0.566816
+Sample Sort, OpenMP, 16, 2097152, 0.457504
+Sample Sort, OpenMP, 32, 2097152, 0.489255

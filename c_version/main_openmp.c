@@ -705,12 +705,20 @@ int runExperiments(int up, int low, int high, int print)
    // File nameing
    time_t rawtime;
    char buffer[255];
+   char buffer2[300];
 
    time(&rawtime);
    sprintf(buffer, "data/Group18Data_%s.csv", ctime(&rawtime));
+   sprintf(buffer2, "../%s", buffer);
    // Lets convert space to _ in
 
    char *p = buffer;
+   for (; *p; ++p)
+   {
+      if (*p == ' ')
+         *p = '_';
+   }
+   *p = buffer2;
    for (; *p; ++p)
    {
       if (*p == ' ')
@@ -722,8 +730,6 @@ int runExperiments(int up, int low, int high, int print)
    fpt = fopen(buffer, "w+");
    if (fpt == NULL)
    {
-      char buffer2[300];
-      sprintf(buffer2, "../%s", buffer);
       fpt = fopen(buffer2, "w+");
       if (fpt == NULL)
       {
@@ -752,10 +758,6 @@ int runExperiments(int up, int low, int high, int print)
       int N = arraySizes[i];
       int *X = (int *)malloc(N * sizeof(int));
       int *Y = (int *)malloc(N * sizeof(int));
-      int threadCount[] = {1, 2, 3, 4, 5, 6, 7, 8, 16, 32};
-      int trials = 10;
-      for (int trialCount = 0; trialCount < trials; trialCount++)
-      {
 
          // Dealing with failed memory allocation
          if (!X)
@@ -770,6 +772,11 @@ int runExperiments(int up, int low, int high, int print)
                free(Y);
             return (EXIT_FAILURE);
          }
+
+      int threadCount[] = {1, 2, 3, 4, 5, 6, 7, 8, 16, 32};
+      int trials = 10;
+      for (int trialCount = 0; trialCount < trials; trialCount++)
+      {
 
          // func sortingAlgorithms[] = {&sampleSort};
          // char *sortingNames[] = {"Sample Sort"};
