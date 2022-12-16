@@ -5499,3 +5499,103 @@ Sample Sort, OpenMP, 7, 33554432, 8.471677
 Sample Sort, OpenMP, 8, 33554432, 4.935055
 Sample Sort, OpenMP, 16, 33554432, 7.494717
 Sample Sort, OpenMP, 32, 33554432, 7.667679
+TimSort, OpenMP, 1, 67108864, 6.636690
+TimSort, OpenMP, 2, 67108864, 3.893683
+TimSort, OpenMP, 3, 67108864, 3.843425
+TimSort, OpenMP, 4, 67108864, 2.808702
+TimSort, OpenMP, 5, 67108864, 2.572610
+TimSort, OpenMP, 6, 67108864, 2.980590
+TimSort, OpenMP, 7, 67108864, 2.834214
+TimSort, OpenMP, 8, 67108864, 2.746543
+TimSort, OpenMP, 16, 67108864, 3.130853
+TimSort, OpenMP, 32, 67108864, 3.064920
+Bitonic Sort, OpenMP, 1, 67108864, 24.313387
+Bitonic Sort, OpenMP, 2, 67108864, 13.444449
+Bitonic Sort, OpenMP, 3, 67108864, 13.814539
+Bitonic Sort, OpenMP, 4, 67108864, 10.318632
+Bitonic Sort, OpenMP, 5, 67108864, 9.073520
+Bitonic Sort, OpenMP, 6, 67108864, 8.437676
+Bitonic Sort, OpenMP, 7, 67108864, 7.880220
+Bitonic Sort, OpenMP, 8, 67108864, 7.417212
+Bitonic Sort, OpenMP, 16, 67108864, 6.879658
+Bitonic Sort, OpenMP, 32, 67108864, 6.719658
+MergeSort, OpenMP, 1, 67108864, 9.383586
+MergeSort, OpenMP, 2, 67108864, 5.275644
+MergeSort, OpenMP, 3, 67108864, 5.478388
+MergeSort, OpenMP, 4, 67108864, 3.816635
+MergeSort, OpenMP, 5, 67108864, 3.395847
+MergeSort, OpenMP, 6, 67108864, 3.525486
+MergeSort, OpenMP, 7, 67108864, 3.063339
+MergeSort, OpenMP, 8, 67108864, 3.128166
+MergeSort, OpenMP, 16, 67108864, 3.458900
+MergeSort, OpenMP, 32, 67108864, 3.264092
+QuickSort, OpenMP, 1, 67108864, 33.813506
+QuickSort, OpenMP, 2, 67108864, 24.082452
+QuickSort, OpenMP, 3, 67108864, 23.156871
+QuickSort, OpenMP, 4, 67108864, 31.351621
+QuickSort, OpenMP, 5, 67108864, 19.528640
+QuickSort, OpenMP, 6, 67108864, 18.361651
+QuickSort, OpenMP, 7, 67108864, 23.337890
+QuickSort, OpenMP, 8, 67108864, 24.582911
+QuickSort, OpenMP, 16, 67108864, 18.482119
+QuickSort, OpenMP, 32, 67108864, 22.280345
+Sample Sort, OpenMP, 1, 67108864, 15.319990
+Sample Sort, OpenMP, 2, 67108864, 14.626139
+Sample Sort, OpenMP, 3, 67108864, 14.703685
+Sample Sort, OpenMP, 4, 67108864, 15.154069
+Sample Sort, OpenMP, 5, 67108864, 9.485188
+Sample Sort, OpenMP, 6, 67108864, 16.511756
+Sample Sort, OpenMP, 7, 67108864, 10.123003
+Sample Sort, OpenMP, 8, 67108864, 11.888243
+Sample Sort, OpenMP, 16, 67108864, 15.915343
+Sample Sort, OpenMP, 32, 67108864, 10.055714
+TimSort, OpenMP, 1, 67108864, 6.627869
+TimSort, OpenMP, 2, 67108864, 3.952214
+TimSort, OpenMP, 3, 67108864, 3.868843
+TimSort, OpenMP, 4, 67108864, 3.168427
+TimSort, OpenMP, 5, 67108864, 2.778354
+TimSort, OpenMP, 6, 67108864, 2.618690
+TimSort, OpenMP, 7, 67108864, 2.619094
+TimSort, OpenMP, 8, 67108864, 2.700678
+TimSort, OpenMP, 16, 67108864, 2.915860
+TimSort, OpenMP, 32, 67108864, 3.089712
+Bitonic Sort, OpenMP, 1, 67108864, 24.177726
+Bitonic Sort, OpenMP, 2, 67108864, 13.353580
+Bitonic Sort, OpenMP, 3, 67108864, 10.775631
+Bitonic Sort, OpenMP, 4, 67108864, 9.758708
+Bitonic Sort, OpenMP, 5, 67108864, 8.376078
+Bitonic Sort, OpenMP, 6, 67108864, 8.383083
+Bitonic Sort, OpenMP, 7, 67108864, 7.730774
+Bitonic Sort, OpenMP, 8, 67108864, 7.704817
+Bitonic Sort, OpenMP, 16, 67108864, 6.757280
+Bitonic Sort, OpenMP, 32, 67108864, 6.516057
+MergeSort, OpenMP, 1, 67108864, 9.379661
+MergeSort, OpenMP, 2, 67108864, 5.356858
+MergeSort, OpenMP, 3, 67108864, 4.274923
+MergeSort, OpenMP, 4, 67108864, 4.326780
+MergeSort, OpenMP, 5, 67108864, 3.290685
+MergeSort, OpenMP, 6, 67108864, 3.363636
+MergeSort, OpenMP, 7, 67108864, 3.168506
+MergeSort, OpenMP, 8, 67108864, 3.218997
+MergeSort, OpenMP, 16, 67108864, 3.176457
+MergeSort, OpenMP, 32, 67108864, 3.353696
+QuickSort, OpenMP, 1, 67108864, 33.874008
+QuickSort, OpenMP, 2, 67108864, 28.722103
+QuickSort, OpenMP, 3, 67108864, 31.733389
+QuickSort, OpenMP, 4, 67108864, 28.026444
+QuickSort, OpenMP, 5, 67108864, 27.748295
+QuickSort, OpenMP, 6, 67108864, 24.580926
+QuickSort, OpenMP, 7, 67108864, 23.704486
+QuickSort, OpenMP, 8, 67108864, 27.722146
+QuickSort, OpenMP, 16, 67108864, 25.260654
+QuickSort, OpenMP, 32, 67108864, 22.865507
+Sample Sort, OpenMP, 1, 67108864, 15.118255
+Sample Sort, OpenMP, 2, 67108864, 14.835332
+Sample Sort, OpenMP, 3, 67108864, 11.997101
+Sample Sort, OpenMP, 4, 67108864, 13.807801
+Sample Sort, OpenMP, 5, 67108864, 14.371625
+Sample Sort, OpenMP, 6, 67108864, 9.885418
+Sample Sort, OpenMP, 7, 67108864, 15.997708
+Sample Sort, OpenMP, 8, 67108864, 13.655542
+Sample Sort, OpenMP, 16, 67108864, 12.796486
+Sample Sort, OpenMP, 32, 67108864, 15.542717
