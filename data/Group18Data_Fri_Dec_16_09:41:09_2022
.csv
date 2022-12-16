@@ -1,0 +1,1701 @@
+Algorithm,Implementation,Thread Count,Elements,Time
+TimSort, OpenMP, 1, 32768, 0.002232
+TimSort, OpenMP, 2, 32768, 0.001361
+TimSort, OpenMP, 3, 32768, 0.001541
+TimSort, OpenMP, 4, 32768, 0.001539
+TimSort, OpenMP, 5, 32768, 0.001245
+TimSort, OpenMP, 6, 32768, 0.001727
+TimSort, OpenMP, 7, 32768, 0.001548
+TimSort, OpenMP, 8, 32768, 0.002420
+TimSort, OpenMP, 16, 32768, 0.004075
+TimSort, OpenMP, 32, 32768, 0.003914
+Bitonic Sort, OpenMP, 1, 32768, 0.006498
+Bitonic Sort, OpenMP, 2, 32768, 0.004739
+Bitonic Sort, OpenMP, 3, 32768, 0.003140
+Bitonic Sort, OpenMP, 4, 32768, 0.003873
+Bitonic Sort, OpenMP, 5, 32768, 0.002641
+Bitonic Sort, OpenMP, 6, 32768, 0.002482
+Bitonic Sort, OpenMP, 7, 32768, 0.003125
+Bitonic Sort, OpenMP, 8, 32768, 0.002843
+Bitonic Sort, OpenMP, 16, 32768, 0.003338
+Bitonic Sort, OpenMP, 32, 32768, 0.005175
+MergeSort, OpenMP, 1, 32768, 0.003200
+MergeSort, OpenMP, 2, 32768, 0.002355
+MergeSort, OpenMP, 3, 32768, 0.001681
+MergeSort, OpenMP, 4, 32768, 0.001667
+MergeSort, OpenMP, 5, 32768, 0.001498
+MergeSort, OpenMP, 6, 32768, 0.001518
+MergeSort, OpenMP, 7, 32768, 0.001543
+MergeSort, OpenMP, 8, 32768, 0.002589
+MergeSort, OpenMP, 16, 32768, 0.003977
+MergeSort, OpenMP, 32, 32768, 0.004305
+QuickSort, OpenMP, 1, 32768, 0.009194
+QuickSort, OpenMP, 2, 32768, 0.008868
+QuickSort, OpenMP, 3, 32768, 0.008583
+QuickSort, OpenMP, 4, 32768, 0.008965
+QuickSort, OpenMP, 5, 32768, 0.006944
+QuickSort, OpenMP, 6, 32768, 0.005560
+QuickSort, OpenMP, 7, 32768, 0.006650
+QuickSort, OpenMP, 8, 32768, 0.008603
+QuickSort, OpenMP, 16, 32768, 0.006813
+QuickSort, OpenMP, 32, 32768, 0.007809
+Sample Sort, OpenMP, 1, 32768, 0.004108
+Sample Sort, OpenMP, 2, 32768, 0.005069
+Sample Sort, OpenMP, 3, 32768, 0.003963
+Sample Sort, OpenMP, 4, 32768, 0.004648
+Sample Sort, OpenMP, 5, 32768, 0.004609
+Sample Sort, OpenMP, 6, 32768, 0.003366
+Sample Sort, OpenMP, 7, 32768, 0.005044
+Sample Sort, OpenMP, 8, 32768, 0.003731
+Sample Sort, OpenMP, 16, 32768, 0.004696
+Sample Sort, OpenMP, 32, 32768, 0.005206
+TimSort, OpenMP, 1, 32768, 0.001979
+TimSort, OpenMP, 2, 32768, 0.001545
+TimSort, OpenMP, 3, 32768, 0.001451
+TimSort, OpenMP, 4, 32768, 0.001298
+TimSort, OpenMP, 5, 32768, 0.001277
+TimSort, OpenMP, 6, 32768, 0.001429
+TimSort, OpenMP, 7, 32768, 0.001474
+TimSort, OpenMP, 8, 32768, 0.002452
+TimSort, OpenMP, 16, 32768, 0.002536
+TimSort, OpenMP, 32, 32768, 0.004192
+Bitonic Sort, OpenMP, 1, 32768, 0.006316
+Bitonic Sort, OpenMP, 2, 32768, 0.004094
+Bitonic Sort, OpenMP, 3, 32768, 0.003018
+Bitonic Sort, OpenMP, 4, 32768, 0.002736
+Bitonic Sort, OpenMP, 5, 32768, 0.002575
+Bitonic Sort, OpenMP, 6, 32768, 0.002608
+Bitonic Sort, OpenMP, 7, 32768, 0.002517
+Bitonic Sort, OpenMP, 8, 32768, 0.002527
+Bitonic Sort, OpenMP, 16, 32768, 0.003772
+Bitonic Sort, OpenMP, 32, 32768, 0.004929
+MergeSort, OpenMP, 1, 32768, 0.003250
+MergeSort, OpenMP, 2, 32768, 0.002203
+MergeSort, OpenMP, 3, 32768, 0.002800
+MergeSort, OpenMP, 4, 32768, 0.001681
+MergeSort, OpenMP, 5, 32768, 0.001731
+MergeSort, OpenMP, 6, 32768, 0.001397
+MergeSort, OpenMP, 7, 32768, 0.001462
+MergeSort, OpenMP, 8, 32768, 0.001481
+MergeSort, OpenMP, 16, 32768, 0.002504
+MergeSort, OpenMP, 32, 32768, 0.004006
+QuickSort, OpenMP, 1, 32768, 0.009481
+QuickSort, OpenMP, 2, 32768, 0.009265
+QuickSort, OpenMP, 3, 32768, 0.008925
+QuickSort, OpenMP, 4, 32768, 0.007866
+QuickSort, OpenMP, 5, 32768, 0.008572
+QuickSort, OpenMP, 6, 32768, 0.005884
+QuickSort, OpenMP, 7, 32768, 0.007669
+QuickSort, OpenMP, 8, 32768, 0.006016
+QuickSort, OpenMP, 16, 32768, 0.008804
+QuickSort, OpenMP, 32, 32768, 0.006490
+Sample Sort, OpenMP, 1, 32768, 0.004384
+Sample Sort, OpenMP, 2, 32768, 0.004980
+Sample Sort, OpenMP, 3, 32768, 0.004933
+Sample Sort, OpenMP, 4, 32768, 0.004132
+Sample Sort, OpenMP, 5, 32768, 0.004500
+Sample Sort, OpenMP, 6, 32768, 0.004725
+Sample Sort, OpenMP, 7, 32768, 0.005001
+Sample Sort, OpenMP, 8, 32768, 0.005681
+Sample Sort, OpenMP, 16, 32768, 0.004242
+Sample Sort, OpenMP, 32, 32768, 0.003852
+TimSort, OpenMP, 1, 32768, 0.001940
+TimSort, OpenMP, 2, 32768, 0.001877
+TimSort, OpenMP, 3, 32768, 0.001301
+TimSort, OpenMP, 4, 32768, 0.001335
+TimSort, OpenMP, 5, 32768, 0.001249
+TimSort, OpenMP, 6, 32768, 0.001269
+TimSort, OpenMP, 7, 32768, 0.001388
+TimSort, OpenMP, 8, 32768, 0.002015
+TimSort, OpenMP, 16, 32768, 0.004051
+TimSort, OpenMP, 32, 32768, 0.004469
+Bitonic Sort, OpenMP, 1, 32768, 0.006392
+Bitonic Sort, OpenMP, 2, 32768, 0.004139
+Bitonic Sort, OpenMP, 3, 32768, 0.003083
+Bitonic Sort, OpenMP, 4, 32768, 0.002836
+Bitonic Sort, OpenMP, 5, 32768, 0.002385
+Bitonic Sort, OpenMP, 6, 32768, 0.002312
+Bitonic Sort, OpenMP, 7, 32768, 0.002370
+Bitonic Sort, OpenMP, 8, 32768, 0.002792
+Bitonic Sort, OpenMP, 16, 32768, 0.003186
+Bitonic Sort, OpenMP, 32, 32768, 0.004381
+MergeSort, OpenMP, 1, 32768, 0.003163
+MergeSort, OpenMP, 2, 32768, 0.003431
+MergeSort, OpenMP, 3, 32768, 0.001730
+MergeSort, OpenMP, 4, 32768, 0.001588
+MergeSort, OpenMP, 5, 32768, 0.001459
+MergeSort, OpenMP, 6, 32768, 0.001470
+MergeSort, OpenMP, 7, 32768, 0.001647
+MergeSort, OpenMP, 8, 32768, 0.002625
+MergeSort, OpenMP, 16, 32768, 0.004092
+MergeSort, OpenMP, 32, 32768, 0.004036
+QuickSort, OpenMP, 1, 32768, 0.009263
+QuickSort, OpenMP, 2, 32768, 0.007346
+QuickSort, OpenMP, 3, 32768, 0.006980
+QuickSort, OpenMP, 4, 32768, 0.005123
+QuickSort, OpenMP, 5, 32768, 0.007156
+QuickSort, OpenMP, 6, 32768, 0.008168
+QuickSort, OpenMP, 7, 32768, 0.007904
+QuickSort, OpenMP, 8, 32768, 0.006889
+QuickSort, OpenMP, 16, 32768, 0.008272
+QuickSort, OpenMP, 32, 32768, 0.010124
+Sample Sort, OpenMP, 1, 32768, 0.003967
+Sample Sort, OpenMP, 2, 32768, 0.004885
+Sample Sort, OpenMP, 3, 32768, 0.003359
+Sample Sort, OpenMP, 4, 32768, 0.004484
+Sample Sort, OpenMP, 5, 32768, 0.005006
+Sample Sort, OpenMP, 6, 32768, 0.004514
+Sample Sort, OpenMP, 7, 32768, 0.004837
+Sample Sort, OpenMP, 8, 32768, 0.005306
+Sample Sort, OpenMP, 16, 32768, 0.004219
+Sample Sort, OpenMP, 32, 32768, 0.004972
+TimSort, OpenMP, 1, 32768, 0.001917
+TimSort, OpenMP, 2, 32768, 0.002296
+TimSort, OpenMP, 3, 32768, 0.001267
+TimSort, OpenMP, 4, 32768, 0.001212
+TimSort, OpenMP, 5, 32768, 0.001351
+TimSort, OpenMP, 6, 32768, 0.001378
+TimSort, OpenMP, 7, 32768, 0.001567
+TimSort, OpenMP, 8, 32768, 0.002129
+TimSort, OpenMP, 16, 32768, 0.004017
+TimSort, OpenMP, 32, 32768, 0.003428
+Bitonic Sort, OpenMP, 1, 32768, 0.006558
+Bitonic Sort, OpenMP, 2, 32768, 0.004405
+Bitonic Sort, OpenMP, 3, 32768, 0.002999
+Bitonic Sort, OpenMP, 4, 32768, 0.003053
+Bitonic Sort, OpenMP, 5, 32768, 0.002657
+Bitonic Sort, OpenMP, 6, 32768, 0.003327
+Bitonic Sort, OpenMP, 7, 32768, 0.002862
+Bitonic Sort, OpenMP, 8, 32768, 0.002660
+Bitonic Sort, OpenMP, 16, 32768, 0.005113
+Bitonic Sort, OpenMP, 32, 32768, 0.003802
+MergeSort, OpenMP, 1, 32768, 0.003228
+MergeSort, OpenMP, 2, 32768, 0.002330
+MergeSort, OpenMP, 3, 32768, 0.001675
+MergeSort, OpenMP, 4, 32768, 0.001702
+MergeSort, OpenMP, 5, 32768, 0.001447
+MergeSort, OpenMP, 6, 32768, 0.001479
+MergeSort, OpenMP, 7, 32768, 0.001543
+MergeSort, OpenMP, 8, 32768, 0.001501
+MergeSort, OpenMP, 16, 32768, 0.003783
+MergeSort, OpenMP, 32, 32768, 0.003829
+QuickSort, OpenMP, 1, 32768, 0.009377
+QuickSort, OpenMP, 2, 32768, 0.008339
+QuickSort, OpenMP, 3, 32768, 0.005152
+QuickSort, OpenMP, 4, 32768, 0.009692
+QuickSort, OpenMP, 5, 32768, 0.015019
+QuickSort, OpenMP, 6, 32768, 0.008909
+QuickSort, OpenMP, 7, 32768, 0.008203
+QuickSort, OpenMP, 8, 32768, 0.005885
+QuickSort, OpenMP, 16, 32768, 0.007194
+QuickSort, OpenMP, 32, 32768, 0.005776
+Sample Sort, OpenMP, 1, 32768, 0.003724
+Sample Sort, OpenMP, 2, 32768, 0.004516
+Sample Sort, OpenMP, 3, 32768, 0.004627
+Sample Sort, OpenMP, 4, 32768, 0.003711
+Sample Sort, OpenMP, 5, 32768, 0.005680
+Sample Sort, OpenMP, 6, 32768, 0.004072
+Sample Sort, OpenMP, 7, 32768, 0.004899
+Sample Sort, OpenMP, 8, 32768, 0.008062
+Sample Sort, OpenMP, 16, 32768, 0.005018
+Sample Sort, OpenMP, 32, 32768, 0.004242
+TimSort, OpenMP, 1, 32768, 0.001922
+TimSort, OpenMP, 2, 32768, 0.001731
+TimSort, OpenMP, 3, 32768, 0.001325
+TimSort, OpenMP, 4, 32768, 0.001242
+TimSort, OpenMP, 5, 32768, 0.001475
+TimSort, OpenMP, 6, 32768, 0.001426
+TimSort, OpenMP, 7, 32768, 0.001446
+TimSort, OpenMP, 8, 32768, 0.001767
+TimSort, OpenMP, 16, 32768, 0.003196
+TimSort, OpenMP, 32, 32768, 0.004200
+Bitonic Sort, OpenMP, 1, 32768, 0.006406
+Bitonic Sort, OpenMP, 2, 32768, 0.004287
+Bitonic Sort, OpenMP, 3, 32768, 0.003423
+Bitonic Sort, OpenMP, 4, 32768, 0.002972
+Bitonic Sort, OpenMP, 5, 32768, 0.003195
+Bitonic Sort, OpenMP, 6, 32768, 0.002460
+Bitonic Sort, OpenMP, 7, 32768, 0.002867
+Bitonic Sort, OpenMP, 8, 32768, 0.002586
+Bitonic Sort, OpenMP, 16, 32768, 0.004128
+Bitonic Sort, OpenMP, 32, 32768, 0.004364
+MergeSort, OpenMP, 1, 32768, 0.003162
+MergeSort, OpenMP, 2, 32768, 0.002569
+MergeSort, OpenMP, 3, 32768, 0.002163
+MergeSort, OpenMP, 4, 32768, 0.001567
+MergeSort, OpenMP, 5, 32768, 0.001399
+MergeSort, OpenMP, 6, 32768, 0.001485
+MergeSort, OpenMP, 7, 32768, 0.001438
+MergeSort, OpenMP, 8, 32768, 0.001563
+MergeSort, OpenMP, 16, 32768, 0.002659
+MergeSort, OpenMP, 32, 32768, 0.003684
+QuickSort, OpenMP, 1, 32768, 0.009212
+QuickSort, OpenMP, 2, 32768, 0.008780
+QuickSort, OpenMP, 3, 32768, 0.005317
+QuickSort, OpenMP, 4, 32768, 0.005577
+QuickSort, OpenMP, 5, 32768, 0.006345
+QuickSort, OpenMP, 6, 32768, 0.007352
+QuickSort, OpenMP, 7, 32768, 0.008552
+QuickSort, OpenMP, 8, 32768, 0.006043
+QuickSort, OpenMP, 16, 32768, 0.006390
+QuickSort, OpenMP, 32, 32768, 0.006406
+Sample Sort, OpenMP, 1, 32768, 0.003820
+Sample Sort, OpenMP, 2, 32768, 0.004207
+Sample Sort, OpenMP, 3, 32768, 0.004455
+Sample Sort, OpenMP, 4, 32768, 0.003432
+Sample Sort, OpenMP, 5, 32768, 0.005514
+Sample Sort, OpenMP, 6, 32768, 0.004797
+Sample Sort, OpenMP, 7, 32768, 0.004877
+Sample Sort, OpenMP, 8, 32768, 0.004686
+Sample Sort, OpenMP, 16, 32768, 0.004358
+Sample Sort, OpenMP, 32, 32768, 0.006620
+TimSort, OpenMP, 1, 32768, 0.001923
+TimSort, OpenMP, 2, 32768, 0.001918
+TimSort, OpenMP, 3, 32768, 0.001700
+TimSort, OpenMP, 4, 32768, 0.001235
+TimSort, OpenMP, 5, 32768, 0.001248
+TimSort, OpenMP, 6, 32768, 0.001421
+TimSort, OpenMP, 7, 32768, 0.001823
+TimSort, OpenMP, 8, 32768, 0.002342
+TimSort, OpenMP, 16, 32768, 0.003373
+TimSort, OpenMP, 32, 32768, 0.003515
+Bitonic Sort, OpenMP, 1, 32768, 0.006366
+Bitonic Sort, OpenMP, 2, 32768, 0.004926
+Bitonic Sort, OpenMP, 3, 32768, 0.003833
+Bitonic Sort, OpenMP, 4, 32768, 0.002776
+Bitonic Sort, OpenMP, 5, 32768, 0.002680
+Bitonic Sort, OpenMP, 6, 32768, 0.002311
+Bitonic Sort, OpenMP, 7, 32768, 0.002532
+Bitonic Sort, OpenMP, 8, 32768, 0.003290
+Bitonic Sort, OpenMP, 16, 32768, 0.005113
+Bitonic Sort, OpenMP, 32, 32768, 0.005113
+MergeSort, OpenMP, 1, 32768, 0.003218
+MergeSort, OpenMP, 2, 32768, 0.002773
+MergeSort, OpenMP, 3, 32768, 0.001795
+MergeSort, OpenMP, 4, 32768, 0.001697
+MergeSort, OpenMP, 5, 32768, 0.001380
+MergeSort, OpenMP, 6, 32768, 0.001666
+MergeSort, OpenMP, 7, 32768, 0.001738
+MergeSort, OpenMP, 8, 32768, 0.002921
+MergeSort, OpenMP, 16, 32768, 0.002866
+MergeSort, OpenMP, 32, 32768, 0.005781
+QuickSort, OpenMP, 1, 32768, 0.009811
+QuickSort, OpenMP, 2, 32768, 0.007716
+QuickSort, OpenMP, 3, 32768, 0.005715
+QuickSort, OpenMP, 4, 32768, 0.008082
+QuickSort, OpenMP, 5, 32768, 0.009492
+QuickSort, OpenMP, 6, 32768, 0.005801
+QuickSort, OpenMP, 7, 32768, 0.006106
+QuickSort, OpenMP, 8, 32768, 0.007164
+QuickSort, OpenMP, 16, 32768, 0.007042
+QuickSort, OpenMP, 32, 32768, 0.008789
+Sample Sort, OpenMP, 1, 32768, 0.004215
+Sample Sort, OpenMP, 2, 32768, 0.004145
+Sample Sort, OpenMP, 3, 32768, 0.004026
+Sample Sort, OpenMP, 4, 32768, 0.004141
+Sample Sort, OpenMP, 5, 32768, 0.003543
+Sample Sort, OpenMP, 6, 32768, 0.005150
+Sample Sort, OpenMP, 7, 32768, 0.004767
+Sample Sort, OpenMP, 8, 32768, 0.004565
+Sample Sort, OpenMP, 16, 32768, 0.004266
+Sample Sort, OpenMP, 32, 32768, 0.005473
+TimSort, OpenMP, 1, 32768, 0.002385
+TimSort, OpenMP, 2, 32768, 0.002387
+TimSort, OpenMP, 3, 32768, 0.001545
+TimSort, OpenMP, 4, 32768, 0.001196
+TimSort, OpenMP, 5, 32768, 0.001429
+TimSort, OpenMP, 6, 32768, 0.001848
+TimSort, OpenMP, 7, 32768, 0.001528
+TimSort, OpenMP, 8, 32768, 0.001393
+TimSort, OpenMP, 16, 32768, 0.003351
+TimSort, OpenMP, 32, 32768, 0.007419
+Bitonic Sort, OpenMP, 1, 32768, 0.006421
+Bitonic Sort, OpenMP, 2, 32768, 0.004197
+Bitonic Sort, OpenMP, 3, 32768, 0.003073
+Bitonic Sort, OpenMP, 4, 32768, 0.004105
+Bitonic Sort, OpenMP, 5, 32768, 0.002740
+Bitonic Sort, OpenMP, 6, 32768, 0.003996
+Bitonic Sort, OpenMP, 7, 32768, 0.003777
+Bitonic Sort, OpenMP, 8, 32768, 0.003301
+Bitonic Sort, OpenMP, 16, 32768, 0.004016
+Bitonic Sort, OpenMP, 32, 32768, 0.004816
+MergeSort, OpenMP, 1, 32768, 0.003354
+MergeSort, OpenMP, 2, 32768, 0.003239
+MergeSort, OpenMP, 3, 32768, 0.001685
+MergeSort, OpenMP, 4, 32768, 0.001684
+MergeSort, OpenMP, 5, 32768, 0.001575
+MergeSort, OpenMP, 6, 32768, 0.001777
+MergeSort, OpenMP, 7, 32768, 0.001420
+MergeSort, OpenMP, 8, 32768, 0.001542
+MergeSort, OpenMP, 16, 32768, 0.002740
+MergeSort, OpenMP, 32, 32768, 0.004296
+QuickSort, OpenMP, 1, 32768, 0.009223
+QuickSort, OpenMP, 2, 32768, 0.010121
+QuickSort, OpenMP, 3, 32768, 0.007526
+QuickSort, OpenMP, 4, 32768, 0.005943
+QuickSort, OpenMP, 5, 32768, 0.006274
+QuickSort, OpenMP, 6, 32768, 0.007187
+QuickSort, OpenMP, 7, 32768, 0.006605
+QuickSort, OpenMP, 8, 32768, 0.008088
+QuickSort, OpenMP, 16, 32768, 0.008283
+QuickSort, OpenMP, 32, 32768, 0.009274
+Sample Sort, OpenMP, 1, 32768, 0.004023
+Sample Sort, OpenMP, 2, 32768, 0.005233
+Sample Sort, OpenMP, 3, 32768, 0.003059
+Sample Sort, OpenMP, 4, 32768, 0.004351
+Sample Sort, OpenMP, 5, 32768, 0.004404
+Sample Sort, OpenMP, 6, 32768, 0.004989
+Sample Sort, OpenMP, 7, 32768, 0.008420
+Sample Sort, OpenMP, 8, 32768, 0.008401
+Sample Sort, OpenMP, 16, 32768, 0.005435
+Sample Sort, OpenMP, 32, 32768, 0.004703
+TimSort, OpenMP, 1, 32768, 0.001912
+TimSort, OpenMP, 2, 32768, 0.001633
+TimSort, OpenMP, 3, 32768, 0.001291
+TimSort, OpenMP, 4, 32768, 0.001322
+TimSort, OpenMP, 5, 32768, 0.001287
+TimSort, OpenMP, 6, 32768, 0.001285
+TimSort, OpenMP, 7, 32768, 0.001562
+TimSort, OpenMP, 8, 32768, 0.002304
+TimSort, OpenMP, 16, 32768, 0.002460
+TimSort, OpenMP, 32, 32768, 0.004338
+Bitonic Sort, OpenMP, 1, 32768, 0.006345
+Bitonic Sort, OpenMP, 2, 32768, 0.004244
+Bitonic Sort, OpenMP, 3, 32768, 0.003022
+Bitonic Sort, OpenMP, 4, 32768, 0.002907
+Bitonic Sort, OpenMP, 5, 32768, 0.002746
+Bitonic Sort, OpenMP, 6, 32768, 0.002677
+Bitonic Sort, OpenMP, 7, 32768, 0.003544
+Bitonic Sort, OpenMP, 8, 32768, 0.002944
+Bitonic Sort, OpenMP, 16, 32768, 0.003719
+Bitonic Sort, OpenMP, 32, 32768, 0.005005
+MergeSort, OpenMP, 1, 32768, 0.003339
+MergeSort, OpenMP, 2, 32768, 0.002758
+MergeSort, OpenMP, 3, 32768, 0.001986
+MergeSort, OpenMP, 4, 32768, 0.001715
+MergeSort, OpenMP, 5, 32768, 0.001674
+MergeSort, OpenMP, 6, 32768, 0.001510
+MergeSort, OpenMP, 7, 32768, 0.002248
+MergeSort, OpenMP, 8, 32768, 0.001816
+MergeSort, OpenMP, 16, 32768, 0.003329
+MergeSort, OpenMP, 32, 32768, 0.004759
+QuickSort, OpenMP, 1, 32768, 0.009480
+QuickSort, OpenMP, 2, 32768, 0.009684
+QuickSort, OpenMP, 3, 32768, 0.007612
+QuickSort, OpenMP, 4, 32768, 0.006005
+QuickSort, OpenMP, 5, 32768, 0.007874
+QuickSort, OpenMP, 6, 32768, 0.007940
+QuickSort, OpenMP, 7, 32768, 0.007679
+QuickSort, OpenMP, 8, 32768, 0.010182
+QuickSort, OpenMP, 16, 32768, 0.009310
+QuickSort, OpenMP, 32, 32768, 0.006883
+Sample Sort, OpenMP, 1, 32768, 0.004676
+Sample Sort, OpenMP, 2, 32768, 0.003376
+Sample Sort, OpenMP, 3, 32768, 0.005186
+Sample Sort, OpenMP, 4, 32768, 0.003890
+Sample Sort, OpenMP, 5, 32768, 0.004892
+Sample Sort, OpenMP, 6, 32768, 0.004882
+Sample Sort, OpenMP, 7, 32768, 0.003272
+Sample Sort, OpenMP, 8, 32768, 0.006977
+Sample Sort, OpenMP, 16, 32768, 0.005152
+Sample Sort, OpenMP, 32, 32768, 0.006245
+TimSort, OpenMP, 1, 32768, 0.001904
+TimSort, OpenMP, 2, 32768, 0.001826
+TimSort, OpenMP, 3, 32768, 0.001254
+TimSort, OpenMP, 4, 32768, 0.001247
+TimSort, OpenMP, 5, 32768, 0.001255
+TimSort, OpenMP, 6, 32768, 0.001390
+TimSort, OpenMP, 7, 32768, 0.001457
+TimSort, OpenMP, 8, 32768, 0.002580
+TimSort, OpenMP, 16, 32768, 0.003106
+TimSort, OpenMP, 32, 32768, 0.003970
+Bitonic Sort, OpenMP, 1, 32768, 0.006112
+Bitonic Sort, OpenMP, 2, 32768, 0.004462
+Bitonic Sort, OpenMP, 3, 32768, 0.003106
+Bitonic Sort, OpenMP, 4, 32768, 0.003190
+Bitonic Sort, OpenMP, 5, 32768, 0.003020
+Bitonic Sort, OpenMP, 6, 32768, 0.003000
+Bitonic Sort, OpenMP, 7, 32768, 0.002721
+Bitonic Sort, OpenMP, 8, 32768, 0.003131
+Bitonic Sort, OpenMP, 16, 32768, 0.004595
+Bitonic Sort, OpenMP, 32, 32768, 0.003098
+MergeSort, OpenMP, 1, 32768, 0.003192
+MergeSort, OpenMP, 2, 32768, 0.002602
+MergeSort, OpenMP, 3, 32768, 0.001783
+MergeSort, OpenMP, 4, 32768, 0.001547
+MergeSort, OpenMP, 5, 32768, 0.001555
+MergeSort, OpenMP, 6, 32768, 0.001672
+MergeSort, OpenMP, 7, 32768, 0.001704
+MergeSort, OpenMP, 8, 32768, 0.001833
+MergeSort, OpenMP, 16, 32768, 0.004223
+MergeSort, OpenMP, 32, 32768, 0.003254
+QuickSort, OpenMP, 1, 32768, 0.009348
+QuickSort, OpenMP, 2, 32768, 0.008733
+QuickSort, OpenMP, 3, 32768, 0.006834
+QuickSort, OpenMP, 4, 32768, 0.007051
+QuickSort, OpenMP, 5, 32768, 0.007205
+QuickSort, OpenMP, 6, 32768, 0.007455
+QuickSort, OpenMP, 7, 32768, 0.007301
+QuickSort, OpenMP, 8, 32768, 0.006019
+QuickSort, OpenMP, 16, 32768, 0.006392
+QuickSort, OpenMP, 32, 32768, 0.007059
+Sample Sort, OpenMP, 1, 32768, 0.004005
+Sample Sort, OpenMP, 2, 32768, 0.003972
+Sample Sort, OpenMP, 3, 32768, 0.004182
+Sample Sort, OpenMP, 4, 32768, 0.005129
+Sample Sort, OpenMP, 5, 32768, 0.004186
+Sample Sort, OpenMP, 6, 32768, 0.003895
+Sample Sort, OpenMP, 7, 32768, 0.005067
+Sample Sort, OpenMP, 8, 32768, 0.004943
+Sample Sort, OpenMP, 16, 32768, 0.003911
+Sample Sort, OpenMP, 32, 32768, 0.004967
+TimSort, OpenMP, 1, 32768, 0.001946
+TimSort, OpenMP, 2, 32768, 0.001740
+TimSort, OpenMP, 3, 32768, 0.001225
+TimSort, OpenMP, 4, 32768, 0.001228
+TimSort, OpenMP, 5, 32768, 0.001258
+TimSort, OpenMP, 6, 32768, 0.001366
+TimSort, OpenMP, 7, 32768, 0.001538
+TimSort, OpenMP, 8, 32768, 0.002402
+TimSort, OpenMP, 16, 32768, 0.002926
+TimSort, OpenMP, 32, 32768, 0.003155
+Bitonic Sort, OpenMP, 1, 32768, 0.006369
+Bitonic Sort, OpenMP, 2, 32768, 0.004088
+Bitonic Sort, OpenMP, 3, 32768, 0.003136
+Bitonic Sort, OpenMP, 4, 32768, 0.002738
+Bitonic Sort, OpenMP, 5, 32768, 0.002324
+Bitonic Sort, OpenMP, 6, 32768, 0.002696
+Bitonic Sort, OpenMP, 7, 32768, 0.002315
+Bitonic Sort, OpenMP, 8, 32768, 0.002801
+Bitonic Sort, OpenMP, 16, 32768, 0.002850
+Bitonic Sort, OpenMP, 32, 32768, 0.004821
+MergeSort, OpenMP, 1, 32768, 0.003181
+MergeSort, OpenMP, 2, 32768, 0.003236
+MergeSort, OpenMP, 3, 32768, 0.001699
+MergeSort, OpenMP, 4, 32768, 0.001572
+MergeSort, OpenMP, 5, 32768, 0.001371
+MergeSort, OpenMP, 6, 32768, 0.001451
+MergeSort, OpenMP, 7, 32768, 0.001512
+MergeSort, OpenMP, 8, 32768, 0.001519
+MergeSort, OpenMP, 16, 32768, 0.004672
+MergeSort, OpenMP, 32, 32768, 0.003245
+QuickSort, OpenMP, 1, 32768, 0.009806
+QuickSort, OpenMP, 2, 32768, 0.010489
+QuickSort, OpenMP, 3, 32768, 0.009547
+QuickSort, OpenMP, 4, 32768, 0.007496
+QuickSort, OpenMP, 5, 32768, 0.007513
+QuickSort, OpenMP, 6, 32768, 0.005633
+QuickSort, OpenMP, 7, 32768, 0.005629
+QuickSort, OpenMP, 8, 32768, 0.010195
+QuickSort, OpenMP, 16, 32768, 0.006986
+QuickSort, OpenMP, 32, 32768, 0.008743
+Sample Sort, OpenMP, 1, 32768, 0.004125
+Sample Sort, OpenMP, 2, 32768, 0.003797
+Sample Sort, OpenMP, 3, 32768, 0.004277
+Sample Sort, OpenMP, 4, 32768, 0.005145
+Sample Sort, OpenMP, 5, 32768, 0.004168
+Sample Sort, OpenMP, 6, 32768, 0.005299
+Sample Sort, OpenMP, 7, 32768, 0.004515
+Sample Sort, OpenMP, 8, 32768, 0.003656
+Sample Sort, OpenMP, 16, 32768, 0.003897
+Sample Sort, OpenMP, 32, 32768, 0.004783
+TimSort, OpenMP, 1, 65536, 0.004763
+TimSort, OpenMP, 2, 65536, 0.003320
+TimSort, OpenMP, 3, 65536, 0.002579
+TimSort, OpenMP, 4, 65536, 0.002483
+TimSort, OpenMP, 5, 65536, 0.002433
+TimSort, OpenMP, 6, 65536, 0.002409
+TimSort, OpenMP, 7, 65536, 0.002635
+TimSort, OpenMP, 8, 65536, 0.003070
+TimSort, OpenMP, 16, 65536, 0.004740
+TimSort, OpenMP, 32, 65536, 0.005300
+Bitonic Sort, OpenMP, 1, 65536, 0.013749
+Bitonic Sort, OpenMP, 2, 65536, 0.008372
+Bitonic Sort, OpenMP, 3, 65536, 0.006547
+Bitonic Sort, OpenMP, 4, 65536, 0.005879
+Bitonic Sort, OpenMP, 5, 65536, 0.004786
+Bitonic Sort, OpenMP, 6, 65536, 0.004843
+Bitonic Sort, OpenMP, 7, 65536, 0.004961
+Bitonic Sort, OpenMP, 8, 65536, 0.004683
+Bitonic Sort, OpenMP, 16, 65536, 0.004661
+Bitonic Sort, OpenMP, 32, 65536, 0.006653
+MergeSort, OpenMP, 1, 65536, 0.006625
+MergeSort, OpenMP, 2, 65536, 0.005148
+MergeSort, OpenMP, 3, 65536, 0.003480
+MergeSort, OpenMP, 4, 65536, 0.003466
+MergeSort, OpenMP, 5, 65536, 0.003100
+MergeSort, OpenMP, 6, 65536, 0.002905
+MergeSort, OpenMP, 7, 65536, 0.003095
+MergeSort, OpenMP, 8, 65536, 0.003716
+MergeSort, OpenMP, 16, 65536, 0.007947
+MergeSort, OpenMP, 32, 65536, 0.006382
+QuickSort, OpenMP, 1, 65536, 0.019284
+QuickSort, OpenMP, 2, 65536, 0.011828
+QuickSort, OpenMP, 3, 65536, 0.012979
+QuickSort, OpenMP, 4, 65536, 0.011453
+QuickSort, OpenMP, 5, 65536, 0.017080
+QuickSort, OpenMP, 6, 65536, 0.014785
+QuickSort, OpenMP, 7, 65536, 0.014677
+QuickSort, OpenMP, 8, 65536, 0.018320
+QuickSort, OpenMP, 16, 65536, 0.012321
+QuickSort, OpenMP, 32, 65536, 0.012280
+Sample Sort, OpenMP, 1, 65536, 0.009034
+Sample Sort, OpenMP, 2, 65536, 0.008649
+Sample Sort, OpenMP, 3, 65536, 0.008203
+Sample Sort, OpenMP, 4, 65536, 0.009663
+Sample Sort, OpenMP, 5, 65536, 0.008874
+Sample Sort, OpenMP, 6, 65536, 0.010342
+Sample Sort, OpenMP, 7, 65536, 0.007444
+Sample Sort, OpenMP, 8, 65536, 0.010385
+Sample Sort, OpenMP, 16, 65536, 0.010831
+Sample Sort, OpenMP, 32, 65536, 0.009580
+TimSort, OpenMP, 1, 65536, 0.004217
+TimSort, OpenMP, 2, 65536, 0.003933
+TimSort, OpenMP, 3, 65536, 0.002587
+TimSort, OpenMP, 4, 65536, 0.002476
+TimSort, OpenMP, 5, 65536, 0.002360
+TimSort, OpenMP, 6, 65536, 0.003045
+TimSort, OpenMP, 7, 65536, 0.002737
+TimSort, OpenMP, 8, 65536, 0.003503
+TimSort, OpenMP, 16, 65536, 0.005053
+TimSort, OpenMP, 32, 65536, 0.006969
+Bitonic Sort, OpenMP, 1, 65536, 0.013710
+Bitonic Sort, OpenMP, 2, 65536, 0.008851
+Bitonic Sort, OpenMP, 3, 65536, 0.006479
+Bitonic Sort, OpenMP, 4, 65536, 0.006869
+Bitonic Sort, OpenMP, 5, 65536, 0.005291
+Bitonic Sort, OpenMP, 6, 65536, 0.006348
+Bitonic Sort, OpenMP, 7, 65536, 0.004824
+Bitonic Sort, OpenMP, 8, 65536, 0.004607
+Bitonic Sort, OpenMP, 16, 65536, 0.006197
+Bitonic Sort, OpenMP, 32, 65536, 0.005334
+MergeSort, OpenMP, 1, 65536, 0.006795
+MergeSort, OpenMP, 2, 65536, 0.004462
+MergeSort, OpenMP, 3, 65536, 0.003419
+MergeSort, OpenMP, 4, 65536, 0.003082
+MergeSort, OpenMP, 5, 65536, 0.004692
+MergeSort, OpenMP, 6, 65536, 0.003033
+MergeSort, OpenMP, 7, 65536, 0.002863
+MergeSort, OpenMP, 8, 65536, 0.003926
+MergeSort, OpenMP, 16, 65536, 0.006607
+MergeSort, OpenMP, 32, 65536, 0.006560
+QuickSort, OpenMP, 1, 65536, 0.018803
+QuickSort, OpenMP, 2, 65536, 0.018649
+QuickSort, OpenMP, 3, 65536, 0.017692
+QuickSort, OpenMP, 4, 65536, 0.011428
+QuickSort, OpenMP, 5, 65536, 0.022858
+QuickSort, OpenMP, 6, 65536, 0.020610
+QuickSort, OpenMP, 7, 65536, 0.022097
+QuickSort, OpenMP, 8, 65536, 0.015021
+QuickSort, OpenMP, 16, 65536, 0.013870
+QuickSort, OpenMP, 32, 65536, 0.014706
+Sample Sort, OpenMP, 1, 65536, 0.009389
+Sample Sort, OpenMP, 2, 65536, 0.006934
+Sample Sort, OpenMP, 3, 65536, 0.010449
+Sample Sort, OpenMP, 4, 65536, 0.008748
+Sample Sort, OpenMP, 5, 65536, 0.011607
+Sample Sort, OpenMP, 6, 65536, 0.007668
+Sample Sort, OpenMP, 7, 65536, 0.012009
+Sample Sort, OpenMP, 8, 65536, 0.010724
+Sample Sort, OpenMP, 16, 65536, 0.007647
+Sample Sort, OpenMP, 32, 65536, 0.012289
+TimSort, OpenMP, 1, 65536, 0.004192
+TimSort, OpenMP, 2, 65536, 0.003754
+TimSort, OpenMP, 3, 65536, 0.003108
+TimSort, OpenMP, 4, 65536, 0.002395
+TimSort, OpenMP, 5, 65536, 0.002597
+TimSort, OpenMP, 6, 65536, 0.002616
+TimSort, OpenMP, 7, 65536, 0.002927
+TimSort, OpenMP, 8, 65536, 0.004068
+TimSort, OpenMP, 16, 65536, 0.004991
+TimSort, OpenMP, 32, 65536, 0.005540
+Bitonic Sort, OpenMP, 1, 65536, 0.013877
+Bitonic Sort, OpenMP, 2, 65536, 0.008393
+Bitonic Sort, OpenMP, 3, 65536, 0.007811
+Bitonic Sort, OpenMP, 4, 65536, 0.005874
+Bitonic Sort, OpenMP, 5, 65536, 0.005934
+Bitonic Sort, OpenMP, 6, 65536, 0.005777
+Bitonic Sort, OpenMP, 7, 65536, 0.006531
+Bitonic Sort, OpenMP, 8, 65536, 0.005152
+Bitonic Sort, OpenMP, 16, 65536, 0.005983
+Bitonic Sort, OpenMP, 32, 65536, 0.005661
+MergeSort, OpenMP, 1, 65536, 0.006803
+MergeSort, OpenMP, 2, 65536, 0.004766
+MergeSort, OpenMP, 3, 65536, 0.003416
+MergeSort, OpenMP, 4, 65536, 0.002985
+MergeSort, OpenMP, 5, 65536, 0.003399
+MergeSort, OpenMP, 6, 65536, 0.003534
+MergeSort, OpenMP, 7, 65536, 0.003362
+MergeSort, OpenMP, 8, 65536, 0.002858
+MergeSort, OpenMP, 16, 65536, 0.004762
+MergeSort, OpenMP, 32, 65536, 0.006935
+QuickSort, OpenMP, 1, 65536, 0.019004
+QuickSort, OpenMP, 2, 65536, 0.013123
+QuickSort, OpenMP, 3, 65536, 0.013727
+QuickSort, OpenMP, 4, 65536, 0.014073
+QuickSort, OpenMP, 5, 65536, 0.014265
+QuickSort, OpenMP, 6, 65536, 0.018091
+QuickSort, OpenMP, 7, 65536, 0.014388
+QuickSort, OpenMP, 8, 65536, 0.015312
+QuickSort, OpenMP, 16, 65536, 0.016371
+QuickSort, OpenMP, 32, 65536, 0.013912
+Sample Sort, OpenMP, 1, 65536, 0.009782
+Sample Sort, OpenMP, 2, 65536, 0.009450
+Sample Sort, OpenMP, 3, 65536, 0.009474
+Sample Sort, OpenMP, 4, 65536, 0.008487
+Sample Sort, OpenMP, 5, 65536, 0.007655
+Sample Sort, OpenMP, 6, 65536, 0.007502
+Sample Sort, OpenMP, 7, 65536, 0.011464
+Sample Sort, OpenMP, 8, 65536, 0.010715
+Sample Sort, OpenMP, 16, 65536, 0.011404
+Sample Sort, OpenMP, 32, 65536, 0.008161
+TimSort, OpenMP, 1, 65536, 0.004197
+TimSort, OpenMP, 2, 65536, 0.003604
+TimSort, OpenMP, 3, 65536, 0.003309
+TimSort, OpenMP, 4, 65536, 0.002812
+TimSort, OpenMP, 5, 65536, 0.002688
+TimSort, OpenMP, 6, 65536, 0.003509
+TimSort, OpenMP, 7, 65536, 0.004043
+TimSort, OpenMP, 8, 65536, 0.003887
+TimSort, OpenMP, 16, 65536, 0.005053
+TimSort, OpenMP, 32, 65536, 0.005668
+Bitonic Sort, OpenMP, 1, 65536, 0.014487
+Bitonic Sort, OpenMP, 2, 65536, 0.008330
+Bitonic Sort, OpenMP, 3, 65536, 0.008013
+Bitonic Sort, OpenMP, 4, 65536, 0.005932
+Bitonic Sort, OpenMP, 5, 65536, 0.005164
+Bitonic Sort, OpenMP, 6, 65536, 0.005117
+Bitonic Sort, OpenMP, 7, 65536, 0.005451
+Bitonic Sort, OpenMP, 8, 65536, 0.005556
+Bitonic Sort, OpenMP, 16, 65536, 0.005748
+Bitonic Sort, OpenMP, 32, 65536, 0.006129
+MergeSort, OpenMP, 1, 65536, 0.006792
+MergeSort, OpenMP, 2, 65536, 0.004732
+MergeSort, OpenMP, 3, 65536, 0.003343
+MergeSort, OpenMP, 4, 65536, 0.003416
+MergeSort, OpenMP, 5, 65536, 0.003117
+MergeSort, OpenMP, 6, 65536, 0.004230
+MergeSort, OpenMP, 7, 65536, 0.003089
+MergeSort, OpenMP, 8, 65536, 0.002934
+MergeSort, OpenMP, 16, 65536, 0.005321
+MergeSort, OpenMP, 32, 65536, 0.007447
+QuickSort, OpenMP, 1, 65536, 0.020429
+QuickSort, OpenMP, 2, 65536, 0.012409
+QuickSort, OpenMP, 3, 65536, 0.015245
+QuickSort, OpenMP, 4, 65536, 0.015568
+QuickSort, OpenMP, 5, 65536, 0.011493
+QuickSort, OpenMP, 6, 65536, 0.010324
+QuickSort, OpenMP, 7, 65536, 0.016133
+QuickSort, OpenMP, 8, 65536, 0.016156
+QuickSort, OpenMP, 16, 65536, 0.018791
+QuickSort, OpenMP, 32, 65536, 0.018189
+Sample Sort, OpenMP, 1, 65536, 0.008918
+Sample Sort, OpenMP, 2, 65536, 0.009885
+Sample Sort, OpenMP, 3, 65536, 0.009716
+Sample Sort, OpenMP, 4, 65536, 0.008970
+Sample Sort, OpenMP, 5, 65536, 0.009997
+Sample Sort, OpenMP, 6, 65536, 0.006418
+Sample Sort, OpenMP, 7, 65536, 0.011010
+Sample Sort, OpenMP, 8, 65536, 0.011248
+Sample Sort, OpenMP, 16, 65536, 0.009056
+Sample Sort, OpenMP, 32, 65536, 0.009378
+TimSort, OpenMP, 1, 65536, 0.004356
+TimSort, OpenMP, 2, 65536, 0.003372
+TimSort, OpenMP, 3, 65536, 0.002930
+TimSort, OpenMP, 4, 65536, 0.002791
+TimSort, OpenMP, 5, 65536, 0.002510
+TimSort, OpenMP, 6, 65536, 0.002745
+TimSort, OpenMP, 7, 65536, 0.002838
+TimSort, OpenMP, 8, 65536, 0.003433
+TimSort, OpenMP, 16, 65536, 0.004417
+TimSort, OpenMP, 32, 65536, 0.004623
+Bitonic Sort, OpenMP, 1, 65536, 0.014361
+Bitonic Sort, OpenMP, 2, 65536, 0.008437
+Bitonic Sort, OpenMP, 3, 65536, 0.006716
+Bitonic Sort, OpenMP, 4, 65536, 0.005867
+Bitonic Sort, OpenMP, 5, 65536, 0.004790
+Bitonic Sort, OpenMP, 6, 65536, 0.004847
+Bitonic Sort, OpenMP, 7, 65536, 0.005096
+Bitonic Sort, OpenMP, 8, 65536, 0.005986
+Bitonic Sort, OpenMP, 16, 65536, 0.004945
+Bitonic Sort, OpenMP, 32, 65536, 0.006312
+MergeSort, OpenMP, 1, 65536, 0.006726
+MergeSort, OpenMP, 2, 65536, 0.005167
+MergeSort, OpenMP, 3, 65536, 0.003587
+MergeSort, OpenMP, 4, 65536, 0.002982
+MergeSort, OpenMP, 5, 65536, 0.002668
+MergeSort, OpenMP, 6, 65536, 0.002882
+MergeSort, OpenMP, 7, 65536, 0.003017
+MergeSort, OpenMP, 8, 65536, 0.002908
+MergeSort, OpenMP, 16, 65536, 0.006653
+MergeSort, OpenMP, 32, 65536, 0.007159
+QuickSort, OpenMP, 1, 65536, 0.019075
+QuickSort, OpenMP, 2, 65536, 0.013771
+QuickSort, OpenMP, 3, 65536, 0.017160
+QuickSort, OpenMP, 4, 65536, 0.010734
+QuickSort, OpenMP, 5, 65536, 0.010649
+QuickSort, OpenMP, 6, 65536, 0.017640
+QuickSort, OpenMP, 7, 65536, 0.013603
+QuickSort, OpenMP, 8, 65536, 0.015980
+QuickSort, OpenMP, 16, 65536, 0.016042
+QuickSort, OpenMP, 32, 65536, 0.015083
+Sample Sort, OpenMP, 1, 65536, 0.008533
+Sample Sort, OpenMP, 2, 65536, 0.009216
+Sample Sort, OpenMP, 3, 65536, 0.006826
+Sample Sort, OpenMP, 4, 65536, 0.010090
+Sample Sort, OpenMP, 5, 65536, 0.010775
+Sample Sort, OpenMP, 6, 65536, 0.008819
+Sample Sort, OpenMP, 7, 65536, 0.010571
+Sample Sort, OpenMP, 8, 65536, 0.006734
+Sample Sort, OpenMP, 16, 65536, 0.012342
+Sample Sort, OpenMP, 32, 65536, 0.012034
+TimSort, OpenMP, 1, 65536, 0.004562
+TimSort, OpenMP, 2, 65536, 0.003521
+TimSort, OpenMP, 3, 65536, 0.002454
+TimSort, OpenMP, 4, 65536, 0.002396
+TimSort, OpenMP, 5, 65536, 0.002404
+TimSort, OpenMP, 6, 65536, 0.005335
+TimSort, OpenMP, 7, 65536, 0.003529
+TimSort, OpenMP, 8, 65536, 0.005118
+TimSort, OpenMP, 16, 65536, 0.004536
+TimSort, OpenMP, 32, 65536, 0.004866
+Bitonic Sort, OpenMP, 1, 65536, 0.013841
+Bitonic Sort, OpenMP, 2, 65536, 0.008189
+Bitonic Sort, OpenMP, 3, 65536, 0.007766
+Bitonic Sort, OpenMP, 4, 65536, 0.006322
+Bitonic Sort, OpenMP, 5, 65536, 0.006080
+Bitonic Sort, OpenMP, 6, 65536, 0.005759
+Bitonic Sort, OpenMP, 7, 65536, 0.005289
+Bitonic Sort, OpenMP, 8, 65536, 0.006420
+Bitonic Sort, OpenMP, 16, 65536, 0.005629
+Bitonic Sort, OpenMP, 32, 65536, 0.005692
+MergeSort, OpenMP, 1, 65536, 0.006780
+MergeSort, OpenMP, 2, 65536, 0.004667
+MergeSort, OpenMP, 3, 65536, 0.003361
+MergeSort, OpenMP, 4, 65536, 0.003359
+MergeSort, OpenMP, 5, 65536, 0.002720
+MergeSort, OpenMP, 6, 65536, 0.002942
+MergeSort, OpenMP, 7, 65536, 0.003010
+MergeSort, OpenMP, 8, 65536, 0.002866
+MergeSort, OpenMP, 16, 65536, 0.004411
+MergeSort, OpenMP, 32, 65536, 0.005968
+QuickSort, OpenMP, 1, 65536, 0.018506
+QuickSort, OpenMP, 2, 65536, 0.013788
+QuickSort, OpenMP, 3, 65536, 0.017640
+QuickSort, OpenMP, 4, 65536, 0.010046
+QuickSort, OpenMP, 5, 65536, 0.013500
+QuickSort, OpenMP, 6, 65536, 0.012534
+QuickSort, OpenMP, 7, 65536, 0.021510
+QuickSort, OpenMP, 8, 65536, 0.014651
+QuickSort, OpenMP, 16, 65536, 0.016338
+QuickSort, OpenMP, 32, 65536, 0.015040
+Sample Sort, OpenMP, 1, 65536, 0.008563
+Sample Sort, OpenMP, 2, 65536, 0.007663
+Sample Sort, OpenMP, 3, 65536, 0.007620
+Sample Sort, OpenMP, 4, 65536, 0.007038
+Sample Sort, OpenMP, 5, 65536, 0.008554
+Sample Sort, OpenMP, 6, 65536, 0.007804
+Sample Sort, OpenMP, 7, 65536, 0.009688
+Sample Sort, OpenMP, 8, 65536, 0.007095
+Sample Sort, OpenMP, 16, 65536, 0.010372
+Sample Sort, OpenMP, 32, 65536, 0.008823
+TimSort, OpenMP, 1, 65536, 0.004167
+TimSort, OpenMP, 2, 65536, 0.003370
+TimSort, OpenMP, 3, 65536, 0.002682
+TimSort, OpenMP, 4, 65536, 0.002514
+TimSort, OpenMP, 5, 65536, 0.002517
+TimSort, OpenMP, 6, 65536, 0.002597
+TimSort, OpenMP, 7, 65536, 0.002892
+TimSort, OpenMP, 8, 65536, 0.003433
+TimSort, OpenMP, 16, 65536, 0.004753
+TimSort, OpenMP, 32, 65536, 0.005956
+Bitonic Sort, OpenMP, 1, 65536, 0.013555
+Bitonic Sort, OpenMP, 2, 65536, 0.008417
+Bitonic Sort, OpenMP, 3, 65536, 0.006399
+Bitonic Sort, OpenMP, 4, 65536, 0.005656
+Bitonic Sort, OpenMP, 5, 65536, 0.004847
+Bitonic Sort, OpenMP, 6, 65536, 0.004739
+Bitonic Sort, OpenMP, 7, 65536, 0.005073
+Bitonic Sort, OpenMP, 8, 65536, 0.006088
+Bitonic Sort, OpenMP, 16, 65536, 0.005966
+Bitonic Sort, OpenMP, 32, 65536, 0.006476
+MergeSort, OpenMP, 1, 65536, 0.006723
+MergeSort, OpenMP, 2, 65536, 0.004908
+MergeSort, OpenMP, 3, 65536, 0.003374
+MergeSort, OpenMP, 4, 65536, 0.003227
+MergeSort, OpenMP, 5, 65536, 0.002808
+MergeSort, OpenMP, 6, 65536, 0.002915
+MergeSort, OpenMP, 7, 65536, 0.002892
+MergeSort, OpenMP, 8, 65536, 0.003860
+MergeSort, OpenMP, 16, 65536, 0.005500
+MergeSort, OpenMP, 32, 65536, 0.005348
+QuickSort, OpenMP, 1, 65536, 0.018570
+QuickSort, OpenMP, 2, 65536, 0.014367
+QuickSort, OpenMP, 3, 65536, 0.010132
+QuickSort, OpenMP, 4, 65536, 0.012329
+QuickSort, OpenMP, 5, 65536, 0.017048
+QuickSort, OpenMP, 6, 65536, 0.011376
+QuickSort, OpenMP, 7, 65536, 0.015417
+QuickSort, OpenMP, 8, 65536, 0.012697
+QuickSort, OpenMP, 16, 65536, 0.018300
+QuickSort, OpenMP, 32, 65536, 0.011816
+Sample Sort, OpenMP, 1, 65536, 0.008410
+Sample Sort, OpenMP, 2, 65536, 0.010147
+Sample Sort, OpenMP, 3, 65536, 0.010817
+Sample Sort, OpenMP, 4, 65536, 0.008352
+Sample Sort, OpenMP, 5, 65536, 0.007443
+Sample Sort, OpenMP, 6, 65536, 0.008307
+Sample Sort, OpenMP, 7, 65536, 0.009963
+Sample Sort, OpenMP, 8, 65536, 0.012177
+Sample Sort, OpenMP, 16, 65536, 0.011910
+Sample Sort, OpenMP, 32, 65536, 0.009441
+TimSort, OpenMP, 1, 65536, 0.004537
+TimSort, OpenMP, 2, 65536, 0.003680
+TimSort, OpenMP, 3, 65536, 0.003407
+TimSort, OpenMP, 4, 65536, 0.003212
+TimSort, OpenMP, 5, 65536, 0.003688
+TimSort, OpenMP, 6, 65536, 0.003767
+TimSort, OpenMP, 7, 65536, 0.006118
+TimSort, OpenMP, 8, 65536, 0.003981
+TimSort, OpenMP, 16, 65536, 0.004993
+TimSort, OpenMP, 32, 65536, 0.006038
+Bitonic Sort, OpenMP, 1, 65536, 0.013911
+Bitonic Sort, OpenMP, 2, 65536, 0.008260
+Bitonic Sort, OpenMP, 3, 65536, 0.006381
+Bitonic Sort, OpenMP, 4, 65536, 0.005689
+Bitonic Sort, OpenMP, 5, 65536, 0.005431
+Bitonic Sort, OpenMP, 6, 65536, 0.004851
+Bitonic Sort, OpenMP, 7, 65536, 0.005087
+Bitonic Sort, OpenMP, 8, 65536, 0.005075
+Bitonic Sort, OpenMP, 16, 65536, 0.005740
+Bitonic Sort, OpenMP, 32, 65536, 0.005554
+MergeSort, OpenMP, 1, 65536, 0.006852
+MergeSort, OpenMP, 2, 65536, 0.004457
+MergeSort, OpenMP, 3, 65536, 0.003331
+MergeSort, OpenMP, 4, 65536, 0.003103
+MergeSort, OpenMP, 5, 65536, 0.003200
+MergeSort, OpenMP, 6, 65536, 0.003535
+MergeSort, OpenMP, 7, 65536, 0.004491
+MergeSort, OpenMP, 8, 65536, 0.002800
+MergeSort, OpenMP, 16, 65536, 0.005161
+MergeSort, OpenMP, 32, 65536, 0.006597
+QuickSort, OpenMP, 1, 65536, 0.019023
+QuickSort, OpenMP, 2, 65536, 0.017012
+QuickSort, OpenMP, 3, 65536, 0.012390
+QuickSort, OpenMP, 4, 65536, 0.015373
+QuickSort, OpenMP, 5, 65536, 0.012652
+QuickSort, OpenMP, 6, 65536, 0.014273
+QuickSort, OpenMP, 7, 65536, 0.013684
+QuickSort, OpenMP, 8, 65536, 0.013769
+QuickSort, OpenMP, 16, 65536, 0.015239
+QuickSort, OpenMP, 32, 65536, 0.017302
+Sample Sort, OpenMP, 1, 65536, 0.008384
+Sample Sort, OpenMP, 2, 65536, 0.008351
+Sample Sort, OpenMP, 3, 65536, 0.011716
+Sample Sort, OpenMP, 4, 65536, 0.007293
+Sample Sort, OpenMP, 5, 65536, 0.008208
+Sample Sort, OpenMP, 6, 65536, 0.011246
+Sample Sort, OpenMP, 7, 65536, 0.009997
+Sample Sort, OpenMP, 8, 65536, 0.010136
+Sample Sort, OpenMP, 16, 65536, 0.007382
+Sample Sort, OpenMP, 32, 65536, 0.008710
+TimSort, OpenMP, 1, 65536, 0.004197
+TimSort, OpenMP, 2, 65536, 0.003448
+TimSort, OpenMP, 3, 65536, 0.002500
+TimSort, OpenMP, 4, 65536, 0.002685
+TimSort, OpenMP, 5, 65536, 0.002417
+TimSort, OpenMP, 6, 65536, 0.002663
+TimSort, OpenMP, 7, 65536, 0.002765
+TimSort, OpenMP, 8, 65536, 0.003415
+TimSort, OpenMP, 16, 65536, 0.004584
+TimSort, OpenMP, 32, 65536, 0.005556
+Bitonic Sort, OpenMP, 1, 65536, 0.013556
+Bitonic Sort, OpenMP, 2, 65536, 0.008210
+Bitonic Sort, OpenMP, 3, 65536, 0.006375
+Bitonic Sort, OpenMP, 4, 65536, 0.005961
+Bitonic Sort, OpenMP, 5, 65536, 0.004904
+Bitonic Sort, OpenMP, 6, 65536, 0.004720
+Bitonic Sort, OpenMP, 7, 65536, 0.006335
+Bitonic Sort, OpenMP, 8, 65536, 0.004764
+Bitonic Sort, OpenMP, 16, 65536, 0.005730
+Bitonic Sort, OpenMP, 32, 65536, 0.005829
+MergeSort, OpenMP, 1, 65536, 0.007025
+MergeSort, OpenMP, 2, 65536, 0.004460
+MergeSort, OpenMP, 3, 65536, 0.004197
+MergeSort, OpenMP, 4, 65536, 0.003112
+MergeSort, OpenMP, 5, 65536, 0.002837
+MergeSort, OpenMP, 6, 65536, 0.003136
+MergeSort, OpenMP, 7, 65536, 0.002856
+MergeSort, OpenMP, 8, 65536, 0.004768
+MergeSort, OpenMP, 16, 65536, 0.004758
+MergeSort, OpenMP, 32, 65536, 0.005562
+QuickSort, OpenMP, 1, 65536, 0.041667
+QuickSort, OpenMP, 2, 65536, 0.018612
+QuickSort, OpenMP, 3, 65536, 0.018705
+QuickSort, OpenMP, 4, 65536, 0.025324
+QuickSort, OpenMP, 5, 65536, 0.018589
+QuickSort, OpenMP, 6, 65536, 0.010576
+QuickSort, OpenMP, 7, 65536, 0.011048
+QuickSort, OpenMP, 8, 65536, 0.013071
+QuickSort, OpenMP, 16, 65536, 0.028705
+QuickSort, OpenMP, 32, 65536, 0.015477
+Sample Sort, OpenMP, 1, 65536, 0.008267
+Sample Sort, OpenMP, 2, 65536, 0.006561
+Sample Sort, OpenMP, 3, 65536, 0.007197
+Sample Sort, OpenMP, 4, 65536, 0.008207
+Sample Sort, OpenMP, 5, 65536, 0.010121
+Sample Sort, OpenMP, 6, 65536, 0.006948
+Sample Sort, OpenMP, 7, 65536, 0.007208
+Sample Sort, OpenMP, 8, 65536, 0.011631
+Sample Sort, OpenMP, 16, 65536, 0.010512
+Sample Sort, OpenMP, 32, 65536, 0.009494
+TimSort, OpenMP, 1, 65536, 0.004255
+TimSort, OpenMP, 2, 65536, 0.003690
+TimSort, OpenMP, 3, 65536, 0.002421
+TimSort, OpenMP, 4, 65536, 0.002723
+TimSort, OpenMP, 5, 65536, 0.002382
+TimSort, OpenMP, 6, 65536, 0.002623
+TimSort, OpenMP, 7, 65536, 0.002985
+TimSort, OpenMP, 8, 65536, 0.002768
+TimSort, OpenMP, 16, 65536, 0.005393
+TimSort, OpenMP, 32, 65536, 0.006423
+Bitonic Sort, OpenMP, 1, 65536, 0.013468
+Bitonic Sort, OpenMP, 2, 65536, 0.009035
+Bitonic Sort, OpenMP, 3, 65536, 0.008099
+Bitonic Sort, OpenMP, 4, 65536, 0.005715
+Bitonic Sort, OpenMP, 5, 65536, 0.006140
+Bitonic Sort, OpenMP, 6, 65536, 0.005665
+Bitonic Sort, OpenMP, 7, 65536, 0.005817
+Bitonic Sort, OpenMP, 8, 65536, 0.006667
+Bitonic Sort, OpenMP, 16, 65536, 0.006917
+Bitonic Sort, OpenMP, 32, 65536, 0.005533
+MergeSort, OpenMP, 1, 65536, 0.006780
+MergeSort, OpenMP, 2, 65536, 0.005414
+MergeSort, OpenMP, 3, 65536, 0.004242
+MergeSort, OpenMP, 4, 65536, 0.003436
+MergeSort, OpenMP, 5, 65536, 0.002901
+MergeSort, OpenMP, 6, 65536, 0.003223
+MergeSort, OpenMP, 7, 65536, 0.005960
+MergeSort, OpenMP, 8, 65536, 0.004521
+MergeSort, OpenMP, 16, 65536, 0.004904
+MergeSort, OpenMP, 32, 65536, 0.006247
+QuickSort, OpenMP, 1, 65536, 0.019319
+QuickSort, OpenMP, 2, 65536, 0.015997
+QuickSort, OpenMP, 3, 65536, 0.012808
+QuickSort, OpenMP, 4, 65536, 0.015049
+QuickSort, OpenMP, 5, 65536, 0.012056
+QuickSort, OpenMP, 6, 65536, 0.016891
+QuickSort, OpenMP, 7, 65536, 0.012071
+QuickSort, OpenMP, 8, 65536, 0.015666
+QuickSort, OpenMP, 16, 65536, 0.018046
+QuickSort, OpenMP, 32, 65536, 0.017969
+Sample Sort, OpenMP, 1, 65536, 0.008512
+Sample Sort, OpenMP, 2, 65536, 0.008931
+Sample Sort, OpenMP, 3, 65536, 0.008732
+Sample Sort, OpenMP, 4, 65536, 0.010215
+Sample Sort, OpenMP, 5, 65536, 0.007602
+Sample Sort, OpenMP, 6, 65536, 0.006402
+Sample Sort, OpenMP, 7, 65536, 0.007993
+Sample Sort, OpenMP, 8, 65536, 0.010616
+Sample Sort, OpenMP, 16, 65536, 0.010584
+Sample Sort, OpenMP, 32, 65536, 0.009387
+TimSort, OpenMP, 1, 131072, 0.009052
+TimSort, OpenMP, 2, 131072, 0.006705
+TimSort, OpenMP, 3, 131072, 0.005072
+TimSort, OpenMP, 4, 131072, 0.004907
+TimSort, OpenMP, 5, 131072, 0.005418
+TimSort, OpenMP, 6, 131072, 0.005361
+TimSort, OpenMP, 7, 131072, 0.005439
+TimSort, OpenMP, 8, 131072, 0.006510
+TimSort, OpenMP, 16, 131072, 0.010351
+TimSort, OpenMP, 32, 131072, 0.009136
+Bitonic Sort, OpenMP, 1, 131072, 0.030021
+Bitonic Sort, OpenMP, 2, 131072, 0.016474
+Bitonic Sort, OpenMP, 3, 131072, 0.016321
+Bitonic Sort, OpenMP, 4, 131072, 0.012660
+Bitonic Sort, OpenMP, 5, 131072, 0.010740
+Bitonic Sort, OpenMP, 6, 131072, 0.009915
+Bitonic Sort, OpenMP, 7, 131072, 0.009852
+Bitonic Sort, OpenMP, 8, 131072, 0.010426
+Bitonic Sort, OpenMP, 16, 131072, 0.011227
+Bitonic Sort, OpenMP, 32, 131072, 0.010784
+MergeSort, OpenMP, 1, 131072, 0.014258
+MergeSort, OpenMP, 2, 131072, 0.009960
+MergeSort, OpenMP, 3, 131072, 0.006679
+MergeSort, OpenMP, 4, 131072, 0.006208
+MergeSort, OpenMP, 5, 131072, 0.006227
+MergeSort, OpenMP, 6, 131072, 0.005953
+MergeSort, OpenMP, 7, 131072, 0.005864
+MergeSort, OpenMP, 8, 131072, 0.005920
+MergeSort, OpenMP, 16, 131072, 0.009684
+MergeSort, OpenMP, 32, 131072, 0.010177
+QuickSort, OpenMP, 1, 131072, 0.038310
+QuickSort, OpenMP, 2, 131072, 0.035312
+QuickSort, OpenMP, 3, 131072, 0.028892
+QuickSort, OpenMP, 4, 131072, 0.021662
+QuickSort, OpenMP, 5, 131072, 0.030735
+QuickSort, OpenMP, 6, 131072, 0.032628
+QuickSort, OpenMP, 7, 131072, 0.033249
+QuickSort, OpenMP, 8, 131072, 0.023731
+QuickSort, OpenMP, 16, 131072, 0.024838
+QuickSort, OpenMP, 32, 131072, 0.020864
+Sample Sort, OpenMP, 1, 131072, 0.018102
+Sample Sort, OpenMP, 2, 131072, 0.020200
+Sample Sort, OpenMP, 3, 131072, 0.018685
+Sample Sort, OpenMP, 4, 131072, 0.020574
+Sample Sort, OpenMP, 5, 131072, 0.016463
+Sample Sort, OpenMP, 6, 131072, 0.014762
+Sample Sort, OpenMP, 7, 131072, 0.017583
+Sample Sort, OpenMP, 8, 131072, 0.022837
+Sample Sort, OpenMP, 16, 131072, 0.018977
+Sample Sort, OpenMP, 32, 131072, 0.017864
+TimSort, OpenMP, 1, 131072, 0.008857
+TimSort, OpenMP, 2, 131072, 0.006743
+TimSort, OpenMP, 3, 131072, 0.005378
+TimSort, OpenMP, 4, 131072, 0.005353
+TimSort, OpenMP, 5, 131072, 0.004827
+TimSort, OpenMP, 6, 131072, 0.005406
+TimSort, OpenMP, 7, 131072, 0.005555
+TimSort, OpenMP, 8, 131072, 0.005732
+TimSort, OpenMP, 16, 131072, 0.009905
+TimSort, OpenMP, 32, 131072, 0.008975
+Bitonic Sort, OpenMP, 1, 131072, 0.030808
+Bitonic Sort, OpenMP, 2, 131072, 0.018437
+Bitonic Sort, OpenMP, 3, 131072, 0.016751
+Bitonic Sort, OpenMP, 4, 131072, 0.012342
+Bitonic Sort, OpenMP, 5, 131072, 0.011159
+Bitonic Sort, OpenMP, 6, 131072, 0.010941
+Bitonic Sort, OpenMP, 7, 131072, 0.010552
+Bitonic Sort, OpenMP, 8, 131072, 0.010785
+Bitonic Sort, OpenMP, 16, 131072, 0.009712
+Bitonic Sort, OpenMP, 32, 131072, 0.010422
+MergeSort, OpenMP, 1, 131072, 0.014543
+MergeSort, OpenMP, 2, 131072, 0.009240
+MergeSort, OpenMP, 3, 131072, 0.007511
+MergeSort, OpenMP, 4, 131072, 0.006048
+MergeSort, OpenMP, 5, 131072, 0.005791
+MergeSort, OpenMP, 6, 131072, 0.006481
+MergeSort, OpenMP, 7, 131072, 0.007369
+MergeSort, OpenMP, 8, 131072, 0.005687
+MergeSort, OpenMP, 16, 131072, 0.008206
+MergeSort, OpenMP, 32, 131072, 0.010086
+QuickSort, OpenMP, 1, 131072, 0.037039
+QuickSort, OpenMP, 2, 131072, 0.034339
+QuickSort, OpenMP, 3, 131072, 0.032947
+QuickSort, OpenMP, 4, 131072, 0.030222
+QuickSort, OpenMP, 5, 131072, 0.019701
+QuickSort, OpenMP, 6, 131072, 0.026894
+QuickSort, OpenMP, 7, 131072, 0.032875
+QuickSort, OpenMP, 8, 131072, 0.020282
+QuickSort, OpenMP, 16, 131072, 0.032634
+QuickSort, OpenMP, 32, 131072, 0.026949
+Sample Sort, OpenMP, 1, 131072, 0.020758
+Sample Sort, OpenMP, 2, 131072, 0.018101
+Sample Sort, OpenMP, 3, 131072, 0.022098
+Sample Sort, OpenMP, 4, 131072, 0.018312
+Sample Sort, OpenMP, 5, 131072, 0.013724
+Sample Sort, OpenMP, 6, 131072, 0.022433
+Sample Sort, OpenMP, 7, 131072, 0.015780
+Sample Sort, OpenMP, 8, 131072, 0.019786
+Sample Sort, OpenMP, 16, 131072, 0.022225
+Sample Sort, OpenMP, 32, 131072, 0.014712
+TimSort, OpenMP, 1, 131072, 0.008751
+TimSort, OpenMP, 2, 131072, 0.006911
+TimSort, OpenMP, 3, 131072, 0.005224
+TimSort, OpenMP, 4, 131072, 0.005052
+TimSort, OpenMP, 5, 131072, 0.005075
+TimSort, OpenMP, 6, 131072, 0.005108
+TimSort, OpenMP, 7, 131072, 0.005764
+TimSort, OpenMP, 8, 131072, 0.005874
+TimSort, OpenMP, 16, 131072, 0.008717
+TimSort, OpenMP, 32, 131072, 0.008874
+Bitonic Sort, OpenMP, 1, 131072, 0.032993
+Bitonic Sort, OpenMP, 2, 131072, 0.017447
+Bitonic Sort, OpenMP, 3, 131072, 0.016599
+Bitonic Sort, OpenMP, 4, 131072, 0.017345
+Bitonic Sort, OpenMP, 5, 131072, 0.010691
+Bitonic Sort, OpenMP, 6, 131072, 0.012501
+Bitonic Sort, OpenMP, 7, 131072, 0.009109
+Bitonic Sort, OpenMP, 8, 131072, 0.010751
+Bitonic Sort, OpenMP, 16, 131072, 0.009745
+Bitonic Sort, OpenMP, 32, 131072, 0.011188
+MergeSort, OpenMP, 1, 131072, 0.014094
+MergeSort, OpenMP, 2, 131072, 0.009263
+MergeSort, OpenMP, 3, 131072, 0.006883
+MergeSort, OpenMP, 4, 131072, 0.006046
+MergeSort, OpenMP, 5, 131072, 0.005835
+MergeSort, OpenMP, 6, 131072, 0.005636
+MergeSort, OpenMP, 7, 131072, 0.005837
+MergeSort, OpenMP, 8, 131072, 0.007052
+MergeSort, OpenMP, 16, 131072, 0.008777
+MergeSort, OpenMP, 32, 131072, 0.010228
+QuickSort, OpenMP, 1, 131072, 0.039986
+QuickSort, OpenMP, 2, 131072, 0.025287
+QuickSort, OpenMP, 3, 131072, 0.032750
+QuickSort, OpenMP, 4, 131072, 0.021163
+QuickSort, OpenMP, 5, 131072, 0.041042
+QuickSort, OpenMP, 6, 131072, 0.023469
+QuickSort, OpenMP, 7, 131072, 0.029612
+QuickSort, OpenMP, 8, 131072, 0.027935
+QuickSort, OpenMP, 16, 131072, 0.020719
+QuickSort, OpenMP, 32, 131072, 0.025998
+Sample Sort, OpenMP, 1, 131072, 0.017966
+Sample Sort, OpenMP, 2, 131072, 0.012749
+Sample Sort, OpenMP, 3, 131072, 0.018229
+Sample Sort, OpenMP, 4, 131072, 0.017339
+Sample Sort, OpenMP, 5, 131072, 0.023067
+Sample Sort, OpenMP, 6, 131072, 0.020465
+Sample Sort, OpenMP, 7, 131072, 0.015837
+Sample Sort, OpenMP, 8, 131072, 0.016556
+Sample Sort, OpenMP, 16, 131072, 0.022269
+Sample Sort, OpenMP, 32, 131072, 0.024136
+TimSort, OpenMP, 1, 131072, 0.010884
+TimSort, OpenMP, 2, 131072, 0.008832
+TimSort, OpenMP, 3, 131072, 0.006987
+TimSort, OpenMP, 4, 131072, 0.005240
+TimSort, OpenMP, 5, 131072, 0.004945
+TimSort, OpenMP, 6, 131072, 0.005366
+TimSort, OpenMP, 7, 131072, 0.006319
+TimSort, OpenMP, 8, 131072, 0.006346
+TimSort, OpenMP, 16, 131072, 0.007113
+TimSort, OpenMP, 32, 131072, 0.008845
+Bitonic Sort, OpenMP, 1, 131072, 0.029328
+Bitonic Sort, OpenMP, 2, 131072, 0.016806
+Bitonic Sort, OpenMP, 3, 131072, 0.016315
+Bitonic Sort, OpenMP, 4, 131072, 0.013962
+Bitonic Sort, OpenMP, 5, 131072, 0.014946
+Bitonic Sort, OpenMP, 6, 131072, 0.014214
+Bitonic Sort, OpenMP, 7, 131072, 0.014243
+Bitonic Sort, OpenMP, 8, 131072, 0.014600
+Bitonic Sort, OpenMP, 16, 131072, 0.011145
+Bitonic Sort, OpenMP, 32, 131072, 0.012454
+MergeSort, OpenMP, 1, 131072, 0.014313
+MergeSort, OpenMP, 2, 131072, 0.010764
+MergeSort, OpenMP, 3, 131072, 0.009359
+MergeSort, OpenMP, 4, 131072, 0.007956
+MergeSort, OpenMP, 5, 131072, 0.006177
+MergeSort, OpenMP, 6, 131072, 0.007768
+MergeSort, OpenMP, 7, 131072, 0.007498
+MergeSort, OpenMP, 8, 131072, 0.005617
+MergeSort, OpenMP, 16, 131072, 0.009062
+MergeSort, OpenMP, 32, 131072, 0.009855
+QuickSort, OpenMP, 1, 131072, 0.040763
+QuickSort, OpenMP, 2, 131072, 0.025653
+QuickSort, OpenMP, 3, 131072, 0.028231
+QuickSort, OpenMP, 4, 131072, 0.020439
+QuickSort, OpenMP, 5, 131072, 0.024637
+QuickSort, OpenMP, 6, 131072, 0.039502
+QuickSort, OpenMP, 7, 131072, 0.027355
+QuickSort, OpenMP, 8, 131072, 0.033140
+QuickSort, OpenMP, 16, 131072, 0.031055
+QuickSort, OpenMP, 32, 131072, 0.026770
+Sample Sort, OpenMP, 1, 131072, 0.019121
+Sample Sort, OpenMP, 2, 131072, 0.012485
+Sample Sort, OpenMP, 3, 131072, 0.020009
+Sample Sort, OpenMP, 4, 131072, 0.017647
+Sample Sort, OpenMP, 5, 131072, 0.019222
+Sample Sort, OpenMP, 6, 131072, 0.017259
+Sample Sort, OpenMP, 7, 131072, 0.015177
+Sample Sort, OpenMP, 8, 131072, 0.019545
+Sample Sort, OpenMP, 16, 131072, 0.018485
+Sample Sort, OpenMP, 32, 131072, 0.015439
+TimSort, OpenMP, 1, 131072, 0.009061
+TimSort, OpenMP, 2, 131072, 0.006294
+TimSort, OpenMP, 3, 131072, 0.005178
+TimSort, OpenMP, 4, 131072, 0.005001
+TimSort, OpenMP, 5, 131072, 0.005042
+TimSort, OpenMP, 6, 131072, 0.005134
+TimSort, OpenMP, 7, 131072, 0.004980
+TimSort, OpenMP, 8, 131072, 0.005528
+TimSort, OpenMP, 16, 131072, 0.008098
+TimSort, OpenMP, 32, 131072, 0.008501
+Bitonic Sort, OpenMP, 1, 131072, 0.030067
+Bitonic Sort, OpenMP, 2, 131072, 0.017050
+Bitonic Sort, OpenMP, 3, 131072, 0.013360
+Bitonic Sort, OpenMP, 4, 131072, 0.011985
+Bitonic Sort, OpenMP, 5, 131072, 0.010984
+Bitonic Sort, OpenMP, 6, 131072, 0.010287
+Bitonic Sort, OpenMP, 7, 131072, 0.010435
+Bitonic Sort, OpenMP, 8, 131072, 0.009879
+Bitonic Sort, OpenMP, 16, 131072, 0.009764
+Bitonic Sort, OpenMP, 32, 131072, 0.010342
+MergeSort, OpenMP, 1, 131072, 0.015429
+MergeSort, OpenMP, 2, 131072, 0.009858
+MergeSort, OpenMP, 3, 131072, 0.008291
+MergeSort, OpenMP, 4, 131072, 0.006093
+MergeSort, OpenMP, 5, 131072, 0.005456
+MergeSort, OpenMP, 6, 131072, 0.005640
+MergeSort, OpenMP, 7, 131072, 0.005908
+MergeSort, OpenMP, 8, 131072, 0.007813
+MergeSort, OpenMP, 16, 131072, 0.009201
+MergeSort, OpenMP, 32, 131072, 0.010690
+QuickSort, OpenMP, 1, 131072, 0.038366
+QuickSort, OpenMP, 2, 131072, 0.032178
+QuickSort, OpenMP, 3, 131072, 0.027863
+QuickSort, OpenMP, 4, 131072, 0.026103
+QuickSort, OpenMP, 5, 131072, 0.031735
+QuickSort, OpenMP, 6, 131072, 0.037409
+QuickSort, OpenMP, 7, 131072, 0.024612
+QuickSort, OpenMP, 8, 131072, 0.027438
+QuickSort, OpenMP, 16, 131072, 0.034696
+QuickSort, OpenMP, 32, 131072, 0.030876
+Sample Sort, OpenMP, 1, 131072, 0.019738
+Sample Sort, OpenMP, 2, 131072, 0.020387
+Sample Sort, OpenMP, 3, 131072, 0.013203
+Sample Sort, OpenMP, 4, 131072, 0.016832
+Sample Sort, OpenMP, 5, 131072, 0.014328
+Sample Sort, OpenMP, 6, 131072, 0.019590
+Sample Sort, OpenMP, 7, 131072, 0.016288
+Sample Sort, OpenMP, 8, 131072, 0.014871
+Sample Sort, OpenMP, 16, 131072, 0.019215
+Sample Sort, OpenMP, 32, 131072, 0.021024
+TimSort, OpenMP, 1, 131072, 0.009358
+TimSort, OpenMP, 2, 131072, 0.007041
+TimSort, OpenMP, 3, 131072, 0.005070
+TimSort, OpenMP, 4, 131072, 0.004960
+TimSort, OpenMP, 5, 131072, 0.005035
+TimSort, OpenMP, 6, 131072, 0.004940
+TimSort, OpenMP, 7, 131072, 0.005685
+TimSort, OpenMP, 8, 131072, 0.005535
+TimSort, OpenMP, 16, 131072, 0.009232
+TimSort, OpenMP, 32, 131072, 0.008072
+Bitonic Sort, OpenMP, 1, 131072, 0.030230
+Bitonic Sort, OpenMP, 2, 131072, 0.018527
+Bitonic Sort, OpenMP, 3, 131072, 0.012987
+Bitonic Sort, OpenMP, 4, 131072, 0.013760
+Bitonic Sort, OpenMP, 5, 131072, 0.034223
+Bitonic Sort, OpenMP, 6, 131072, 0.015654
+Bitonic Sort, OpenMP, 7, 131072, 0.013532
+Bitonic Sort, OpenMP, 8, 131072, 0.013199
+Bitonic Sort, OpenMP, 16, 131072, 0.010642
+Bitonic Sort, OpenMP, 32, 131072, 0.011538
+MergeSort, OpenMP, 1, 131072, 0.016024
+MergeSort, OpenMP, 2, 131072, 0.008687
+MergeSort, OpenMP, 3, 131072, 0.007529
+MergeSort, OpenMP, 4, 131072, 0.006636
+MergeSort, OpenMP, 5, 131072, 0.005686
+MergeSort, OpenMP, 6, 131072, 0.006414
+MergeSort, OpenMP, 7, 131072, 0.006428
+MergeSort, OpenMP, 8, 131072, 0.006439
+MergeSort, OpenMP, 16, 131072, 0.008360
+MergeSort, OpenMP, 32, 131072, 0.013995
+QuickSort, OpenMP, 1, 131072, 0.042830
+QuickSort, OpenMP, 2, 131072, 0.025919
+QuickSort, OpenMP, 3, 131072, 0.033458
+QuickSort, OpenMP, 4, 131072, 0.031057
+QuickSort, OpenMP, 5, 131072, 0.034538
+QuickSort, OpenMP, 6, 131072, 0.024442
+QuickSort, OpenMP, 7, 131072, 0.024428
+QuickSort, OpenMP, 8, 131072, 0.034950
+QuickSort, OpenMP, 16, 131072, 0.024064
+QuickSort, OpenMP, 32, 131072, 0.029428
+Sample Sort, OpenMP, 1, 131072, 0.018841
+Sample Sort, OpenMP, 2, 131072, 0.020423
+Sample Sort, OpenMP, 3, 131072, 0.018426
+Sample Sort, OpenMP, 4, 131072, 0.017617
+Sample Sort, OpenMP, 5, 131072, 0.017751
+Sample Sort, OpenMP, 6, 131072, 0.020577
+Sample Sort, OpenMP, 7, 131072, 0.017450
+Sample Sort, OpenMP, 8, 131072, 0.022843
+Sample Sort, OpenMP, 16, 131072, 0.015462
+Sample Sort, OpenMP, 32, 131072, 0.018681
+TimSort, OpenMP, 1, 131072, 0.009051
+TimSort, OpenMP, 2, 131072, 0.006180
+TimSort, OpenMP, 3, 131072, 0.005271
+TimSort, OpenMP, 4, 131072, 0.004962
+TimSort, OpenMP, 5, 131072, 0.004865
+TimSort, OpenMP, 6, 131072, 0.005110
+TimSort, OpenMP, 7, 131072, 0.005244
+TimSort, OpenMP, 8, 131072, 0.006657
+TimSort, OpenMP, 16, 131072, 0.006778
+TimSort, OpenMP, 32, 131072, 0.008782
+Bitonic Sort, OpenMP, 1, 131072, 0.030587
+Bitonic Sort, OpenMP, 2, 131072, 0.016722
+Bitonic Sort, OpenMP, 3, 131072, 0.013102
+Bitonic Sort, OpenMP, 4, 131072, 0.012645
+Bitonic Sort, OpenMP, 5, 131072, 0.011201
+Bitonic Sort, OpenMP, 6, 131072, 0.013317
+Bitonic Sort, OpenMP, 7, 131072, 0.010721
+Bitonic Sort, OpenMP, 8, 131072, 0.013729
+Bitonic Sort, OpenMP, 16, 131072, 0.010380
+Bitonic Sort, OpenMP, 32, 131072, 0.011800
+MergeSort, OpenMP, 1, 131072, 0.014295
+MergeSort, OpenMP, 2, 131072, 0.008945
+MergeSort, OpenMP, 3, 131072, 0.008434
+MergeSort, OpenMP, 4, 131072, 0.006358
+MergeSort, OpenMP, 5, 131072, 0.006262
+MergeSort, OpenMP, 6, 131072, 0.005548
+MergeSort, OpenMP, 7, 131072, 0.006055
+MergeSort, OpenMP, 8, 131072, 0.006573
+MergeSort, OpenMP, 16, 131072, 0.009949
+MergeSort, OpenMP, 32, 131072, 0.010755
+QuickSort, OpenMP, 1, 131072, 0.038808
+QuickSort, OpenMP, 2, 131072, 0.023730
+QuickSort, OpenMP, 3, 131072, 0.033725
+QuickSort, OpenMP, 4, 131072, 0.031353
+QuickSort, OpenMP, 5, 131072, 0.033309
+QuickSort, OpenMP, 6, 131072, 0.021076
+QuickSort, OpenMP, 7, 131072, 0.024277
+QuickSort, OpenMP, 8, 131072, 0.027322
+QuickSort, OpenMP, 16, 131072, 0.030840
+QuickSort, OpenMP, 32, 131072, 0.035075
+Sample Sort, OpenMP, 1, 131072, 0.018451
+Sample Sort, OpenMP, 2, 131072, 0.018793
+Sample Sort, OpenMP, 3, 131072, 0.023165
+Sample Sort, OpenMP, 4, 131072, 0.021708
+Sample Sort, OpenMP, 5, 131072, 0.019621
+Sample Sort, OpenMP, 6, 131072, 0.016126
+Sample Sort, OpenMP, 7, 131072, 0.014525
+Sample Sort, OpenMP, 8, 131072, 0.016028
+Sample Sort, OpenMP, 16, 131072, 0.024208
+Sample Sort, OpenMP, 32, 131072, 0.029065
+TimSort, OpenMP, 1, 131072, 0.009461
+TimSort, OpenMP, 2, 131072, 0.006548
+TimSort, OpenMP, 3, 131072, 0.004903
+TimSort, OpenMP, 4, 131072, 0.005124
+TimSort, OpenMP, 5, 131072, 0.004952
+TimSort, OpenMP, 6, 131072, 0.005612
+TimSort, OpenMP, 7, 131072, 0.005594
+TimSort, OpenMP, 8, 131072, 0.005483
+TimSort, OpenMP, 16, 131072, 0.007893
+TimSort, OpenMP, 32, 131072, 0.009729
+Bitonic Sort, OpenMP, 1, 131072, 0.030200
+Bitonic Sort, OpenMP, 2, 131072, 0.016805
+Bitonic Sort, OpenMP, 3, 131072, 0.013767
+Bitonic Sort, OpenMP, 4, 131072, 0.012021
+Bitonic Sort, OpenMP, 5, 131072, 0.010795
+Bitonic Sort, OpenMP, 6, 131072, 0.011162
+Bitonic Sort, OpenMP, 7, 131072, 0.010648
+Bitonic Sort, OpenMP, 8, 131072, 0.010409
+Bitonic Sort, OpenMP, 16, 131072, 0.009586
+Bitonic Sort, OpenMP, 32, 131072, 0.009871
+MergeSort, OpenMP, 1, 131072, 0.013514
+MergeSort, OpenMP, 2, 131072, 0.008945
+MergeSort, OpenMP, 3, 131072, 0.008272
+MergeSort, OpenMP, 4, 131072, 0.006570
+MergeSort, OpenMP, 5, 131072, 0.005870
+MergeSort, OpenMP, 6, 131072, 0.005491
+MergeSort, OpenMP, 7, 131072, 0.006520
+MergeSort, OpenMP, 8, 131072, 0.005628
+MergeSort, OpenMP, 16, 131072, 0.008516
+MergeSort, OpenMP, 32, 131072, 0.009494
+QuickSort, OpenMP, 1, 131072, 0.037641
+QuickSort, OpenMP, 2, 131072, 0.029726
+QuickSort, OpenMP, 3, 131072, 0.027114
+QuickSort, OpenMP, 4, 131072, 0.030955
+QuickSort, OpenMP, 5, 131072, 0.031048
+QuickSort, OpenMP, 6, 131072, 0.041125
+QuickSort, OpenMP, 7, 131072, 0.029526
+QuickSort, OpenMP, 8, 131072, 0.033738
+QuickSort, OpenMP, 16, 131072, 0.032041
+QuickSort, OpenMP, 32, 131072, 0.038675
+Sample Sort, OpenMP, 1, 131072, 0.018253
+Sample Sort, OpenMP, 2, 131072, 0.013981
+Sample Sort, OpenMP, 3, 131072, 0.021117
+Sample Sort, OpenMP, 4, 131072, 0.018081
+Sample Sort, OpenMP, 5, 131072, 0.016371
+Sample Sort, OpenMP, 6, 131072, 0.017402
+Sample Sort, OpenMP, 7, 131072, 0.022538
+Sample Sort, OpenMP, 8, 131072, 0.020211
+Sample Sort, OpenMP, 16, 131072, 0.023773
+Sample Sort, OpenMP, 32, 131072, 0.018769
+TimSort, OpenMP, 1, 131072, 0.009233
+TimSort, OpenMP, 2, 131072, 0.006974
+TimSort, OpenMP, 3, 131072, 0.005646
+TimSort, OpenMP, 4, 131072, 0.005046
+TimSort, OpenMP, 5, 131072, 0.004992
+TimSort, OpenMP, 6, 131072, 0.005122
+TimSort, OpenMP, 7, 131072, 0.005258
+TimSort, OpenMP, 8, 131072, 0.005368
+TimSort, OpenMP, 16, 131072, 0.008306
+TimSort, OpenMP, 32, 131072, 0.009387
+Bitonic Sort, OpenMP, 1, 131072, 0.029767
+Bitonic Sort, OpenMP, 2, 131072, 0.021748
+Bitonic Sort, OpenMP, 3, 131072, 0.013552
+Bitonic Sort, OpenMP, 4, 131072, 0.011974
+Bitonic Sort, OpenMP, 5, 131072, 0.010467
+Bitonic Sort, OpenMP, 6, 131072, 0.012581
+Bitonic Sort, OpenMP, 7, 131072, 0.011353
+Bitonic Sort, OpenMP, 8, 131072, 0.011871
+Bitonic Sort, OpenMP, 16, 131072, 0.013883
+Bitonic Sort, OpenMP, 32, 131072, 0.012110
+MergeSort, OpenMP, 1, 131072, 0.015871
+MergeSort, OpenMP, 2, 131072, 0.009720
+MergeSort, OpenMP, 3, 131072, 0.007306
+MergeSort, OpenMP, 4, 131072, 0.007360
+MergeSort, OpenMP, 5, 131072, 0.006409
+MergeSort, OpenMP, 6, 131072, 0.006430
+MergeSort, OpenMP, 7, 131072, 0.005818
+MergeSort, OpenMP, 8, 131072, 0.005716
+MergeSort, OpenMP, 16, 131072, 0.007900
+MergeSort, OpenMP, 32, 131072, 0.009766
+QuickSort, OpenMP, 1, 131072, 0.038181
+QuickSort, OpenMP, 2, 131072, 0.022873
+QuickSort, OpenMP, 3, 131072, 0.031155
+QuickSort, OpenMP, 4, 131072, 0.021519
+QuickSort, OpenMP, 5, 131072, 0.033320
+QuickSort, OpenMP, 6, 131072, 0.036780
+QuickSort, OpenMP, 7, 131072, 0.025401
+QuickSort, OpenMP, 8, 131072, 0.029014
+QuickSort, OpenMP, 16, 131072, 0.028153
+QuickSort, OpenMP, 32, 131072, 0.027721
+Sample Sort, OpenMP, 1, 131072, 0.018030
+Sample Sort, OpenMP, 2, 131072, 0.018752
+Sample Sort, OpenMP, 3, 131072, 0.020457
+Sample Sort, OpenMP, 4, 131072, 0.017485
+Sample Sort, OpenMP, 5, 131072, 0.022094
+Sample Sort, OpenMP, 6, 131072, 0.021107
+Sample Sort, OpenMP, 7, 131072, 0.015631
+Sample Sort, OpenMP, 8, 131072, 0.015462
+Sample Sort, OpenMP, 16, 131072, 0.020478
+Sample Sort, OpenMP, 32, 131072, 0.020190
+TimSort, OpenMP, 1, 131072, 0.008921
+TimSort, OpenMP, 2, 131072, 0.006716
+TimSort, OpenMP, 3, 131072, 0.005413
+TimSort, OpenMP, 4, 131072, 0.005547
+TimSort, OpenMP, 5, 131072, 0.005004
+TimSort, OpenMP, 6, 131072, 0.005249
+TimSort, OpenMP, 7, 131072, 0.005684
+TimSort, OpenMP, 8, 131072, 0.006079
+TimSort, OpenMP, 16, 131072, 0.008369
+TimSort, OpenMP, 32, 131072, 0.009890
+Bitonic Sort, OpenMP, 1, 131072, 0.032769
+Bitonic Sort, OpenMP, 2, 131072, 0.016817
+Bitonic Sort, OpenMP, 3, 131072, 0.014721
+Bitonic Sort, OpenMP, 4, 131072, 0.014228
+Bitonic Sort, OpenMP, 5, 131072, 0.013858
+Bitonic Sort, OpenMP, 6, 131072, 0.011029
+Bitonic Sort, OpenMP, 7, 131072, 0.010996
+Bitonic Sort, OpenMP, 8, 131072, 0.010553
+Bitonic Sort, OpenMP, 16, 131072, 0.011706
+Bitonic Sort, OpenMP, 32, 131072, 0.010968
+MergeSort, OpenMP, 1, 131072, 0.013776
+MergeSort, OpenMP, 2, 131072, 0.009304
+MergeSort, OpenMP, 3, 131072, 0.010628
+MergeSort, OpenMP, 4, 131072, 0.007279
+MergeSort, OpenMP, 5, 131072, 0.006468
+MergeSort, OpenMP, 6, 131072, 0.006204
+MergeSort, OpenMP, 7, 131072, 0.007284
+MergeSort, OpenMP, 8, 131072, 0.006071
+MergeSort, OpenMP, 16, 131072, 0.008423
+MergeSort, OpenMP, 32, 131072, 0.010189
+QuickSort, OpenMP, 1, 131072, 0.038016
+QuickSort, OpenMP, 2, 131072, 0.028617
+QuickSort, OpenMP, 3, 131072, 0.030307
+QuickSort, OpenMP, 4, 131072, 0.035030
+QuickSort, OpenMP, 5, 131072, 0.039155
+QuickSort, OpenMP, 6, 131072, 0.035450
+QuickSort, OpenMP, 7, 131072, 0.037330
+QuickSort, OpenMP, 8, 131072, 0.029684
+QuickSort, OpenMP, 16, 131072, 0.035504
+QuickSort, OpenMP, 32, 131072, 0.036980
+Sample Sort, OpenMP, 1, 131072, 0.020445
+Sample Sort, OpenMP, 2, 131072, 0.019915
+Sample Sort, OpenMP, 3, 131072, 0.024023
+Sample Sort, OpenMP, 4, 131072, 0.022862
+Sample Sort, OpenMP, 5, 131072, 0.018615
+Sample Sort, OpenMP, 6, 131072, 0.017761
+Sample Sort, OpenMP, 7, 131072, 0.019301
+Sample Sort, OpenMP, 8, 131072, 0.018609
+Sample Sort, OpenMP, 16, 131072, 0.025977
+Sample Sort, OpenMP, 32, 131072, 0.017725
+TimSort, OpenMP, 1, 262144, 0.019677
+TimSort, OpenMP, 2, 262144, 0.013026
+TimSort, OpenMP, 3, 262144, 0.012479
+TimSort, OpenMP, 4, 262144, 0.011164
+TimSort, OpenMP, 5, 262144, 0.010329
+TimSort, OpenMP, 6, 262144, 0.010588
+TimSort, OpenMP, 7, 262144, 0.011734
+TimSort, OpenMP, 8, 262144, 0.010926
+TimSort, OpenMP, 16, 262144, 0.015890
+TimSort, OpenMP, 32, 262144, 0.016516
+Bitonic Sort, OpenMP, 1, 262144, 0.062615
+Bitonic Sort, OpenMP, 2, 262144, 0.034614
+Bitonic Sort, OpenMP, 3, 262144, 0.033985
+Bitonic Sort, OpenMP, 4, 262144, 0.025416
+Bitonic Sort, OpenMP, 5, 262144, 0.021020
+Bitonic Sort, OpenMP, 6, 262144, 0.021946
+Bitonic Sort, OpenMP, 7, 262144, 0.020906
+Bitonic Sort, OpenMP, 8, 262144, 0.019380
+Bitonic Sort, OpenMP, 16, 262144, 0.020544
+Bitonic Sort, OpenMP, 32, 262144, 0.020296
+MergeSort, OpenMP, 1, 262144, 0.029853
+MergeSort, OpenMP, 2, 262144, 0.017598
+MergeSort, OpenMP, 3, 262144, 0.014617
+MergeSort, OpenMP, 4, 262144, 0.014992
+MergeSort, OpenMP, 5, 262144, 0.011887
+MergeSort, OpenMP, 6, 262144, 0.012594
+MergeSort, OpenMP, 7, 262144, 0.012789
+MergeSort, OpenMP, 8, 262144, 0.012194
+MergeSort, OpenMP, 16, 262144, 0.017133
+MergeSort, OpenMP, 32, 262144, 0.014326
+QuickSort, OpenMP, 1, 262144, 0.086564
+QuickSort, OpenMP, 2, 262144, 0.059950
+QuickSort, OpenMP, 3, 262144, 0.057819
+QuickSort, OpenMP, 4, 262144, 0.072377
+QuickSort, OpenMP, 5, 262144, 0.059594
+QuickSort, OpenMP, 6, 262144, 0.064814
+QuickSort, OpenMP, 7, 262144, 0.046928
+QuickSort, OpenMP, 8, 262144, 0.075724
+QuickSort, OpenMP, 16, 262144, 0.054328
+QuickSort, OpenMP, 32, 262144, 0.076286
+Sample Sort, OpenMP, 1, 262144, 0.038637
+Sample Sort, OpenMP, 2, 262144, 0.039196
+Sample Sort, OpenMP, 3, 262144, 0.042734
+Sample Sort, OpenMP, 4, 262144, 0.040232
+Sample Sort, OpenMP, 5, 262144, 0.047921
+Sample Sort, OpenMP, 6, 262144, 0.045322
+Sample Sort, OpenMP, 7, 262144, 0.047929
+Sample Sort, OpenMP, 8, 262144, 0.037933
+Sample Sort, OpenMP, 16, 262144, 0.033868
+Sample Sort, OpenMP, 32, 262144, 0.051293
+TimSort, OpenMP, 1, 262144, 0.019852
+TimSort, OpenMP, 2, 262144, 0.012650
+TimSort, OpenMP, 3, 262144, 0.011193
+TimSort, OpenMP, 4, 262144, 0.010138
+TimSort, OpenMP, 5, 262144, 0.009834
+TimSort, OpenMP, 6, 262144, 0.012292
+TimSort, OpenMP, 7, 262144, 0.010430
+TimSort, OpenMP, 8, 262144, 0.010668
+TimSort, OpenMP, 16, 262144, 0.013509
+TimSort, OpenMP, 32, 262144, 0.014096
+Bitonic Sort, OpenMP, 1, 262144, 0.063490
+Bitonic Sort, OpenMP, 2, 262144, 0.041100
+Bitonic Sort, OpenMP, 3, 262144, 0.030315
+Bitonic Sort, OpenMP, 4, 262144, 0.025104
+Bitonic Sort, OpenMP, 5, 262144, 0.024471
+Bitonic Sort, OpenMP, 6, 262144, 0.022759
+Bitonic Sort, OpenMP, 7, 262144, 0.024254
+Bitonic Sort, OpenMP, 8, 262144, 0.020876
+Bitonic Sort, OpenMP, 16, 262144, 0.021304
+Bitonic Sort, OpenMP, 32, 262144, 0.022289
+MergeSort, OpenMP, 1, 262144, 0.030041
+MergeSort, OpenMP, 2, 262144, 0.017353
+MergeSort, OpenMP, 3, 262144, 0.015051
+MergeSort, OpenMP, 4, 262144, 0.013935
+MergeSort, OpenMP, 5, 262144, 0.011589
+MergeSort, OpenMP, 6, 262144, 0.012674
+MergeSort, OpenMP, 7, 262144, 0.010753
+MergeSort, OpenMP, 8, 262144, 0.011482
+MergeSort, OpenMP, 16, 262144, 0.030498
+MergeSort, OpenMP, 32, 262144, 0.016542
+QuickSort, OpenMP, 1, 262144, 0.080885
+QuickSort, OpenMP, 2, 262144, 0.068185
+QuickSort, OpenMP, 3, 262144, 0.045711
+QuickSort, OpenMP, 4, 262144, 0.064130
+QuickSort, OpenMP, 5, 262144, 0.073889
+QuickSort, OpenMP, 6, 262144, 0.046520
+QuickSort, OpenMP, 7, 262144, 0.040911
+QuickSort, OpenMP, 8, 262144, 0.072615
+QuickSort, OpenMP, 16, 262144, 0.063528
+QuickSort, OpenMP, 32, 262144, 0.066959
+Sample Sort, OpenMP, 1, 262144, 0.037226
+Sample Sort, OpenMP, 2, 262144, 0.047842
+Sample Sort, OpenMP, 3, 262144, 0.036475
+Sample Sort, OpenMP, 4, 262144, 0.034629
+Sample Sort, OpenMP, 5, 262144, 0.027978
+Sample Sort, OpenMP, 6, 262144, 0.042107
+Sample Sort, OpenMP, 7, 262144, 0.045397
+Sample Sort, OpenMP, 8, 262144, 0.030904
+Sample Sort, OpenMP, 16, 262144, 0.041958
+Sample Sort, OpenMP, 32, 262144, 0.038797
+TimSort, OpenMP, 1, 262144, 0.018787
+TimSort, OpenMP, 2, 262144, 0.012085
+TimSort, OpenMP, 3, 262144, 0.010457
+TimSort, OpenMP, 4, 262144, 0.009933
+TimSort, OpenMP, 5, 262144, 0.009898
+TimSort, OpenMP, 6, 262144, 0.011235
+TimSort, OpenMP, 7, 262144, 0.011568
+TimSort, OpenMP, 8, 262144, 0.010874
+TimSort, OpenMP, 16, 262144, 0.016604
+TimSort, OpenMP, 32, 262144, 0.016066
+Bitonic Sort, OpenMP, 1, 262144, 0.062341
+Bitonic Sort, OpenMP, 2, 262144, 0.037835
+Bitonic Sort, OpenMP, 3, 262144, 0.034668
+Bitonic Sort, OpenMP, 4, 262144, 0.025753
+Bitonic Sort, OpenMP, 5, 262144, 0.024164
+Bitonic Sort, OpenMP, 6, 262144, 0.024670
+Bitonic Sort, OpenMP, 7, 262144, 0.019818
+Bitonic Sort, OpenMP, 8, 262144, 0.020458
+Bitonic Sort, OpenMP, 16, 262144, 0.019558
+Bitonic Sort, OpenMP, 32, 262144, 0.019229
+MergeSort, OpenMP, 1, 262144, 0.029203
+MergeSort, OpenMP, 2, 262144, 0.019675
+MergeSort, OpenMP, 3, 262144, 0.014669
+MergeSort, OpenMP, 4, 262144, 0.012774
+MergeSort, OpenMP, 5, 262144, 0.012287
+MergeSort, OpenMP, 6, 262144, 0.012388
+MergeSort, OpenMP, 7, 262144, 0.011213
+MergeSort, OpenMP, 8, 262144, 0.011444
+MergeSort, OpenMP, 16, 262144, 0.016423
+MergeSort, OpenMP, 32, 262144, 0.016144
+QuickSort, OpenMP, 1, 262144, 0.077489
+QuickSort, OpenMP, 2, 262144, 0.067018
+QuickSort, OpenMP, 3, 262144, 0.073192
+QuickSort, OpenMP, 4, 262144, 0.051322
+QuickSort, OpenMP, 5, 262144, 0.048547
+QuickSort, OpenMP, 6, 262144, 0.055962
+QuickSort, OpenMP, 7, 262144, 0.040626
+QuickSort, OpenMP, 8, 262144, 0.066110
+QuickSort, OpenMP, 16, 262144, 0.070077
+QuickSort, OpenMP, 32, 262144, 0.060358
+Sample Sort, OpenMP, 1, 262144, 0.039619
+Sample Sort, OpenMP, 2, 262144, 0.031873
+Sample Sort, OpenMP, 3, 262144, 0.034805
+Sample Sort, OpenMP, 4, 262144, 0.043840
+Sample Sort, OpenMP, 5, 262144, 0.037961
+Sample Sort, OpenMP, 6, 262144, 0.034167
+Sample Sort, OpenMP, 7, 262144, 0.031810
+Sample Sort, OpenMP, 8, 262144, 0.036497
+Sample Sort, OpenMP, 16, 262144, 0.035577
+Sample Sort, OpenMP, 32, 262144, 0.034662
+TimSort, OpenMP, 1, 262144, 0.018170
+TimSort, OpenMP, 2, 262144, 0.014845
+TimSort, OpenMP, 3, 262144, 0.011133
+TimSort, OpenMP, 4, 262144, 0.010254
+TimSort, OpenMP, 5, 262144, 0.009702
+TimSort, OpenMP, 6, 262144, 0.010387
+TimSort, OpenMP, 7, 262144, 0.010635
+TimSort, OpenMP, 8, 262144, 0.012621
+TimSort, OpenMP, 16, 262144, 0.015651
+TimSort, OpenMP, 32, 262144, 0.015551
+Bitonic Sort, OpenMP, 1, 262144, 0.067150
+Bitonic Sort, OpenMP, 2, 262144, 0.040315
+Bitonic Sort, OpenMP, 3, 262144, 0.031326
+Bitonic Sort, OpenMP, 4, 262144, 0.025304
+Bitonic Sort, OpenMP, 5, 262144, 0.024153
+Bitonic Sort, OpenMP, 6, 262144, 0.021853
+Bitonic Sort, OpenMP, 7, 262144, 0.020662
+Bitonic Sort, OpenMP, 8, 262144, 0.021332
+Bitonic Sort, OpenMP, 16, 262144, 0.018404
+Bitonic Sort, OpenMP, 32, 262144, 0.022530
+MergeSort, OpenMP, 1, 262144, 0.031128
+MergeSort, OpenMP, 2, 262144, 0.019404
+MergeSort, OpenMP, 3, 262144, 0.013920
+MergeSort, OpenMP, 4, 262144, 0.013172
+MergeSort, OpenMP, 5, 262144, 0.012108
+MergeSort, OpenMP, 6, 262144, 0.011421
+MergeSort, OpenMP, 7, 262144, 0.011387
+MergeSort, OpenMP, 8, 262144, 0.011836
+MergeSort, OpenMP, 16, 262144, 0.013886
+MergeSort, OpenMP, 32, 262144, 0.017240
+QuickSort, OpenMP, 1, 262144, 0.077819
+QuickSort, OpenMP, 2, 262144, 0.051928
+QuickSort, OpenMP, 3, 262144, 0.045380
+QuickSort, OpenMP, 4, 262144, 0.040634
+QuickSort, OpenMP, 5, 262144, 0.047108
+QuickSort, OpenMP, 6, 262144, 0.056414
+QuickSort, OpenMP, 7, 262144, 0.064989
+QuickSort, OpenMP, 8, 262144, 0.071123
+QuickSort, OpenMP, 16, 262144, 0.057575
+QuickSort, OpenMP, 32, 262144, 0.057674
+Sample Sort, OpenMP, 1, 262144, 0.039440
+Sample Sort, OpenMP, 2, 262144, 0.040139
+Sample Sort, OpenMP, 3, 262144, 0.033277
+Sample Sort, OpenMP, 4, 262144, 0.035842
+Sample Sort, OpenMP, 5, 262144, 0.042918
+Sample Sort, OpenMP, 6, 262144, 0.050893
+Sample Sort, OpenMP, 7, 262144, 0.049372
+Sample Sort, OpenMP, 8, 262144, 0.034403
+Sample Sort, OpenMP, 16, 262144, 0.049820
+Sample Sort, OpenMP, 32, 262144, 0.044420
