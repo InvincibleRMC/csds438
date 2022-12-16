@@ -641,11 +641,10 @@ int runExperiments(int up, int low, int high, int print)
    assert(evenInput(arraySizes, sizeof(arraySizes) / sizeof(arraySizes[0])));
    int threadCount[] = {1, 2, 4, 8, 16, 32, 64, 128, 256, 512};
 
-   int trials = 10;
-   for (int trialCount = 0; trialCount < trials; trials++)
+   for (int i = 0; i < sizeof(arraySizes) / sizeof(arraySizes[0]); i++)
    {
-
-      for (int i = 0; i < sizeof(arraySizes) / sizeof(arraySizes[0]); i++)
+      int trials = 10;
+      for (int trialCount = 0; trialCount < trials; trialCount++)
       {
          int N = arraySizes[i];
          int *X = (int *)malloc(N * sizeof(int));
