@@ -777,7 +777,7 @@ int runExperiments(int up, int low, int high, int print)
       int trials = 10;
       for (int trialCount = 0; trialCount < trials; trialCount++)
       {
-
+         printf("Trial Num= %i",trialCount);
          // func sortingAlgorithms[] = {&sampleSort};
          // char *sortingNames[] = {"Sample Sort"};
 
