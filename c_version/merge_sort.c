@@ -1,110 +1,127 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include <assert.h>
 #include <string.h>
-#include <openacc.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <omp.h>
 
-#define N 1000000
+#define TASK_SIZE 100
 
-void merge(int arr[], int l, int m, int r)
+unsigned int rand_interval(unsigned int min, unsigned int max)
 {
-    int i, j, k;
-    int n1 = m - l + 1;
-    int n2 = r - m;
+    // https://stackoverflow.com/questions/2509679/
+    int r;
+    const unsigned int range = 1 + max - min;
+    const unsigned int buckets = RAND_MAX / range;
+    const unsigned int limit = buckets * range;
 
-    /* create temp arrays */
-    int L[n1], R[n2];
-
-    /* Copy data to temp arrays L[] and R[] */
-    for (i = 0; i < n1; i++) {
-        L[i] = arr[l + i];
-    }
-    for (j = 0; j < n2; j++){
-        R[j] = arr[m + 1 + j];
-    }
-
-    /* Merge the temp arrays back into arr[l..r]*/
-    i = 0; // Initial index of first subarray
-    j = 0; // Initial index of second subarray
-    k = l; // Initial index of merged subarray
-    while (i < n1 && j < n2)
+    do
     {
-        if (L[i] <= R[j])
-        {
-            arr[k] = L[i];
-            i++;
-        }
-        else
-        {
-            arr[k] = R[j];
-            j++;
-        }
-        k++;
-    }
+        r = rand();
+    } 
+    while (r >= limit);
 
-    /* Copy the remaining elements of L[], if there
-       are any */
-    while (i < n1)
-    {
-        arr[k] = L[i];
-        i++;
-        k++;
-    }
-
-    /* Copy the remaining elements of R[], if there
-       are any */
-    while (j < n2)
-    {
-        arr[k] = R[j];
-        j++;
-        k++;
-    }
+    return min + (r / buckets);
 }
 
-/* l is for left index and r is right index of the
-   sub-array of arr to be sorted */
-void mergeSort(int arr[], int l, int r)
+void fillupRandomly (int *m, int size, unsigned int min, unsigned int max){
+    for (int i = 0; i < size; i++)
+    m[i] = rand_interval(min, max);
+} 
+
+void mergeSortAux(int *X, int n, int *tmp) {
+   int i = 0;
+   int j = n/2;
+   int ti = 0;
+
+   while (i<n/2 && j<n) {
+      if (X[i] < X[j]) {
+         tmp[ti] = X[i];
+         ti++; i++;
+      } else {
+         tmp[ti] = X[j];
+         ti++; j++;
+      }
+   }
+   while (i<n/2) { /* finish up lower half */
+      tmp[ti] = X[i];
+      ti++; i++;
+   }
+   while (j<n) { /* finish up upper half */
+      tmp[ti] = X[j];
+      ti++; j++;
+   }
+   memcpy(X, tmp, n*sizeof(int));
+} 
+
+void mergeSort(int *X, int n, int *tmp)
 {
-    if (l < r)
-    {
-        // Same as (l+r)/2, but avoids overflow for
-        // large l and h
-        int m = l + (r - l) / 2;
+   if (n < 2) return;
 
-        // Sort first and second halves
-        mergeSort(arr, l, m);
-        mergeSort(arr, m + 1, r);
+   #pragma omp task shared(X) if (n > TASK_SIZE)
+   mergeSort(X, n/2, tmp);
 
-        merge(arr, l, m, r);
-    }
+   #pragma omp task shared(X) if (n > TASK_SIZE)
+   mergeSort(X+(n/2), n-(n/2), tmp + n/2);
+
+   #pragma omp taskwait
+   mergeSortAux(X, n, tmp);
 }
 
-int main()
-{
-    int i;
-    int arr[N];
+void init(int *a, int size){
+   for(int i = 0; i < size; i++)
+       a[i] = 0;
+}
 
-    // Generate random data
-    for (i = 0; i < N; i++)
-    {
-        arr[i] = rand();
-    }
+void printArray(int *a, int size){
+   for(int i = 0; i < size; i++)
+       printf("%d ", a[i]);
+   printf("\n");
+}
 
-    // Sort the data using OpenACC
-    #pragma acc data copy(arr)
-    {
-        mergeSort(arr, 0, N - 1);
-    }
+int isSorted(int *a, int size){
+   for(int i = 0; i < size - 1; i++)
+      if(a[i] > a[i + 1])
+        return 0;
+   return 1;
+}
 
-    // Verify the results
-    for (i = 0; i < N - 1; i++)
-    {
-        if (arr[i] > arr[i + 1])
-        {
-            printf("Error: array is not sorted\n");
-            return 1;
+int main(int argc, char *argv[]) {
+        srand(123456);
+        int N  = (argc > 1) ? atoi(argv[1]) : 10;
+        int print = (argc > 2) ? atoi(argv[2]) : 0;
+        int numThreads = (argc > 3) ? atoi(argv[3]) : 2;
+        int *X = malloc(N * sizeof(int));
+        int *tmp = malloc(N * sizeof(int));
+
+        omp_set_dynamic(0);              /** Explicitly disable dynamic teams **/
+        omp_set_num_threads(numThreads); /** Use N threads for all parallel regions **/
+
+         // Dealing with fail memory allocation
+        if(!X || !tmp)
+        { 
+           if(X) free(X);
+           if(tmp) free(tmp);
+           return (EXIT_FAILURE);
         }
-    }
 
-    printf("Array is sorted\n");
-    return 0;
+        fillupRandomly (X, N, 0, 5);
+
+        double begin = omp_get_wtime();
+        #pragma omp parallel
+        {
+            #pragma omp single
+            mergeSort(X, N, tmp);
+        }   
+        double end = omp_get_wtime();
+        printf("Time: %f (s) \n",end-begin);
+    
+        assert(1 == isSorted(X, N));
+
+        if(print){
+           printArray(X, N);
+        }
+
+        free(X);
+        free(tmp);
+        return (EXIT_SUCCESS);
 }
