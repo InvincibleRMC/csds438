@@ -61,6 +61,18 @@ int isSorted(int *a, int size)
    return 1;
 }
 
+int sameElements(int *arr1, int *arr2, int l)
+{
+   for (int i = 0; i < l; i++)
+   {
+      if (arr1[i] != arr2[i])
+      {
+         return 0;
+      }
+   }
+   return 1;
+}
+
 void compAndSwap(int *a, int i, int j, int dir)
 {
    if (dir == (a[i] > a[j]))
