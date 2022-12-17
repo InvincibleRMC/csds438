@@ -40,8 +40,7 @@ void swap(int *arr, int i, int j)
 
 void fillupRandomly(int *m, int size, unsigned int min, unsigned int max)
 {
-   int i;
-   for (i = 0; i < size; i++)
+   for (int i = 0; i < size; i++)
       m[i] = rand_interval(min, max);
 }
 
@@ -82,19 +81,8 @@ void bitonicMerge(int *a, int low, int cnt, int dir)
       for (i = low; i < low + k; i++)
          compAndSwap(a, i, i + k, dir);
 
-      // #pragma omp parallel sections shared(a)
-      // {
-      // // sort in ascending order since dir here is 1
-      // #pragma omp section
-      // bitonicMerge(a, low, k, dir);
-
-      // // sort in descending order since dir here is 0
-      // #pragma omp section
-      // bitonicMerge(a, low + k, k, dir);
-      // }
       bitonicMerge(a, low, k, dir);
       bitonicMerge(a, low + k, k, dir);
-      // #pragma omp taskwait
    }
 }
 
@@ -145,7 +133,6 @@ void qswap(int *a, int *b)
 // function to find the partition position
 int partition(int array[], int low, int high)
 {
-
    // select the rightmost element as pivot
    int pivot = array[high];
 
@@ -175,7 +162,7 @@ int partition(int array[], int low, int high)
    // return the partition point
    return (i + 1);
 }
-// TODO WEIRD OFF BY ON ERROR
+
 
 void quickSortHelper(int *array, int low, int high, int dir)
 {
@@ -215,60 +202,7 @@ int cmpfunc(const void *a, const void *b)
 {
    int va = *(const int *)a;
    int vb = *(const int *)b;
-   // print("va =%i ")
    return (va > vb) - (va < vb);
-}
-
-int sameElements(int *arr1, int *arr2, int l)
-{
-   for (int i = 0; i < l; i++)
-   {
-      if (arr1[i] != arr2[i])
-      {
-         return 0;
-      }
-   }
-   return 1;
-}
-
-void uniqueElement(int *arr, int length)
-{
-   for (int i = 0; i < length; i++)
-   {
-      for (int j = 0; j < length; j++)
-      {
-         if (arr[j] == arr[i] && i != j)
-         {
-            assert(0);
-         }
-      }
-   }
-}
-
-int getNumAmount(int *arr, int length, int val)
-{
-   int count = 0;
-   for (int i = 0; i < length; i++)
-   {
-      if (val == arr[i])
-      {
-         count++;
-      }
-   }
-   return count;
-}
-
-int allValsSame(int *arr, int length)
-{
-   int val = arr[0];
-   for (int i = 1; i < length; i++)
-   {
-      if (val != arr[i])
-      {
-         return 0;
-      }
-   }
-   return 1;
 }
 
 int getBucketIndex(int e, int *splitter, int splitterCount, int p)
@@ -294,18 +228,6 @@ int getBucketIndex(int e, int *splitter, int splitterCount, int p)
    printf("Element %i\n", e);
    printArray(splitter, splitterCount);
    assert(0);
-}
-
-int allPostive(int *arr, int length)
-{
-   for (int i = 0; i < length; i++)
-   {
-      if (arr[i] < 0)
-      {
-         return 0;
-      }
-   }
-   return 1;
 }
 
 void sampleSortHelper(int arr[], int p, int k, int length)
@@ -374,7 +296,6 @@ void sampleSort(int *arr, int l, int h, int dir)
 {
    int k = 1024;
    int p = omp_get_num_threads();
-
    // More Threads than min bucket Size
    if (p > k)
    {
@@ -391,45 +312,6 @@ void sampleSort(int *arr, int l, int h, int dir)
 /**
  * Merge sort methods
  */
-void merge(int *array, int l, int m, int r)
-{
-   int size1 = m - l + 1;
-   int size2 = r - m;
-
-   int *left = malloc(size1 * sizeof(int));
-   int *right = malloc(size2 * sizeof(int));
-
-   memcpy(left, array + l, size1 * sizeof(int));
-   memcpy(right, array + m + 1, size2 * sizeof(int));
-
-   int i = 0,
-       j = 0, k = l;
-   // compare each element of the two arrays and
-   //  put the smaller element in the result array
-   while (i < size1 && j < size2)
-   {
-      if (left[i] <= right[j])
-      {
-         array[k++] = left[i++];
-      }
-      else
-      {
-         array[k++] = right[j++];
-      }
-   }
-   // put the remaining elements of arr1[] (if any) into arr[]
-   while (i < size1)
-   {
-      array[k++] = left[i++];
-   }
-   while (j < size2)
-   {
-      array[k++] = right[j++];
-   }
-   free(left);
-   free(right);
-}
-
 void mergeSortAux(int *X, int n, int *tmp)
 {
    int i = 0;
@@ -479,27 +361,6 @@ void mergeSortHelper(int *X, int n, int *tmp)
 
 #pragma omp taskwait
    mergeSortAux(X, n, tmp);
-}
-
-void merge_sort_helper(int *array, int l, int r, int dir)
-{
-   if (l < r)
-   {
-      // find the midpoint of the array
-      int m = l + (r - l) / 2;
-#pragma omp parallel sections
-      {
-#pragma omp section
-         {
-            merge_sort_helper(array, l, m, dir);
-         }
-#pragma omp section
-         {
-            merge_sort_helper(array, m + 1, r, dir);
-         }
-      }
-      merge(array, l, m, r);
-   }
 }
 
 void merge_sort(int *array, int l, int N, int dir)
@@ -603,29 +464,6 @@ void mergeSort(int input[], int left, int mid, int right)
 
 // OMP TimSort implementation using InsertionSort and MergeSort in a hybrid manner.
 // Parts of code were taken from: https://www.geeksforgeeks.org/timsort/
-void timSortHelper(int input[], int n)
-{
-   int *temp = malloc(n * sizeof(int));
-#pragma omp parallel for shared(input)
-   for (int i = 0; i < n; i += RUN)
-      insertionSort(input, i, min((i + RUN - 1), (n - 1)));
-
-#pragma omp task
-   for (int size = RUN; size < n; size = size * 2)
-   {
-#pragma omp task
-      for (int left = 0; left < n; left += size * 2)
-      {
-         int mid = left + size - 1;
-         int right = min((left + (size * 2) - 1), (n - 1));
-
-         if (mid < right)
-            mergeSortAux(input + left, right - left + 1, temp);
-      }
-   }
-   free(temp);
-}
-
 void timSortRecursiveHelper(int *X, int n, int *tmp)
 {
    if (n <= RUN)
