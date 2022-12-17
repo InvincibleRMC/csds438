@@ -104,31 +104,30 @@ void bitonicSort(int *a, int low, int cnt, int dir)
    {
       int k = cnt / 2;
       {
-         // sort in ascending order since dir here is 1
-         #pragma omp task shared(a) if (k > TASK_SIZE)
+// sort in ascending order since dir here is 1
+#pragma omp task shared(a) if (k > TASK_SIZE)
          bitonicSort(a, low, k, 1);
 
-         // sort in descending order since dir here is 0
-         #pragma omp task shared(a) if (k > TASK_SIZE)
+// sort in descending order since dir here is 0
+#pragma omp task shared(a) if (k > TASK_SIZE)
          bitonicSort(a, low + k, k, 0);
       }
 
-      // Will merge whole sequence in ascending order
-      // since dir=1.
-      // #pragma omp barier
-      #pragma omp taskwait
+// Will merge whole sequence in ascending order
+// since dir=1.
+// #pragma omp barier
+#pragma omp taskwait
       bitonicMerge(a, low, cnt, dir);
    }
 }
 
 void bitonicSortWrapper(int *a, int low, int cnt, int dir)
 {
-   #pragma omp parallel
+#pragma omp parallel
    {
-      #pragma omp single
+#pragma omp single
       bitonicSort(a, low, cnt, dir);
    }
-   
 }
 
 /*
@@ -389,51 +388,6 @@ void sampleSort(int *arr, int l, int h, int dir)
    sampleSortHelper(arr, p, k, h);
 }
 
-/*
- * Counting sort methods
- */
-
-// TODO SEEMS REALLY REALLY SLOW
-// ALSO SEG FAULTS
-void counting_parallel_omp(int *array, int low, int high, int dir)
-{
-   int i, j, count;
-   int size = high - low;
-   int *sorted = (int *)malloc(size * sizeof(int));
-   omp_set_num_threads(50);
-   double start_time = omp_get_wtime();
-#pragma omp parallel private(i, j, count)
-   {
-#pragma omp for
-      for (i = 0; i < size; i++)
-      {
-         count = 0;
-         for (j = 0; j < size; j++)
-         {
-            if (array[i] > array[j])
-               count++;
-         }
-         while (sorted[count] != 0)
-            count++;
-         sorted[count] = array[i];
-      }
-   }
-   double end_time = omp_get_wtime();
-   double time_used = end_time - start_time;
-   // int l;
-   // for (l = 0; l < size; ++l)
-   // {
-   //    printf("%d ", sorted[l]);
-   // }
-   printf("SOrted?\n");
-   printArray(sorted, size);
-   memcpy(array, sorted, size * sizeof(sorted));
-   free(sorted);
-}
-/*
- * End of counting sort methods.
- */
-
 /**
  * Merge sort methods
  */
@@ -476,43 +430,54 @@ void merge(int *array, int l, int m, int r)
    free(right);
 }
 
-
-void mergeSortAux(int *X, int n, int *tmp) {
+void mergeSortAux(int *X, int n, int *tmp)
+{
    int i = 0;
-   int j = n/2;
+   int j = n / 2;
    int ti = 0;
 
-   while (i<n/2 && j<n) {
-      if (X[i] < X[j]) {
+   while (i < n / 2 && j < n)
+   {
+      if (X[i] < X[j])
+      {
          tmp[ti] = X[i];
-         ti++; i++;
-      } else {
+         ti++;
+         i++;
+      }
+      else
+      {
          tmp[ti] = X[j];
-         ti++; j++;
+         ti++;
+         j++;
       }
    }
-   while (i<n/2) { /* finish up lower half */
+   while (i < n / 2)
+   { /* finish up lower half */
       tmp[ti] = X[i];
-      ti++; i++;
+      ti++;
+      i++;
    }
-   while (j<n) { /* finish up upper half */
+   while (j < n)
+   { /* finish up upper half */
       tmp[ti] = X[j];
-      ti++; j++;
+      ti++;
+      j++;
    }
-   memcpy(X, tmp, n*sizeof(int));
-} 
+   memcpy(X, tmp, n * sizeof(int));
+}
 
 void mergeSortHelper(int *X, int n, int *tmp)
 {
-   if (n < 2) return;
+   if (n < 2)
+      return;
 
-   #pragma omp task shared(X) if (n > TASK_SIZE)
-   mergeSortHelper(X, n/2, tmp);
+#pragma omp task shared(X) if (n > TASK_SIZE)
+   mergeSortHelper(X, n / 2, tmp);
 
-   #pragma omp task shared(X) if (n > TASK_SIZE)
-   mergeSortHelper(X+(n/2), n-(n/2), tmp + n/2);
+#pragma omp task shared(X) if (n > TASK_SIZE)
+   mergeSortHelper(X + (n / 2), n - (n / 2), tmp + n / 2);
 
-   #pragma omp taskwait
+#pragma omp taskwait
    mergeSortAux(X, n, tmp);
 }
 
@@ -539,12 +504,12 @@ void merge_sort_helper(int *array, int l, int r, int dir)
 
 void merge_sort(int *array, int l, int N, int dir)
 {
-   int *temp = malloc(N*sizeof(int));
-   #pragma omp parallel
+   int *temp = malloc(N * sizeof(int));
+#pragma omp parallel
    {
-      #pragma omp single
+#pragma omp single
       mergeSortHelper(array, N, temp);
-   }   
+   }
    free(temp);
 }
 
@@ -640,60 +605,59 @@ void mergeSort(int input[], int left, int mid, int right)
 // Parts of code were taken from: https://www.geeksforgeeks.org/timsort/
 void timSortHelper(int input[], int n)
 {
-   int *temp = malloc(n*sizeof(int));
-   #pragma omp parallel for shared(input)
+   int *temp = malloc(n * sizeof(int));
+#pragma omp parallel for shared(input)
    for (int i = 0; i < n; i += RUN)
       insertionSort(input, i, min((i + RUN - 1), (n - 1)));
 
-
-   #pragma omp task
-   for (int size = RUN; size < n; size = size * 2) 
+#pragma omp task
+   for (int size = RUN; size < n; size = size * 2)
    {
-      #pragma omp task
+#pragma omp task
       for (int left = 0; left < n; left += size * 2)
       {
          int mid = left + size - 1;
          int right = min((left + (size * 2) - 1), (n - 1));
 
          if (mid < right)
-            mergeSortAux(input+left, right-left+1, temp);
+            mergeSortAux(input + left, right - left + 1, temp);
       }
    }
    free(temp);
-   
 }
 
 void timSortRecursiveHelper(int *X, int n, int *tmp)
 {
-   if (n <= RUN) {
-      insertionSort(X, 0, n-1);
+   if (n <= RUN)
+   {
+      insertionSort(X, 0, n - 1);
       return;
    }
 
-   #pragma omp task shared(X) if (n > TASK_SIZE)
-   timSortRecursiveHelper(X, n/2, tmp);
+#pragma omp task shared(X) if (n > TASK_SIZE)
+   timSortRecursiveHelper(X, n / 2, tmp);
 
-   #pragma omp task shared(X) if (n > TASK_SIZE)
-   timSortRecursiveHelper(X+(n/2), n-(n/2), tmp + n/2);
+#pragma omp task shared(X) if (n > TASK_SIZE)
+   timSortRecursiveHelper(X + (n / 2), n - (n / 2), tmp + n / 2);
 
-   #pragma omp taskwait
+#pragma omp taskwait
    mergeSortAux(X, n, tmp);
 }
 
-void timSort(int* input, int left, int N, int direction)
+void timSort(int *input, int left, int N, int direction)
 {
-   int *temp = malloc(N*sizeof(int));
-   #pragma omp parallel
+   int *temp = malloc(N * sizeof(int));
+#pragma omp parallel
    {
-      #pragma omp single
+#pragma omp single
       timSortRecursiveHelper(input, N, temp);
-   }   
+   }
    free(temp);
 }
 
 void setArraySize(int *a, int minSize, int l)
 {
-   for (int i = 0; i < l-minSize; i++)
+   for (int i = 0; i < l - minSize; i++)
    {
       a[i] = pow(2, i + minSize);
       printf("%d\n", a[i]);
@@ -705,11 +669,9 @@ int runExperiments(int up, int low, int high, int print)
    // File nameing
    time_t rawtime;
    char buffer[255];
-   char buffer2[300];
 
    time(&rawtime);
    sprintf(buffer, "data/Group18Data_%s.csv", ctime(&rawtime));
-   sprintf(buffer2, "../%s", buffer);
    // Lets convert space to _ in
 
    char *p = buffer;
@@ -717,16 +679,8 @@ int runExperiments(int up, int low, int high, int print)
    {
       if (*p == ' ')
          *p = '_';
-      if(*p =='\n')
-          *p = '_';
-   }
-   char *p2 = buffer2;
-   for (; *p2; ++p2)
-   {
-      if (*p2 == ' ')
-         *p2 = '_';
-      if(*p2 =='\n')
-         *p2 = '_';
+      if (*p == '\n')
+         *p = '_';
    }
 
    FILE *fpt;
@@ -734,56 +688,44 @@ int runExperiments(int up, int low, int high, int print)
    fpt = fopen(buffer, "w+");
    if (fpt == NULL)
    {
-      fpt = fopen(buffer2, "w+");
-      if (fpt == NULL)
-      {
-         assert(0);
-         exit(1);
-      }
+
+      assert(0);
+      exit(1);
    }
    fprintf(fpt, "Algorithm,Implementation,Thread Count,Elements,Time\n");
 
    // Experiment value setup
-   // 67108864, 16777216, 2097152
-   // BITONIC NEEDS POWERS OF 2
-   // int minSize = 10;
-   // int sizeAmount = 20;
-   // int arraySizes[sizeAmount-minSize];
-   // setArraySize(arraySizes, minSize, sizeAmount);
    int minSize = 15;
    int sizeAmount = 31;
-   int arraySizes[sizeAmount-minSize];
+   int arraySizes[sizeAmount - minSize];
    setArraySize(arraySizes, minSize, sizeAmount);
-
    assert(evenInput(arraySizes, sizeof(arraySizes) / sizeof(arraySizes[0])));
-   int i;
-   for (i = 0; i < sizeof(arraySizes) / sizeof(arraySizes[0]); i++)
+
+   for (int i = 0; i < sizeof(arraySizes) / sizeof(arraySizes[0]); i++)
    {
       int N = arraySizes[i];
       int *X = (int *)malloc(N * sizeof(int));
       int *Y = (int *)malloc(N * sizeof(int));
 
-         // Dealing with failed memory allocation
-         if (!X)
-         {
-            if (X)
-               free(X);
-            return (EXIT_FAILURE);
-         }
-         if (!Y)
-         {
-            if (Y)
-               free(Y);
-            return (EXIT_FAILURE);
-         }
+      // Dealing with failed memory allocation
+      if (!X)
+      {
+         if (X)
+            free(X);
+         return (EXIT_FAILURE);
+      }
+      if (!Y)
+      {
+         if (Y)
+            free(Y);
+         return (EXIT_FAILURE);
+      }
 
       int threadCount[] = {1, 2, 3, 4, 5, 6, 7, 8, 16, 32};
       int trials = 10;
       for (int trialCount = 0; trialCount < trials; trialCount++)
       {
-         printf("Trial Num= %i\n\n\n",trialCount);
-         // func sortingAlgorithms[] = {&sampleSort};
-         // char *sortingNames[] = {"Sample Sort"};
+         printf("Trial Num= %i\n\n\n", trialCount);
 
          func sortingAlgorithms[] = {&timSort, &bitonicSortWrapper, &merge_sort, &quickSort, &sampleSort};
          char *sortingNames[] = {"TimSort", "Bitonic Sort", "MergeSort", "QuickSort", "Sample Sort"};
@@ -805,7 +747,6 @@ int runExperiments(int up, int low, int high, int print)
                {
                   printArray(X, N);
                }
-
 
                double begin = omp_get_wtime();
                sortAlgo(X, 0, N, up);
