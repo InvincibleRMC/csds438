@@ -681,6 +681,8 @@ int runExperiments(int up, int low, int high, int print)
          *p = '_';
       if (*p == '\n')
          *p = '_';
+      if (*p == ':')
+         *p = '_';
    }
 
    FILE *fpt;
@@ -688,7 +690,6 @@ int runExperiments(int up, int low, int high, int print)
    fpt = fopen(buffer, "w+");
    if (fpt == NULL)
    {
-
       assert(0);
       exit(1);
    }
