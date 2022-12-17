@@ -24,8 +24,6 @@ Generate Data
 
 
 ## Analyze Sorting Algorithms
-```
-python3 analysis.py
-```
+Run the Notebook
 # Examples
 ![Alt Text](images/Thread%20Count.png "Thread Plot Graph") ![Alt Text](images/Elements.png "Element Plot")
